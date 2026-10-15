@@ -1,0 +1,1302 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Portfolio de Mohamed Aziz Baoueb, élève-ingénieur à l'INSA CVL : projets cloud, DevOps et cybersécurité.">
+<title>Mohamed Aziz Baoueb</title>
+<meta property="og:type" content="website">
+<meta property="og:title" content="Mohamed Aziz Baoueb · Portfolio">
+<meta property="og:description" content="Élève-ingénieur à l'INSA CVL : projets cloud, DevOps et cybersécurité.">
+<meta property="og:url" content="https://aziz3r.github.io/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+/* Direction given by the user: dark cyber portfolio, but fluid: no cards, no bordered tiles, no chip boxes.
+   Content sits directly on the page. Structure comes from type, space, thin rules and glow. */
+:root {
+  --bg: #060A12;
+  --bg2: #0A101B;
+  --surface: #0F1724;
+  --line: #1D2A42;
+  --ink: #E8EEF8;
+  --muted: #8FA0BA;
+  --accent: #39E6A0;
+  --accent2: #4CC9F0;
+  --accent-ink: #04110C;
+  --warn: #F2B25C;
+  --glow: rgba(57, 230, 160, .16);
+  --font-body: "Inter", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "Fira Code", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  color-scheme: dark;
+}
+:root[data-theme="light"] {
+  --bg: #F4F7FB; --bg2: #E9EFF6; --surface: #FFFFFF; --line: #D2DBE7;
+  --ink: #0B1A2B; --muted: #475A72; --accent: #087A55; --accent2: #0B64A6; --accent-ink: #FFFFFF;
+  --warn: #8F4C00; --glow: rgba(8, 122, 85, .12);
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 1rem; line-height: 1.7; margin: 0; padding-inline: 20px; padding-block: 0 40px; }
+html[lang="fr"] .en { display: none !important; }
+html[lang="en"] .fr { display: none !important; }
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+img, video { max-width: 100%; display: block; }
+p { margin: 0; }
+h1, h2, h3 { margin: 0; line-height: 1.12; text-wrap: balance; }
+button { font: inherit; }
+.wrap { max-width: 1080px; margin-inline: auto; position: relative; z-index: 1; }
+.mono { font-family: var(--font-mono); }
+#net { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: .5; }
+
+/* plain text buttons and links */
+.tlink { background: none; border: 0; padding: 0; color: var(--accent); font-family: var(--font-mono); font-size: .84rem; cursor: pointer; text-decoration: none; }
+.tlink:hover { text-decoration: underline; text-underline-offset: 4px; }
+.pill { display: inline-block; font-family: var(--font-mono); font-size: .8rem; font-weight: 500; letter-spacing: .03em; text-decoration: none; padding: 12px 22px; border-radius: 999px; border: 1px solid var(--accent); color: var(--accent); background: transparent; cursor: pointer; }
+.pill:hover { background: var(--glow); }
+.pill.solid { background: var(--accent); color: var(--accent-ink); font-weight: 600; }
+.pill.solid:hover { filter: brightness(1.08); background: var(--accent); }
+
+/* nav */
+.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; margin-inline: -20px; padding-inline: 20px; background: var(--bg); background: color-mix(in srgb, var(--bg) 78%, transparent); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+.nav-in { max-width: 1080px; margin-inline: auto; display: flex; align-items: center; gap: 10px 26px; padding-block: 14px; flex-wrap: wrap; }
+.logo { font-family: var(--font-mono); font-weight: 600; font-size: 1.05rem; color: var(--ink); text-decoration: none; margin-right: auto; }
+.logo b { color: var(--accent); font-weight: 600; }
+.caret { display: inline-block; width: .6ch; height: 1.05em; background: var(--accent); vertical-align: -0.15em; margin-left: 3px; animation: blink 1.1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+.links { display: flex; gap: 22px; flex-wrap: wrap; }
+.links a { font-family: var(--font-mono); font-size: .84rem; color: var(--muted); text-decoration: none; }
+.links a:hover { color: var(--accent); }
+.tools { display: flex; gap: 14px; align-items: center; }
+.lang button, .iconbtn { background: none; border: 0; color: var(--muted); font: 500 .8rem var(--font-mono); cursor: pointer; padding: 4px 2px; }
+.lang button[aria-pressed="true"] { color: var(--accent); text-decoration: underline; text-underline-offset: 5px; }
+.lang i { color: var(--line); font-style: normal; }
+.iconbtn { font-size: 1rem; }
+.iconbtn:hover { color: var(--accent); }
+
+/* hero */
+.hero { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 56px; align-items: center; padding-block: 84px 40px; }
+.hello { font-family: var(--font-mono); color: var(--accent); }
+.hero h1 { font-size: clamp(2.7rem, 7vw, 5.2rem); font-weight: 800; letter-spacing: -0.025em; margin-top: 12px; }
+.hero h1 i { font-style: normal; color: var(--accent); }
+.roles { font-family: var(--font-mono); font-size: 1.1rem; color: var(--accent2); margin-top: 16px; min-height: 1.8em; }
+.role { display: none; }
+.role.active { display: inline; }
+.lead { color: var(--muted); font-size: 1.1rem; max-width: 38rem; margin-top: 18px; }
+.status { display: flex; align-items: center; gap: 10px; margin-top: 24px; font-family: var(--font-mono); font-size: .86rem; color: var(--accent); }
+.status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 12px var(--accent); flex: none; }
+.cta { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; margin-top: 28px; }
+.avatar { position: relative; width: min(74vw, 320px); aspect-ratio: 1; margin-inline: auto; }
+.avatar::before { content: ""; position: absolute; inset: -16px; border-radius: 50%; border: 1px dashed var(--accent); opacity: .5; animation: spin 50s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.avatar .face, .avatar .initials { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: 50%; box-shadow: 0 0 90px var(--glow); }
+.avatar .face { object-fit: cover; background: var(--surface); }
+.avatar .initials { display: grid; place-items: center; background: var(--surface); font-family: var(--font-mono); font-weight: 600; font-size: clamp(3rem, 12vw, 5rem); color: var(--accent); letter-spacing: -0.04em; }
+.avatar .initials[hidden] { display: none; }
+
+.focus { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px 52px; max-width: 64rem; margin: 0 auto; padding-block: 52px 8px; }
+.focus > div { min-width: 0; }
+.focus .k { font-family: var(--font-mono); font-size: .78rem; letter-spacing: .07em; text-transform: uppercase; color: var(--accent); margin: 0 0 8px; }
+.focus p { margin: 0; color: var(--muted); font-size: .96rem; line-height: 1.6; }
+.focus p b { color: var(--ink); font-weight: 600; }
+.focus .tlink { display: inline-block; margin-top: 10px; }
+
+/* sections */
+section { padding-block: 96px 0; scroll-margin-top: 60px; }
+.sec-head { text-align: center; margin-bottom: 52px; }
+.kick { font-family: var(--font-mono); color: var(--accent); font-size: .9rem; }
+.sec-title { font-size: clamp(1.9rem, 4.4vw, 2.7rem); font-weight: 800; margin-top: 8px; letter-spacing: -0.01em; }
+.sec-title::after { content: ""; display: block; width: 72px; height: 3px; margin: 18px auto 0; border-radius: 2px; background: linear-gradient(90deg, var(--accent), var(--accent2)); box-shadow: 0 0 18px var(--glow); }
+.sec-lead { color: var(--muted); max-width: 40rem; margin: 18px auto 0; }
+
+.about { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 48px; align-items: center; }
+.about .copy p { color: var(--muted); font-size: 1.05rem; }
+.about .copy p + p { margin-top: 16px; }
+.about .copy b { color: var(--ink); font-weight: 600; }
+.term { margin: 0; padding: 4px 0 4px 22px; border-left: 2px solid var(--accent); font-family: var(--font-mono); font-size: .86rem; line-height: 1.9; overflow-x: auto; white-space: pre; }
+.term .p { color: var(--accent); }
+.term .c { color: var(--muted); }
+
+/* projects: open rows, no frames */
+.proj { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 52px; align-items: center; margin-bottom: 96px; }
+.proj.flip .pm { order: 2; }
+.pm { position: relative; display: block; width: 100%; padding: 0; border: 0; background: none; cursor: pointer; border-radius: 14px; overflow: hidden; box-shadow: 0 0 80px -28px var(--accent); transition: transform .25s, box-shadow .25s; }
+.pm:hover { transform: scale(1.012); box-shadow: 0 0 90px -20px var(--accent); }
+.pm img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; background: var(--bg2); }
+.pm.plain img { object-fit: contain; background: #fff; padding: 8px; }
+.pm .play { position: absolute; inset: auto 16px 16px auto; width: 52px; height: 52px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); display: grid; place-items: center; font-size: 1.1rem; box-shadow: 0 0 30px var(--accent); }
+.tag { font-family: var(--font-mono); font-size: .78rem; color: var(--muted); }
+.proj h3 { font-size: clamp(1.7rem, 3.6vw, 2.3rem); font-weight: 800; margin-top: 8px; letter-spacing: -0.01em; }
+.one { margin-top: 14px; font-size: 1.05rem; color: var(--muted); }
+.mini { margin-top: 16px; font-family: var(--font-mono); font-size: .84rem; color: var(--accent2); }
+.stack { margin-top: 8px; font-family: var(--font-mono); font-size: .78rem; color: var(--muted); }
+.plinks { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 20px; }
+.subhead { text-align: center; font-family: var(--font-mono); color: var(--muted); font-size: .9rem; margin: 0 0 56px; }
+.subhead b { color: var(--accent); font-weight: 500; }
+
+/* dialogs */
+dialog.dlg { width: min(1040px, calc(100% - 24px)); max-height: 92vh; padding: 0; border: 0; border-radius: 16px; background: var(--bg); color: var(--ink); overflow: auto; box-shadow: 0 0 120px -30px var(--accent); }
+dialog.dlg::backdrop { background: rgba(2, 6, 14, .78); -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px); }
+.dlg-head { position: sticky; top: 0; z-index: 2; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 22px; background: var(--bg); background: color-mix(in srgb, var(--bg) 88%, transparent); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+.dlg-head h3 { font-size: 1.25rem; font-weight: 700; }
+.dlg-head .hl { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; justify-content: flex-end; }
+.dlg-body { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 36px; padding: 8px 22px 30px; }
+.media { display: grid; gap: 14px; align-content: start; min-width: 0; }
+.media video, .media img { width: 100%; height: auto; border-radius: 8px; background: var(--bg2); }
+.cap { font-family: var(--font-mono); font-size: .74rem; color: var(--muted); }
+.diagram { display: block; width: 100%; height: auto; margin: 4px 0 6px; }
+.diagram rect { fill: none; stroke: var(--line); stroke-width: 1.2; }
+.diagram rect.m { stroke-dasharray: 5 5; }
+.diagram rect.n { fill: var(--surface); }
+.diagram rect.c { fill: var(--surface); stroke: var(--accent); stroke-width: 1.4; }
+.diagram text { font-family: var(--font-mono); font-size: 13px; fill: var(--ink); text-anchor: middle; }
+.diagram text.s { font-size: 11px; fill: var(--muted); }
+.diagram text.l { text-anchor: start; }
+.diagram path { fill: none; stroke: var(--accent2); stroke-width: 1.6; }
+.diagram .ah { fill: var(--accent2); stroke: none; }
+.shots { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.shots.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.shots figure { margin: 0; min-width: 0; }
+.shots figcaption { font-size: .78rem; color: var(--muted); margin-top: 6px; line-height: 1.45; }
+.figs { display: grid; gap: 14px; }
+.diagram { background: var(--bg2); border-radius: 8px; padding: 10px; }
+.diagram img { background: transparent; border-radius: 0; }
+.t-light { display: none; }
+:root[data-theme="light"] .t-light { display: block; }
+:root[data-theme="light"] .t-dark { display: none; }
+.facts { display: flex; flex-wrap: wrap; gap: 14px 34px; padding-bottom: 18px; }
+.facts div { min-width: 0; }
+.facts b { display: block; font-family: var(--font-mono); font-size: 1.7rem; line-height: 1.1; color: var(--accent2); font-weight: 600; }
+.facts span { display: block; font-size: .8rem; color: var(--muted); margin-top: 4px; line-height: 1.35; max-width: 11rem; }
+.facts span span { display: inline; margin: 0; font-size: inherit; }
+.points { list-style: none; margin: 0; padding: 0; display: grid; gap: 18px; }
+.points .lbl { display: block; font-family: var(--font-mono); font-size: .74rem; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); margin-bottom: 3px; }
+.points li { font-size: .96rem; color: var(--muted); min-width: 0; }
+.points li.limit { padding-left: 14px; border-left: 2px solid var(--warn); }
+.points li.limit .lbl { color: var(--warn); }
+.dlg-links { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 22px; }
+
+/* report preview */
+.pages { display: grid; gap: 18px; padding: 8px 22px 30px; justify-items: center; }
+.pg { width: 100%; max-width: 820px; margin: 0; }
+.pg img { width: 100%; height: auto; aspect-ratio: 1000 / 1414; background: #fff; border-radius: 3px; box-shadow: 0 10px 40px -10px rgba(0, 0, 0, .55); }
+.pg figcaption { text-align: center; font-family: var(--font-mono); font-size: .72rem; color: var(--muted); margin-top: 8px; }
+
+/* arsenal */
+.arsenal { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 52px 44px; margin: 0; padding: 0; list-style: none; }
+.arsenal li { min-width: 0; }
+.arsenal h3 { font-family: var(--font-mono); font-size: 1rem; font-weight: 600; color: var(--accent2); }
+.arsenal h3::before { content: "$ "; color: var(--accent); }
+.arsenal .skills { margin-top: 12px; color: var(--ink); font-size: .96rem; line-height: 1.8; }
+.arsenal .used { margin-top: 10px; font-size: .82rem; color: var(--muted); }
+
+/* timeline */
+.log { list-style: none; margin: 0 auto; padding: 0 0 0 4px; max-width: 800px; border-left: 1px solid var(--line); }
+.log li { position: relative; display: grid; grid-template-columns: 10.5rem minmax(0, 1fr); gap: 18px; padding: 12px 0 12px 26px; }
+.log li::before { content: ""; position: absolute; left: -5px; top: 21px; width: 9px; height: 9px; border-radius: 50%; background: var(--bg); border: 2px solid var(--accent); }
+.log .when { font-family: var(--font-mono); font-size: .82rem; color: var(--accent2); }
+.log .what b { font-weight: 600; }
+.log .what span { color: var(--muted); }
+.log .what b span { color: inherit; }
+.log li.next::before { background: var(--warn); border-color: var(--warn); box-shadow: 0 0 14px var(--warn); }
+.log li.next .when, .log li.next .what b { color: var(--warn); }
+
+/* community */
+.two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 52px; }
+.two h3 { font-family: var(--font-mono); font-size: 1rem; color: var(--accent2); margin-bottom: 12px; }
+.list { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
+.list b { font-weight: 600; }
+.list span { display: block; color: var(--muted); font-size: .94rem; }
+.langs { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 44px; margin: 56px 0 0; padding: 0; list-style: none; text-align: center; }
+.langs li > span:last-child { display: block; font-family: var(--font-mono); font-size: .76rem; color: var(--muted); }
+
+/* contact */
+.contact { text-align: center; }
+.contact .sec-lead { margin-bottom: 34px; }
+.big { display: block; font-family: var(--font-mono); font-size: clamp(1rem, 2.8vw, 1.45rem); color: var(--ink); text-decoration: none; padding-block: 10px; overflow-wrap: anywhere; }
+.big small { display: block; font-size: .76rem; color: var(--accent); letter-spacing: .06em; text-transform: uppercase; }
+a.big:hover { color: var(--accent); }
+.cv { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 14px 22px; margin-top: 40px; }
+footer { margin-top: 90px; padding-top: 22px; font-family: var(--font-mono); font-size: .74rem; color: var(--muted); text-align: center; }
+
+#toast { position: fixed; left: 50%; bottom: calc(22px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); z-index: 50; max-width: min(92vw, 30rem); padding: 11px 18px; border-radius: 999px; background: var(--ink); color: var(--bg); font-size: .86rem; text-align: center; }
+#toast[hidden] { display: none; }
+
+@media (max-width: 900px) {
+  .hero, .about, .proj, .dlg-body, .two { grid-template-columns: minmax(0, 1fr); }
+  .hero { gap: 36px; padding-block: 40px 24px; }
+  .avatar { order: -1; width: min(60vw, 240px); }
+  .proj { gap: 28px; margin-bottom: 72px; }
+  .proj.flip .pm { order: 0; }
+  .arsenal { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 44px 32px; }
+  .log li { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+  section { padding-block: 72px 0; }
+}
+@media (max-width: 640px) {
+  .nav { position: static; }
+  .nav-in { gap: 8px 12px; }
+  .tools { order: 2; }
+  .links { order: 3; width: 100%; flex-wrap: nowrap; overflow-x: auto; white-space: nowrap; gap: 18px; padding-bottom: 4px; }
+  .arsenal { grid-template-columns: minmax(0, 1fr); }
+  .shots.three { grid-template-columns: minmax(0, 1fr); }
+  .focus { grid-template-columns: minmax(0, 1fr); gap: 30px; padding-block: 40px 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .caret, .avatar::before { animation: none; }
+  .pm { transition: none; }
+}
+</style>
+
+</head>
+<body>
+<!--BODY-->
+<canvas id="net" aria-hidden="true"></canvas>
+
+<header class="nav">
+  <div class="nav-in">
+    <a class="logo" href="#top"><b>&gt;</b> aziz3r<span class="caret" aria-hidden="true"></span></a>
+    <nav class="links" aria-label="Sections">
+      <a href="#projets">~/<span class="fr">projets</span><span class="en">projects</span></a>
+      <a href="#arsenal">~/arsenal</a>
+      <a href="#parcours">~/<span class="fr">parcours</span><span class="en">timeline</span></a>
+      <a href="#engagements">~/<span class="fr">engagements</span><span class="en">community</span></a>
+      <a href="#contact">~/contact</a>
+    </nav>
+    <div class="tools">
+      <div class="lang" role="group" aria-label="Langue / Language">
+        <button type="button" data-set-lang="fr" aria-pressed="true">FR</button><i>/</i><button type="button" data-set-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <button type="button" class="iconbtn" id="theme" aria-label="Thème clair ou sombre / Light or dark theme" title="Thème / Theme">&#9680;</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap" id="top">
+
+  <div class="hero">
+    <div>
+      <p class="hello"><span class="fr">Hello World, je suis</span><span class="en">Hello World, I'm</span></p>
+      <h1>Mohamed Aziz Baoueb<i>.</i></h1>
+      <p class="roles" aria-label="Domaines">
+        <span class="role active"><span class="fr">Élève-ingénieur en cybersécurité</span><span class="en">Cybersecurity engineering student</span></span>
+        <span class="role"><span class="fr">Cloud &amp; DevOps</span><span class="en">Cloud &amp; DevOps</span></span>
+        <span class="role"><span class="fr">Détection d'intrusion</span><span class="en">Intrusion detection</span></span>
+      </p>
+      <p class="lead fr">Élève-ingénieur à l'INSA Centre-Val de Loire, je construis des projets à la croisée de la sécurité, de l'infrastructure cloud et de l'automatisation, puis je les documente avec leurs chiffres et leurs limites.</p>
+      <p class="lead en">Engineering student at INSA Centre-Val de Loire, I build projects where security, cloud infrastructure and automation meet, then document them with their numbers and their limits.</p>
+      <p class="status"><span class="fr">Disponible pour un stage dès avril 2027</span><span class="en">Available for an internship from April 2027</span></p>
+      <div class="cta">
+        <a class="pill solid" href="#projets"><span class="fr">Voir mes projets</span><span class="en">See my projects</span></a>
+        <button type="button" class="pill" data-cv="auto"><span class="fr">Télécharger mon CV</span><span class="en">Download my CV</span></button>
+        <a class="tlink" href="https://github.com/aziz3r" target="_blank" rel="noopener">GitHub ↗</a>
+        <a class="tlink" href="https://www.linkedin.com/in/mohamed-aziz-baoueb-2a0827301" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+    </div>
+    <div class="avatar">
+      <img class="face" id="photo" src="assets/profile.jpg" alt="" data-alt-fr="Portrait de Mohamed Aziz Baoueb" data-alt-en="Portrait of Mohamed Aziz Baoueb">
+      <div class="initials" id="initials" hidden aria-hidden="true">MA</div>
+    </div>
+  </div>
+
+  <div class="focus">
+    <div>
+      <p class="k fr">cybersécurité</p><p class="k en">cybersecurity</p>
+      <p class="fr">Un <b>détecteur d'intrusion</b> qui apprend à quoi ressemble le trafic normal, et un jeu d'entraînement au pentest conçu en équipe.</p>
+      <p class="en">An <b>intrusion detector</b> that learns what normal traffic looks like, and a pentest training game built as a team.</p>
+      <a class="tlink" href="#p-aegis"><span class="fr">AEGIS Mini-SOC →</span><span class="en">AEGIS Mini-SOC →</span></a>
+    </div>
+    <div>
+      <p class="k">cloud &amp; devops</p>
+      <p class="fr">Un <b>mini-cloud</b> construit de zéro : des machines Linux louées à la minute, déployées avec Docker et Ansible, vérifiées par une chaîne CI/CD.</p>
+      <p class="en">A <b>mini cloud</b> built from scratch: Linux machines rented by the minute, deployed with Docker and Ansible, checked by a CI/CD pipeline.</p>
+      <a class="tlink" href="#p-insacloud">InsaCloud →</a>
+    </div>
+    <div>
+      <p class="k fr">réseau &amp; développement</p><p class="k en">network &amp; development</p>
+      <p class="fr">Un jeu de stratégie en Python, puis sa version <b>pair-à-pair</b> avec un démon réseau en C, et une application web de révisions.</p>
+      <p class="en">A strategy game in Python, then its <b>peer-to-peer</b> version with a C network daemon, and a revision web application.</p>
+      <a class="tlink" href="#p-medievail"><span class="fr">MedievAIl Battle →</span><span class="en">MedievAIl Battle →</span></a>
+    </div>
+  </div>
+
+  <section id="about">
+    <div class="sec-head">
+      <p class="kick">~/<span class="fr">à-propos</span><span class="en">about</span></p>
+      <h2 class="sec-title">Initialisation</h2>
+    </div>
+    <div class="about">
+      <div class="copy">
+        <p class="fr">Élève-ingénieur à l'INSA Centre-Val de Loire, spécialité <b>Sécurité et Technologies Informatiques</b> (promotion 2028). Mon premier projet web date d'un stage de l'été 2025 chez Anypli, en Tunisie. Depuis, j'ai construit un mini-cloud et un détecteur d'intrusion par machine learning.</p>
+        <p class="en">Engineering student at INSA Centre-Val de Loire, <b>Security and Computer Technologies</b> major (class of 2028). My first web project came from an internship at Anypli, in Tunisia, in summer 2025. Since then I have built a mini cloud and a machine-learning intrusion detector.</p>
+        <p class="fr"><b>Ma façon de travailler :</b> mesurer, documenter, et dire ce qui ne marche pas. Chaque projet a ses tests, ses chiffres et ses limites.</p>
+        <p class="en"><b>How I work:</b> measure, document, and say what doesn't work. Every project has its tests, its numbers and its limits.</p>
+        <p class="fr">Je cherche un stage <b>à partir de début avril 2027</b>, en cybersécurité ou en cloud et DevOps.</p>
+        <p class="en">I'm looking for an internship <b>starting early April 2027</b>, in cybersecurity or in cloud and DevOps.</p>
+      </div>
+<pre class="term" aria-label="Terminal"><span class="p">$</span> whoami
+mohamed-aziz-baoueb
+<span class="p">$</span> cat <span class="fr">ecole</span><span class="en">school</span>.txt
+INSA CVL · STI · <span class="fr">promo</span><span class="en">class of</span> 2028
+<span class="p">$</span> cat <span class="fr">stage</span><span class="en">internship</span>.txt
+<span class="fr">dès avril 2027 · cybersécurité | cloud &amp; DevOps</span><span class="en">from April 2027 · cybersecurity | cloud &amp; DevOps</span>
+<span class="p">$</span> ls <span class="fr">projets</span><span class="en">projects</span>/
+<span class="c">insacloud/  aegis-mini-soc/  planificateur/
+medievail-battle/  medievail-p2p/  cyberquest/</span></pre>
+    </div>
+  </section>
+
+  <section id="projets">
+    <div class="sec-head">
+      <p class="kick">~/<span class="fr">projets</span><span class="en">projects</span></p>
+      <h2 class="sec-title"><span class="fr">Opérations &amp; projets</span><span class="en">Operations &amp; projects</span></h2>
+      <p class="sec-lead fr">Clique sur une image pour voir la démo, les captures et les mesures. Les chiffres viennent des dépôts.</p>
+      <p class="sec-lead en">Click an image to see the demo, the screenshots and the measurements. The numbers come from the repositories.</p>
+    </div>
+
+    <article class="proj" id="p-insacloud">
+      <button type="button" class="pm" data-open="d-insacloud" aria-label="InsaCloud : démo et étude de cas">
+        <img loading="lazy" src="assets/insacloud/03-tableau-de-bord.png" alt="" data-alt-fr="Tableau de bord d'InsaCloud" data-alt-en="InsaCloud dashboard"><span class="play" aria-hidden="true">▶</span>
+      </button>
+      <div>
+        <p class="tag"><span class="fr">Projet personnel · sept. – oct. 2026</span><span class="en">Personal project · Sep – Oct 2026</span></p>
+        <h3>InsaCloud</h3>
+        <p class="one fr">Un mini-fournisseur de cloud construit de zéro : on loue une machine Linux à la minute, depuis le navigateur.</p>
+        <p class="one en">A mini cloud provider built from scratch: rent a Linux machine by the minute, straight from the browser.</p>
+        <p class="mini fr">94 tests · 11 contrôles CI/CD · 9 rôles Ansible</p>
+        <p class="mini en">94 tests · 11 CI/CD checks · 9 Ansible roles</p>
+        <p class="stack">Python · Flask · Docker · Ansible · Vagrant · nginx</p>
+        <p class="plinks">
+          <button type="button" class="tlink" data-open="d-insacloud"><span class="fr">▶ Démo &amp; étude</span><span class="en">▶ Demo &amp; case study</span></button>
+          <button type="button" class="tlink" data-report="insacloud"><span class="fr">Rapport</span><span class="en">Report</span></button>
+          <a class="tlink" href="https://github.com/aziz3r/insacloud" target="_blank" rel="noopener"><span class="fr">Code source ↗</span><span class="en">Source code ↗</span></a>
+        </p>
+      </div>
+    </article>
+
+    <article class="proj flip" id="p-aegis">
+      <button type="button" class="pm" data-open="d-aegis" aria-label="AEGIS Mini-SOC : démo et étude de cas">
+        <img loading="lazy" src="assets/aegis/02-vue-ensemble.jpg" alt="" data-alt-fr="Vue d'ensemble de la console AEGIS" data-alt-en="AEGIS console overview"><span class="play" aria-hidden="true">▶</span>
+      </button>
+      <div>
+        <p class="tag"><span class="fr">Projet personnel · oct. 2026</span><span class="en">Personal project · Oct 2026</span></p>
+        <h3>AEGIS Mini-SOC</h3>
+        <p class="one fr">Un détecteur d'intrusion réseau qui apprend la normale, et le poste d'analyste qui rend ses alertes exploitables.</p>
+        <p class="one en">A network intrusion detector that learns what normal looks like, and the analyst workstation that makes its alerts usable.</p>
+        <p class="mini fr">99,6 % de rappel · faux positifs de 341 à 53 par heure · MITRE ATT&amp;CK</p>
+        <p class="mini en">99.6% recall · false positives from 341 to 53 per hour · MITRE ATT&amp;CK</p>
+        <p class="stack">Python · scikit-learn · FastAPI · React · scapy</p>
+        <p class="plinks">
+          <button type="button" class="tlink" data-open="d-aegis"><span class="fr">▶ Démo &amp; étude</span><span class="en">▶ Demo &amp; case study</span></button>
+          <button type="button" class="tlink" data-report="aegis"><span class="fr">Rapport</span><span class="en">Report</span></button>
+          <button type="button" class="tlink" data-report="aegis-dossier"><span class="fr">Dossier technique</span><span class="en">Technical dossier</span></button>
+          <a class="tlink" href="https://github.com/aziz3r/aegis-mini-soc" target="_blank" rel="noopener"><span class="fr">Code source ↗</span><span class="en">Source code ↗</span></a>
+        </p>
+      </div>
+    </article>
+
+    <article class="proj">
+      <button type="button" class="pm" data-open="d-planner" aria-label="Planificateur de révisions : démo et étude de cas">
+        <img loading="lazy" src="assets/planner/0007-planning-previsualisation.png" alt="" data-alt-fr="Planning de révision généré" data-alt-en="Generated revision schedule"><span class="play" aria-hidden="true">▶</span>
+      </button>
+      <div>
+        <p class="tag"><span class="fr">Projet personnel · juil. 2025 – oct. 2026</span><span class="en">Personal project · Jul 2025 – Oct 2026</span></p>
+        <h3><span class="fr">Planificateur de révisions</span><span class="en">Revision planner</span></h3>
+        <p class="one fr">Les examens d'un côté, un planning de révision de l'autre, construit selon la répétition espacée.</p>
+        <p class="one en">Exams on one side, a revision schedule on the other, built on spaced repetition.</p>
+        <p class="mini fr">de 1 à 45 tests · TypeScript strict · un seul point d'entrée</p>
+        <p class="mini en">from 1 to 45 tests · strict TypeScript · a single command to run it</p>
+        <p class="stack">TypeScript · React 18 · Strapi 5 · Vite · Vitest</p>
+        <p class="plinks">
+          <button type="button" class="tlink" data-open="d-planner"><span class="fr">▶ Démo &amp; étude</span><span class="en">▶ Demo &amp; case study</span></button>
+          <button type="button" class="tlink" data-report="planner"><span class="fr">Rapport</span><span class="en">Report</span></button>
+          <a class="tlink" href="https://github.com/aziz3r/revision-planner" target="_blank" rel="noopener"><span class="fr">Code source ↗</span><span class="en">Source code ↗</span></a>
+        </p>
+      </div>
+    </article>
+
+    <p class="subhead">~/<b><span class="fr">projets-d-équipe</span><span class="en">team-projects</span></b></p>
+
+    <article class="proj flip" id="p-medievail">
+      <button type="button" class="pm" data-open="d-medievail-jeu" aria-label="MedievAIl Battle : démo et étude de cas">
+        <img loading="lazy" src="assets/medievail-jeu/vue-ensemble.jpg" alt="" data-alt-fr="Deux armées qui se déploient face à face dans MedievAIl Battle" data-alt-en="Two armies deploying face to face in MedievAIl Battle"><span class="play" aria-hidden="true">▶</span>
+      </button>
+      <div>
+        <p class="tag"><span class="fr">Projet d'équipe · INSA CVL · oct. 2025 – janv. 2026</span><span class="en">Team project · INSA CVL · Oct 2025 – Jan 2026</span></p>
+        <h3>MedievAIl Battle</h3>
+        <p class="one fr">Un simulateur de batailles médiévales en Python : deux armées pilotées par des IA, choisies parmi plusieurs stratégies, s'affrontent sur un champ de bataille avec mini-carte.</p>
+        <p class="one en">A medieval battle simulator in Python: two armies driven by AIs, picked from several strategies, fight on a battlefield with a mini-map.</p>
+        <p class="mini fr">5 IA au choix · arbalétriers, chevaliers, piquiers · architecture MVP</p>
+        <p class="mini en">5 AIs to choose from · crossbowmen, knights, pikemen · MVP architecture</p>
+        <p class="stack">Python · POO · MVP</p>
+        <p class="plinks">
+          <button type="button" class="tlink" data-open="d-medievail-jeu"><span class="fr">▶ Démo &amp; étude</span><span class="en">▶ Demo &amp; case study</span></button>
+          <a class="tlink" href="https://github.com/aziz3r/medievail-battle" target="_blank" rel="noopener"><span class="fr">Code source ↗</span><span class="en">Source code ↗</span></a>
+        </p>
+      </div>
+    </article>
+
+    <article class="proj" id="p-p2p">
+      <button type="button" class="pm" data-open="d-medievail-p2p" aria-label="MedievAIl Battle réseau pair-à-pair : démo et étude de cas">
+        <img loading="lazy" src="assets/medievail-p2p/thumb.jpg" alt="" data-alt-fr="Mêlée vue depuis l'écran du joueur 1" data-alt-en="Melee as seen on player 1's screen"><span class="play" aria-hidden="true">▶</span>
+      </button>
+      <div>
+        <p class="tag"><span class="fr">Projet d'équipe · INSA CVL · oct. 2025 – avril 2026</span><span class="en">Team project · INSA CVL · Oct 2025 – Apr 2026</span></p>
+        <h3><span class="fr">MedievAIl Battle · réseau pair-à-pair</span><span class="en">MedievAIl Battle · peer-to-peer network</span></h3>
+        <p class="one fr">Le même jeu, joué à deux machines sans serveur central : chaque joueur lance le jeu en Python et un démon réseau en C, et une « propriété réseau » garantit qu'une unité n'a qu'un seul maître à la fois.</p>
+        <p class="one en">The same game, played across two machines with no central server: each player runs the Python game and a C network daemon, and a "network ownership" rule guarantees a unit has only one master at a time.</p>
+        <p class="mini fr">2 processus par machine · sockets UDP/TCP · aucun serveur central</p>
+        <p class="mini en">2 processes per machine · UDP/TCP sockets · no central server</p>
+        <p class="stack">C · Python · UDP / TCP · IPC</p>
+        <p class="plinks">
+          <button type="button" class="tlink" data-open="d-medievail-p2p"><span class="fr">▶ Démo &amp; étude</span><span class="en">▶ Demo &amp; case study</span></button>
+          <a class="tlink" href="https://github.com/aziz3r/medievail-battle-p2p" target="_blank" rel="noopener"><span class="fr">Code source ↗</span><span class="en">Source code ↗</span></a>
+        </p>
+      </div>
+    </article>
+
+    <article class="proj flip" id="p-cyberquest">
+      <button type="button" class="pm" data-open="d-cyberquest" aria-label="CyberQuest : démo et étude de cas">
+        <img loading="lazy" src="assets/cyberquest/carte-reseau.jpg" alt="" data-alt-fr="Carte réseau de CyberQuest : Kali, Linux, Active Directory, application web et cœur IA" data-alt-en="CyberQuest network map: Kali, Linux, Active Directory, web application and AI core"><span class="play" aria-hidden="true">▶</span>
+      </button>
+      <div>
+        <p class="tag"><span class="fr">Projet d'équipe · 4 étudiants · juin – oct. 2026</span><span class="en">Team project · 4 students · Jun – Oct 2026</span></p>
+        <h3>CyberQuest</h3>
+        <p class="one fr">Un jeu de simulation de pentest : le joueur infiltre un réseau fictif depuis un terminal intégré, à travers des niveaux Linux, Docker et DVWA, une mission Active Directory et des défis d'injection de prompt sur des LLM, avec un assistant « Mentor » pour l'aider.</p>
+        <p class="one en">A pentest simulation game: the player infiltrates a fictional network from a built-in terminal, through Linux, Docker and DVWA levels, an Active Directory mission and prompt-injection challenges against LLMs, with a "Mentor" assistant to help.</p>
+        <p class="mini fr">6 étapes Active Directory · 13 niveaux web · 8 niveaux Linux · 2 défis d'IA</p>
+        <p class="mini en">6 Active Directory steps · 13 web levels · 8 Linux levels · 2 AI challenges</p>
+        <p class="stack">React 18 · Vite · xterm.js · Canvas 2D · Node.js</p>
+        <p class="plinks">
+          <button type="button" class="tlink" data-open="d-cyberquest"><span class="fr">▶ Démo &amp; étude</span><span class="en">▶ Demo &amp; case study</span></button>
+          <button type="button" class="tlink" data-report="cyberquest"><span class="fr">Rapport</span><span class="en">Report</span></button>
+          <a class="tlink" href="https://github.com/aziz3r/cyberquest" target="_blank" rel="noopener"><span class="fr">Code source ↗</span><span class="en">Source code ↗</span></a>
+        </p>
+      </div>
+    </article>
+  </section>
+
+  <section id="arsenal">
+    <div class="sec-head">
+      <p class="kick">~/arsenal</p>
+      <h2 class="sec-title"><span class="fr">Arsenal technique</span><span class="en">Technical arsenal</span></h2>
+      <p class="sec-lead fr">Chaque compétence renvoie à un projet précis.</p>
+      <p class="sec-lead en">Every skill points back to a specific project.</p>
+    </div>
+    <ul class="arsenal">
+      <li>
+        <h3><span class="fr">cybersécurité</span><span class="en">cybersecurity</span></h3>
+        <p class="skills fr">Détection d'intrusion · MITRE ATT&amp;CK · analyse de flux · CSP / CSRF · SAST, SCA, DAST · gestion des secrets</p>
+        <p class="skills en">Intrusion detection · MITRE ATT&amp;CK · flow analysis · CSP / CSRF · SAST, SCA, DAST · secrets handling</p>
+        <p class="used">AEGIS Mini-SOC, InsaCloud, CyberQuest</p>
+      </li>
+      <li>
+        <h3>cloud &amp; devops</h3>
+        <p class="skills">Docker · Ansible · Vagrant · nginx · GitHub Actions · Linux · PostgreSQL</p>
+        <p class="used">InsaCloud</p>
+      </li>
+      <li>
+        <h3><span class="fr">développement</span><span class="en">development</span></h3>
+        <p class="skills">Python · Flask · FastAPI · TypeScript · React · Strapi · C · SQL</p>
+        <p class="used fr">InsaCloud, AEGIS, Planificateur, MedievAIl Battle</p><p class="used en">InsaCloud, AEGIS, Revision planner, MedievAIl Battle</p>
+      </li>
+      <li>
+        <h3><span class="fr">réseau &amp; données</span><span class="en">network &amp; data</span></h3>
+        <p class="skills fr">scapy · sockets UDP / TCP · IPC · scikit-learn · détection d'anomalies</p>
+        <p class="skills en">scapy · UDP / TCP sockets · IPC · scikit-learn · anomaly detection</p>
+        <p class="used fr">AEGIS Mini-SOC, MedievAIl Battle (version réseau)</p><p class="used en">AEGIS Mini-SOC, MedievAIl Battle (network version)</p>
+      </li>
+      <li>
+        <h3><span class="fr">qualité &amp; docs</span><span class="en">quality &amp; docs</span></h3>
+        <p class="skills fr">pytest · Vitest · tests d'intégration · LaTeX</p>
+        <p class="skills en">pytest · Vitest · integration tests · LaTeX</p>
+        <p class="used fr">Rapports et dossiers techniques des projets personnels</p><p class="used en">Reports and technical dossiers of the personal projects</p>
+      </li>
+      <li>
+        <h3><span class="fr">robotique</span><span class="en">robotics</span></h3>
+        <p class="skills fr">Arduino · Raspberry Pi · C++ orienté objet · SolidWorks</p>
+        <p class="skills en">Arduino · Raspberry Pi · object-oriented C++ · SolidWorks</p>
+        <p class="used fr">Formations ATAST, 2017 à 2020</p><p class="used en">ATAST training, 2017 to 2020</p>
+      </li>
+    </ul>
+  </section>
+
+  <section id="parcours">
+    <div class="sec-head">
+      <p class="kick">~/<span class="fr">parcours</span><span class="en">timeline</span></p>
+      <h2 class="sec-title"><span class="fr">Journal de bord</span><span class="en">Logbook</span></h2>
+    </div>
+    <ol class="log">
+      <li><span class="when">2017 – 2020</span><span class="what"><b>Collège Pilote de Monastir</b> <span class="fr">Mention très bien. Admission sur concours national.</span><span class="en">With distinction. Admission by national competition.</span></span></li>
+      <li><span class="when">2017 · 2019 · 2020</span><span class="what"><b><span class="fr">Formations ATAST en robotique</span><span class="en">ATAST robotics training</span></b> <span class="fr">Arduino, Raspberry Pi, Python et C++, un mini-jeu Unity en équipe, conception 3D.</span><span class="en">Arduino, Raspberry Pi, Python and C++, a team-built Unity mini-game, 3D design.</span></span></li>
+      <li><span class="when">2020 – 2023</span><span class="what"><b><span class="fr">Lycée Pilote de Monastir, section mathématiques</span><span class="en">Lycée Pilote de Monastir, mathematics track</span></b> <span class="fr">Mention très bien.</span><span class="en">With distinction.</span></span></li>
+      <li><span class="when"><span class="fr">sept. 2023</span><span class="en">Sep 2023</span></span><span class="what"><b><span class="fr">Entrée à l'INSA Centre-Val de Loire</span><span class="en">Joined INSA Centre-Val de Loire</span></b> <span class="fr">Diplôme d'ingénieur, spécialité STI, promotion 2028.</span><span class="en">Engineering degree, STI major, class of 2028.</span></span></li>
+      <li><span class="when"><span class="fr">juil. – août 2025</span><span class="en">Jul – Aug 2025</span></span><span class="what"><b><span class="fr">Stage chez Anypli, Tunisie</span><span class="en">Internship at Anypli, Tunisia</span></b> <span class="fr">Première application web : Agenda de Révision.</span><span class="en">First web application: Agenda de Révision.</span></span></li>
+      <li><span class="when"><span class="fr">oct. 2025 – janv. 2026</span><span class="en">Oct 2025 – Jan 2026</span></span><span class="what"><b>MedievAIl Battle</b> <span class="fr">Projet d'équipe : un simulateur de batailles en Python.</span><span class="en">Team project: a battle simulator in Python.</span></span></li>
+      <li><span class="when"><span class="fr">oct. 2025 – avril 2026</span><span class="en">Oct 2025 – Apr 2026</span></span><span class="what"><b><span class="fr">MedievAIl Battle · réseau</span><span class="en">MedievAIl Battle · network</span></b> <span class="fr">Projet d'équipe : le jeu en pair-à-pair, avec un démon réseau en C.</span><span class="en">Team project: the game over peer-to-peer, with a C network daemon.</span></span></li>
+      <li><span class="when"><span class="fr">juin 2026</span><span class="en">Jun 2026</span></span><span class="what"><b>CyberQuest</b> <span class="fr">Projet d'équipe : jeu de simulation de pentest.</span><span class="en">Team project: pentest simulation game.</span></span></li>
+      <li><span class="when"><span class="fr">sept. 2026</span><span class="en">Sep 2026</span></span><span class="what"><b>InsaCloud</b> <span class="fr">Mini-cloud construit de zéro.</span><span class="en">Mini cloud built from scratch.</span></span></li>
+      <li><span class="when"><span class="fr">oct. 2026</span><span class="en">Oct 2026</span></span><span class="what"><b>AEGIS Mini-SOC</b> <span class="fr">Détection d'intrusion par machine learning.</span><span class="en">Intrusion detection with machine learning.</span></span></li>
+      <li class="next"><span class="when"><span class="fr">avril 2027</span><span class="en">April 2027</span></span><span class="what"><b><span class="fr">Stage recherché</span><span class="en">Internship wanted</span></b> <span class="fr">Cybersécurité ou cloud &amp; DevOps.</span><span class="en">Cybersecurity or cloud &amp; DevOps.</span></span></li>
+    </ol>
+  </section>
+
+  <section id="engagements">
+    <div class="sec-head">
+      <p class="kick">~/<span class="fr">engagements</span><span class="en">community</span></p>
+      <h2 class="sec-title"><span class="fr">Au-delà du code</span><span class="en">Beyond code</span></h2>
+    </div>
+    <div class="two">
+      <div>
+        <h3><span class="fr">À l'INSA CVL</span><span class="en">At INSA CVL</span></h3>
+        <ul class="list">
+          <li><b><span class="fr">Ambassadeur REDEX Group</span><span class="en">REDEX Group ambassador</span></b><span class="fr">Ambassadeur du partenariat entre REDEX Group et l'INSA CVL.</span><span class="en">Ambassador for the partnership between REDEX Group and INSA CVL.</span></li>
+          <li><b><span class="fr">Membre du BDE, pôle association</span><span class="en">Student union (BDE) member, associations team</span></b></li>
+          <li><b><span class="fr">Membre de la Team Pilote</span><span class="en">Team Pilote member</span></b></li>
+        </ul>
+      </div>
+      <div>
+        <h3><span class="fr">Bénévolat à Monastir</span><span class="en">Volunteering in Monastir</span></h3>
+        <ul class="list">
+          <li><b>Association El KOLLA</b><span class="fr">Depuis 2020. Recensement de familles dans le besoin, accompagnement d'enfants à besoins spécifiques, aides alimentaires.</span><span class="en">Since 2020. Surveying families in need, supporting children with special needs, food aid.</span></li>
+          <li><b>Notre Grand Bleu</b><span class="fr">2022. Sensibilisation au rappel vaccinal COVID et à la propreté des plages, lâcher de tortues marines.</span><span class="en">2022. Awareness of COVID boosters and beach cleanliness, sea turtle release.</span></li>
+          <li><b>Jasmin Open, WTA 250</b><span class="fr">Octobre 2022. Bénévole pour l'organisation du tournoi.</span><span class="en">October 2022. Volunteer on the tournament organisation.</span></li>
+        </ul>
+      </div>
+    </div>
+    <ul class="langs" aria-label="Langues">
+      <li><span class="fr">Français</span><span class="en">French</span><span><span class="fr">langue maternelle</span><span class="en">native</span></span></li>
+      <li><span class="fr">Arabe</span><span class="en">Arabic</span><span><span class="fr">langue maternelle</span><span class="en">native</span></span></li>
+      <li><span class="fr">Anglais</span><span class="en">English</span><span><span class="fr">professionnel · TOEIC 950</span><span class="en">professional · TOEIC 950</span></span></li>
+      <li><span class="fr">Espagnol</span><span class="en">Spanish</span><span><span class="fr">notions</span><span class="en">basics</span></span></li>
+    </ul>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="sec-head" style="margin-bottom:0">
+      <p class="kick">~/contact</p>
+      <h2 class="sec-title"><span class="fr">Initialiser la connexion</span><span class="en">Initialise the connection</span></h2>
+      <p class="sec-lead fr">Je cherche un stage à partir de début avril 2027, en cybersécurité ou en cloud et DevOps. Le plus rapide est de m'écrire sur LinkedIn, par email, ou de m'appeler.</p>
+      <p class="sec-lead en">I'm looking for an internship starting early April 2027, in cybersecurity or in cloud and DevOps. The fastest way to reach me is LinkedIn, email, or a phone call.</p>
+    </div>
+    <a class="big" href="https://www.linkedin.com/in/mohamed-aziz-baoueb-2a0827301" target="_blank" rel="noopener"><small>LinkedIn</small>linkedin.com/in/mohamed-aziz-baoueb-2a0827301</a>
+    <a class="big" href="https://github.com/aziz3r" target="_blank" rel="noopener"><small>GitHub</small>github.com/aziz3r</a>
+    <p class="big"><small>Email</small><span id="mail">mohamed.baoueb@insa-cvl.fr</span> <button type="button" class="tlink" id="copy-mail"><span class="fr">[copier]</span><span class="en">[copy]</span></button></p>
+    <a class="big" href="tel:+33764404994"><small><span class="fr">Téléphone</span><span class="en">Phone</span></small><span class="fr">07 64 40 49 94</span><span class="en">+33 7 64 40 49 94</span></a>
+    <div class="cv">
+      <button type="button" class="pill solid" data-cv="fr">CV · Français (PDF)</button>
+      <button type="button" class="pill" data-cv="en">CV · English (PDF)</button>
+    </div>
+    <footer>
+      <span class="fr">© 2026 Mohamed Aziz Baoueb</span>
+      <span class="en">© 2026 Mohamed Aziz Baoueb</span>
+    </footer>
+  </section>
+</main>
+
+<div id="toast" role="status" aria-live="polite" hidden></div>
+
+<!-- Case studies -->
+<dialog class="dlg" id="d-insacloud" aria-labelledby="t-insacloud">
+  <div class="dlg-head"><h3 id="t-insacloud">InsaCloud</h3><button type="button" class="tlink" data-close><span class="fr">Fermer ✕</span><span class="en">Close ✕</span></button></div>
+  <div class="dlg-body">
+    <div class="media">
+      <video controls preload="none" playsinline poster="assets/insacloud/03-tableau-de-bord.png" aria-label="Démonstration d'InsaCloud"><source src="assets/insacloud/demo.mp4" type="video/mp4"></video>
+      <p class="cap fr">démo : création de compte, location d'une machine, terminal, bureau, fin de location</p>
+      <p class="cap en">demo: sign-up, renting a machine, terminal, desktop, end of rental</p>
+      <div class="shots">
+        <figure><img loading="lazy" src="assets/insacloud/07-terminal-web.png" alt="" data-alt-fr="Terminal web ouvert dans le navigateur" data-alt-en="Web terminal opened in the browser"><figcaption class="fr">Terminal dans le navigateur</figcaption><figcaption class="en">Terminal in the browser</figcaption></figure>
+        <figure><img loading="lazy" src="assets/insacloud/09-bureau-applications.png" alt="" data-alt-fr="Bureau XFCE avec Firefox dans le navigateur" data-alt-en="XFCE desktop with Firefox in the browser"><figcaption class="fr">Bureau XFCE en ligne</figcaption><figcaption class="en">XFCE desktop, online</figcaption></figure>
+      </div>
+      <div class="figs">
+        <div class="diagram"><img class="t-dark" loading="lazy" src="assets/insacloud/architecture-dark.svg" alt="" data-alt-fr="Architecture : un contrôleur et ses workers" data-alt-en="Architecture: one controller and its workers"><img class="t-light" loading="lazy" src="assets/insacloud/architecture.svg" alt="" data-alt-fr="Architecture : un contrôleur et ses workers" data-alt-en="Architecture: one controller and its workers"></div>
+        <div class="diagram"><img class="t-dark" loading="lazy" src="assets/insacloud/chaine-ci-cd-dark.svg" alt="" data-alt-fr="Chaîne CI/CD : qualité, sécurité, intégration, images, déploiement" data-alt-en="CI/CD pipeline: quality, security, integration, images, deployment"><img class="t-light" loading="lazy" src="assets/insacloud/chaine-ci-cd.svg" alt="" data-alt-fr="Chaîne CI/CD : qualité, sécurité, intégration, images, déploiement" data-alt-en="CI/CD pipeline: quality, security, integration, images, deployment"></div>
+      </div>
+    </div>
+    <div>
+      <div class="facts" role="list">
+        <div role="listitem"><b>94</b><span class="fr">tests automatisés</span><span class="en">automated tests</span></div>
+        <div role="listitem"><b>11</b><span class="fr">contrôles CI/CD</span><span class="en">CI/CD checks</span></div>
+        <div role="listitem"><b>9</b><span class="fr">rôles Ansible idempotents</span><span class="en">idempotent Ansible roles</span></div>
+      </div>
+      <ul class="points">
+        <li><span class="lbl fr">Ce que ça fait</span><span class="lbl en">What it does</span>
+          <span class="fr">Un contrôleur Flask place chaque machine sur le worker le moins chargé et le pilote par SSH, sans exposer d'API Docker. L'utilisateur choisit Ubuntu, Debian ou Alpine, en terminal web ou en bureau XFCE (noVNC). La machine se détruit à l'expiration.</span>
+          <span class="en">A Flask controller places each machine on the least loaded worker and drives it over SSH, with no Docker API exposed. The user picks Ubuntu, Debian or Alpine, as a web terminal or an XFCE desktop (noVNC). The machine destroys itself on expiry.</span></li>
+        <li><span class="lbl fr">Reprise sur panne</span><span class="lbl en">Failover</span>
+          <span class="fr">Un worker silencieux passe hors ligne au bout d'environ 90 s et ses machines sont recréées sur un autre nœud, sans perdre la durée réservée.</span>
+          <span class="en">A silent worker goes offline after about 90 s and its machines are recreated on another node, without losing the reserved time.</span></li>
+        <li><span class="lbl fr">Sécurité</span><span class="lbl en">Security</span>
+          <span class="fr">Mot de passe root chiffré (Fernet) et affiché une seule fois, conteneurs sans capacités superflues (<span class="mono">--cap-drop ALL</span>), CSRF, verrouillage anti-force-brute, CSP stricte. Chaîne CI : ruff, bandit, pip-audit, gitleaks, DAST avec nuclei, ansible-lint, hadolint, Trivy, SBOM.</span>
+          <span class="en">Encrypted root password (Fernet) shown once, containers stripped of extra capabilities (<span class="mono">--cap-drop ALL</span>), CSRF protection, brute-force lockout, strict CSP. CI pipeline: ruff, bandit, pip-audit, gitleaks, DAST with nuclei, ansible-lint, hadolint, Trivy, SBOM.</span></li>
+        <li class="limit"><span class="lbl fr">Limite assumée</span><span class="lbl en">Known limit</span>
+          <span class="fr">Les fichiers de l'ancienne machine sont perdus lors d'une reprise : il n'y a pas de stockage partagé.</span>
+          <span class="en">Files from the old machine are lost during a failover: there is no shared storage.</span></li>
+      </ul>
+      <p class="dlg-links">
+        <button type="button" class="tlink" data-report="insacloud"><span class="fr">Lire le rapport</span><span class="en">Read the report</span></button>
+        <a class="tlink" href="https://github.com/aziz3r/insacloud" target="_blank" rel="noopener"><span class="fr">Code source ↗</span><span class="en">Source code ↗</span></a>
+      </p>
+    </div>
+  </div>
+</dialog>
+
+<dialog class="dlg" id="d-aegis" aria-labelledby="t-aegis">
+  <div class="dlg-head"><h3 id="t-aegis">AEGIS Mini-SOC</h3><button type="button" class="tlink" data-close><span class="fr">Fermer ✕</span><span class="en">Close ✕</span></button></div>
+  <div class="dlg-body">
+    <div class="media">
+      <video controls preload="none" playsinline poster="assets/aegis/02-vue-ensemble.jpg" aria-label="Démonstration d'AEGIS Mini-SOC"><source src="assets/aegis/demo.mp4" type="video/mp4"></video>
+      <p class="cap fr">démo : connexion, tableau de bord, flux temps réel, incident expliqué, métriques du modèle</p>
+      <p class="cap en">demo: login, dashboard, live flows, an explained incident, model metrics</p>
+      <div class="shots">
+        <figure><img loading="lazy" src="assets/aegis/05-incident-explication.jpg" alt="" data-alt-fr="Incident expliqué : les caractéristiques qui ont déclenché l'alerte" data-alt-en="Explained incident: the features that triggered the alert"><figcaption class="fr">Pourquoi cette alerte : chaque caractéristique est comparée à sa valeur normale</figcaption><figcaption class="en">Why this alert: each feature is compared with its normal value</figcaption></figure>
+        <figure><img loading="lazy" src="assets/aegis/08-modele-metriques.jpg" alt="" data-alt-fr="Métriques du modèle par famille d'attaque" data-alt-en="Model metrics by attack family"><figcaption class="fr">Ce que vaut le modèle, y compris la famille qu'il rate</figcaption><figcaption class="en">What the model is worth, including the family it misses</figcaption></figure>
+      </div>
+      <div class="figs">
+        <div class="diagram"><img class="t-dark" loading="lazy" src="assets/aegis/architecture-dark.svg" alt="" data-alt-fr="Chaîne de détection : des paquets aux incidents" data-alt-en="Detection chain: from packets to incidents"><img class="t-light" loading="lazy" src="assets/aegis/architecture.svg" alt="" data-alt-fr="Chaîne de détection : des paquets aux incidents" data-alt-en="Detection chain: from packets to incidents"></div>
+        <div class="diagram"><img class="t-dark" loading="lazy" src="assets/aegis/cascade-dark.svg" alt="" data-alt-fr="La cascade qui divise les faux positifs" data-alt-en="The cascade that cuts false positives"><img class="t-light" loading="lazy" src="assets/aegis/cascade.svg" alt="" data-alt-fr="La cascade qui divise les faux positifs" data-alt-en="The cascade that cuts false positives"></div>
+      </div>
+    </div>
+    <div>
+      <div class="facts" role="list">
+        <div role="listitem"><b>99,6&nbsp;%</b><span class="fr">de rappel, mesuré</span><span class="en">recall, measured</span></div>
+        <div role="listitem"><b>341&nbsp;→&nbsp;53</b><span class="fr">faux positifs par heure</span><span class="en">false positives per hour</span></div>
+        <div role="listitem"><b>9</b><span class="fr">familles liées à MITRE ATT&amp;CK</span><span class="en">attack families mapped to MITRE ATT&amp;CK</span></div>
+      </div>
+      <ul class="points">
+        <li><span class="lbl fr">Ce que ça fait</span><span class="lbl en">What it does</span>
+          <span class="fr">Une seule chaîne du paquet à l'incident, pour le laboratoire, le rejeu de PCAP et la capture réelle (scapy). 52 caractéristiques de flux, deux étages de machine learning (anomalies entraînées sur du trafic bénin seul, puis un classifieur qui nomme la famille et peut opposer son veto), un seuil par hôte et des alertes regroupées en incidents. Console React/TypeScript en temps réel (FastAPI, WebSocket).</span>
+          <span class="en">A single pipeline from packet to incident, for the lab, PCAP replay and live capture (scapy). 52 flow features, two machine-learning stages (anomalies learned on benign traffic only, then a classifier that names the family and can veto), a per-host threshold, and alerts grouped into incidents. Real-time React/TypeScript console (FastAPI, WebSocket).</span></li>
+        <li><span class="lbl fr">Une erreur utile</span><span class="lbl en">A useful mistake</span>
+          <span class="fr">Ma première règle de seuil (médiane + k·MAD) a fait tomber le rappel à 14 %. Les scores étant déjà presque uniformes, je l'ai remplacée par un quantile propre à chaque hôte.</span>
+          <span class="en">My first threshold rule (median + k·MAD) dropped recall to 14%. Since the scores were already close to uniform, I replaced it with a per-host quantile.</span></li>
+        <li><span class="lbl fr">À l'échelle</span><span class="lbl en">At scale</span>
+          <span class="fr">8 994 alertes regroupées en un seul incident, 30 000 paquets par seconde, 94 tests.</span>
+          <span class="en">8,994 alerts grouped into a single incident, 30,000 packets per second, 94 tests.</span></li>
+        <li class="limit"><span class="lbl fr">Limite assumée</span><span class="lbl en">Known limit</span>
+          <span class="fr">La balise de commande et contrôle (C2) n'est détectée qu'à 48,6 %. Le produit l'affiche lui-même.</span>
+          <span class="en">The command-and-control beacon is only detected 48.6% of the time. The product shows this itself.</span></li>
+      </ul>
+      <p class="dlg-links">
+        <button type="button" class="tlink" data-report="aegis"><span class="fr">Lire le rapport</span><span class="en">Read the report</span></button>
+        <button type="button" class="tlink" data-report="aegis-dossier"><span class="fr">Lire le dossier technique</span><span class="en">Read the technical dossier</span></button>
+        <a class="tlink" href="https://github.com/aziz3r/aegis-mini-soc" target="_blank" rel="noopener"><span class="fr">Code source ↗</span><span class="en">Source code ↗</span></a>
+      </p>
+    </div>
+  </div>
+</dialog>
+
+<dialog class="dlg" id="d-planner" aria-labelledby="t-planner">
+  <div class="dlg-head"><h3 id="t-planner"><span class="fr">Planificateur de révisions</span><span class="en">Revision planner</span></h3><button type="button" class="tlink" data-close><span class="fr">Fermer ✕</span><span class="en">Close ✕</span></button></div>
+  <div class="dlg-body">
+    <div class="media">
+      <video controls preload="none" playsinline poster="assets/planner/0002-tableau-de-bord.png" aria-label="Démonstration du planificateur"><source src="assets/planner/demo.mp4" type="video/mp4"></video>
+      <p class="cap fr">démo : connexion, ajout d'un examen, disponibilités, planning, calendrier, version anglaise</p>
+      <p class="cap en">demo: login, adding an exam, availability, schedule, calendar, English version</p>
+      <div class="shots three">
+        <figure><img loading="lazy" src="assets/planner/0007-planning-previsualisation.png" alt="" data-alt-fr="Prévisualisation du planning généré" data-alt-en="Preview of the generated schedule"><figcaption class="fr">Planning généré</figcaption><figcaption class="en">Generated schedule</figcaption></figure>
+        <figure><img loading="lazy" src="assets/planner/0009-calendrier-semaine.png" alt="" data-alt-fr="Vue calendrier de la semaine" data-alt-en="Weekly calendar view"><figcaption class="fr">Vue semaine</figcaption><figcaption class="en">Week view</figcaption></figure>
+        <figure><img loading="lazy" src="assets/planner/0011-mobile.png" alt="" data-alt-fr="Interface sur mobile" data-alt-en="Mobile interface"><figcaption class="fr">Sur mobile</figcaption><figcaption class="en">On mobile</figcaption></figure>
+      </div>
+    </div>
+    <div>
+      <div class="facts" role="list">
+        <div role="listitem"><b>1&nbsp;→&nbsp;45</b><span class="fr">tests, avant et après la refonte</span><span class="en">tests, before and after the rebuild</span></div>
+        <div role="listitem"><b>0</b><span class="fr"><span class="mono">any</span> en TypeScript strict</span><span class="en"><span class="mono">any</span> left in strict TypeScript</span></div>
+        <div role="listitem"><b>1</b><span class="fr">commande pour tout lancer</span><span class="en">command to run everything</span></div>
+      </div>
+      <ul class="points">
+        <li><span class="lbl fr">Origine</span><span class="lbl en">Origin</span>
+          <span class="fr">Né de mon stage chez Anypli (Tunisie, juillet – août 2025), sans aucune expérience du développement web au départ. Livré le 15 août 2025, puis repris seul pour le rendre fiable.</span>
+          <span class="en">Born from my internship at Anypli (Tunisia, July – August 2025), with no web development experience at the start. Delivered on 15 August 2025, then rebuilt on my own to make it reliable.</span></li>
+        <li><span class="lbl fr">Ce que ça fait</span><span class="lbl en">What it does</span>
+          <span class="fr">L'étudiant saisit ses examens, leurs coefficients et ses disponibilités. Le moteur de planification (fonctions pures, isolé et testé) répartit des séances datées selon l'importance de chaque épreuve et son espacement.</span>
+          <span class="en">The student enters exams, their weights and availability. The planning engine (pure functions, isolated and tested) spreads dated sessions according to each exam's weight and spacing.</span></li>
+        <li><span class="lbl fr">Architecture</span><span class="lbl en">Architecture</span>
+          <span class="fr">Monorepo TypeScript : interface React 18 avec Vite et Redux Toolkit, API Strapi 5 qui cloisonne les données par étudiant, interface en français et en anglais.</span>
+          <span class="en">TypeScript monorepo: React 18 front end with Vite and Redux Toolkit, a Strapi 5 API that keeps each student's data separate, interface in French and English.</span></li>
+      </ul>
+      <p class="dlg-links">
+        <button type="button" class="tlink" data-report="planner"><span class="fr">Lire le rapport technique</span><span class="en">Read the technical report</span></button>
+        <a class="tlink" href="https://github.com/aziz3r/revision-planner" target="_blank" rel="noopener"><span class="fr">Code source ↗</span><span class="en">Source code ↗</span></a>
+      </p>
+    </div>
+  </div>
+</dialog>
+
+<dialog class="dlg" id="d-cyberquest" aria-labelledby="t-cyberquest">
+  <div class="dlg-head"><h3 id="t-cyberquest">CyberQuest</h3><button type="button" class="tlink" data-close><span class="fr">Fermer ✕</span><span class="en">Close ✕</span></button></div>
+  <div class="dlg-body">
+    <div class="media">
+      <video controls preload="none" playsinline poster="assets/cyberquest/carte-reseau.jpg" aria-label="Démonstration de CyberQuest"><source src="assets/cyberquest/demo.mp4" type="video/mp4"></video>
+      <p class="cap fr">démo de la version client-serveur : connexion, carte réseau, niveaux Linux, Docker et DVWA, mission Active Directory, défis d'IA, fin de partie</p>
+      <p class="cap en">demo of the client-server version: login, network map, Linux, Docker and DVWA levels, Active Directory mission, AI challenges, endgame</p>
+      <div class="shots">
+        <figure><img loading="lazy" src="assets/cyberquest/mission-ad.jpg" alt="" data-alt-fr="Mission Active Directory : un parcours d'étapes verrouillées" data-alt-en="Active Directory mission: a path of locked steps"><figcaption class="fr">Mission Active Directory : chaque étape cite sa technique MITRE ATT&amp;CK</figcaption><figcaption class="en">Active Directory mission: each step cites its MITRE ATT&amp;CK technique</figcaption></figure>
+        <figure><img loading="lazy" src="assets/cyberquest/mentor.jpg" alt="" data-alt-fr="Terminal, objectifs et assistant Mentor" data-alt-en="Terminal, objectives and the Mentor assistant"><figcaption class="fr">Terminal, objectifs, indices et assistant « Mentor »</figcaption><figcaption class="en">Terminal, objectives, hints and the "Mentor" assistant</figcaption></figure>
+        <figure><img loading="lazy" src="assets/cyberquest/docker-dvwa.jpg" alt="" data-alt-fr="Niveau Docker : DVWA déployé depuis le terminal" data-alt-en="Docker level: DVWA deployed from the terminal"><figcaption class="fr">Niveau Docker : déployer DVWA, puis l'attaquer</figcaption><figcaption class="en">Docker level: deploy DVWA, then attack it</figcaption></figure>
+        <figure><img loading="lazy" src="assets/cyberquest/ai-core.jpg" alt="" data-alt-fr="AI_CORE : menu des défis de prompt injection" data-alt-en="AI_CORE: prompt-injection challenge menu"><figcaption class="fr">AI_CORE : défis de prompt injection contre des LLM</figcaption><figcaption class="en">AI_CORE: prompt-injection challenges against LLMs</figcaption></figure>
+        <figure><img loading="lazy" src="assets/cyberquest/nexus.jpg" alt="" data-alt-fr="Mainframe Nexus en alerte rouge" data-alt-en="Nexus mainframe on red alert"><figcaption class="fr">Fin de partie : le mainframe Nexus en alerte rouge</figcaption><figcaption class="en">Endgame: the Nexus mainframe on red alert</figcaption></figure>
+        <figure><img loading="lazy" src="assets/cyberquest/carte-reseau.jpg" alt="" data-alt-fr="Carte réseau avec le chronomètre de partie" data-alt-en="Network map with the game timer"><figcaption class="fr">Carte réseau et chronomètre de partie</figcaption><figcaption class="en">Network map and game timer</figcaption></figure>
+      </div>
+    </div>
+    <div>
+      <ul class="points">
+        <li><span class="lbl fr">Projet d'équipe</span><span class="lbl en">Team project</span>
+          <span class="fr">Réalisé à quatre à l'INSA CVL (juin – octobre 2026). Dépôt d'origine : JamaiAli/CyberquestProject. Mon dépôt conserve l'historique Git complet et les droits de chaque auteur.</span>
+          <span class="en">Built by four students at INSA CVL (June – October 2026). Original repository: JamaiAli/CyberquestProject. My repository keeps the full Git history and each author's rights.</span></li>
+        <li><span class="lbl fr">Ce que fait le jeu</span><span class="lbl en">What the game does</span>
+          <span class="fr">Une carte réseau (base Kali, commandes Linux, Active Directory, application web, cœur IA). Chaque machine ouvre un niveau avec un terminal, des objectifs à valider, des indices et un assistant « Mentor » qui répond aux questions.</span>
+          <span class="en">A network map (Kali base, Linux commands, Active Directory, web application, AI core). Each machine opens a level with a terminal, objectives to validate, hints and a "Mentor" assistant that answers questions.</span></li>
+        <li><span class="lbl fr">Le parcours de la démo</span><span class="lbl en">The demo's path</span>
+          <span class="fr">Bases de Linux, déploiement de DVWA avec Docker, injection de commande, injection SQL, mission Active Directory (reconnaissance réseau puis énumération DNS), défis de prompt injection sur des LLM, puis la fin de partie.</span>
+          <span class="en">Linux basics, deploying DVWA with Docker, command injection, SQL injection, an Active Directory mission (network reconnaissance, then DNS enumeration), prompt-injection challenges against LLMs, then the endgame.</span></li>
+        <li><span class="lbl fr">Le contenu</span><span class="lbl en">The content</span>
+          <span class="fr">6 étapes Active Directory (chaque étape cite sa technique MITRE ATT&amp;CK), 13 niveaux d'applications web inspirés de DVWA et de l'OWASP Top 10, 8 niveaux Linux, 2 défis d'IA et 6 niveaux de prompt injection. Tout est simulé : aucune commande ne touche un vrai réseau.</span>
+          <span class="en">6 Active Directory steps (each cites its MITRE ATT&amp;CK technique), 13 web-application levels inspired by DVWA and the OWASP Top 10, 8 Linux levels, 2 AI challenges and 6 prompt-injection levels. Everything is simulated: no command touches a real network.</span></li>
+        <li><span class="lbl fr">Deux architectures</span><span class="lbl en">Two architectures</span>
+          <span class="fr">Une version client-serveur (branche master : Node.js, Express, SQLite) et une version entièrement embarquée dans le navigateur (branche proof-of-concept, sauvegarde locale). La démo ci-dessus montre la première.</span>
+          <span class="en">A client-server version (master branch: Node.js, Express, SQLite) and a version that runs entirely in the browser (proof-of-concept branch, local save). The demo above shows the first one.</span></li>
+        <li class="limit"><span class="lbl fr">Limites relevées par le rapport</span><span class="lbl en">Limits listed in the report</span>
+          <span class="fr">Aucun test automatisé, et la branche autonome ne se construit pas telle quelle avec Vite 8 (constat du 15 octobre 2026). Le rapport signale aussi que le README décrit la CSP, la signature des sauvegardes et l'audit plus favorablement que le code ne le justifie.</span>
+          <span class="en">No automated tests, and the standalone branch does not build as is with Vite 8 (found on 15 October 2026). The report also notes that the README describes the CSP, save signing and audit more favourably than the code justifies.</span></li>
+      </ul>
+      <p class="stack" style="margin-top:22px">React 18 · Vite · xterm.js · Canvas 2D · Node.js</p>
+      <p class="dlg-links">
+        <button type="button" class="tlink" data-report="cyberquest"><span class="fr">Lire le rapport technique</span><span class="en">Read the technical report</span></button>
+        <a class="tlink" href="https://github.com/aziz3r/cyberquest" target="_blank" rel="noopener"><span class="fr">Code source ↗</span><span class="en">Source code ↗</span></a>
+      </p>
+    </div>
+  </div>
+</dialog>
+
+<dialog class="dlg" id="d-medievail-jeu" aria-labelledby="t-medievail-jeu">
+  <div class="dlg-head"><h3 id="t-medievail-jeu">MedievAIl Battle</h3><button type="button" class="tlink" data-close><span class="fr">Fermer ✕</span><span class="en">Close ✕</span></button></div>
+  <div class="dlg-body">
+    <div class="media">
+      <video controls preload="none" playsinline poster="assets/medievail-jeu/vue-ensemble.jpg" aria-label="Démonstration de MedievAIl Battle"><source src="assets/medievail-jeu/demo.mp4" type="video/mp4"></video>
+      <p class="cap fr">démo : menu, configuration de la bataille et choix des IA, déroulement du combat, victoire</p>
+      <p class="cap en">demo: menu, battle set-up and AI choice, the fight, victory</p>
+      <div class="shots">
+        <figure><img loading="lazy" src="assets/medievail-jeu/menu.jpg" alt="" data-alt-fr="Menu principal de MedievAIl Battle" data-alt-en="MedievAIl Battle main menu"><figcaption class="fr">Menu : nouvelle bataille, scénarios, chargement, options</figcaption><figcaption class="en">Menu: new battle, scenarios, load, options</figcaption></figure>
+        <figure><img loading="lazy" src="assets/medievail-jeu/choix-ia.jpg" alt="" data-alt-fr="Choix de l'IA de chaque équipe" data-alt-en="Choosing each team's AI"><figcaption class="fr">Choix de l'IA de chaque équipe</figcaption><figcaption class="en">Choosing each team's AI</figcaption></figure>
+        <figure><img loading="lazy" src="assets/medievail-jeu/vue-ensemble.jpg" alt="" data-alt-fr="Les deux armées se déploient" data-alt-en="The two armies deploy"><figcaption class="fr">Les armées se déploient : effectifs de chaque équipe et mini-carte à l'écran</figcaption><figcaption class="en">The armies deploy: each team's headcount and a mini-map on screen</figcaption></figure>
+        <figure><img loading="lazy" src="assets/medievail-jeu/zoom-melee.jpg" alt="" data-alt-fr="Mêlée entre chevaliers, piquiers et arbalétriers" data-alt-en="Melee between knights, pikemen and crossbowmen"><figcaption class="fr">Mêlée : chevaliers, piquiers et arbalétriers au contact</figcaption><figcaption class="en">Melee: knights, pikemen and crossbowmen in contact</figcaption></figure>
+        <figure><img loading="lazy" src="assets/medievail-jeu/victoire.jpg" alt="" data-alt-fr="Écran de victoire de l'équipe B" data-alt-en="Team B victory screen"><figcaption class="fr">Fin de bataille : victoire de l'équipe B</figcaption><figcaption class="en">End of the battle: team B wins</figcaption></figure>
+        <figure><img loading="lazy" src="assets/medievail-jeu/lanchester.png" alt="" data-alt-fr="Vérification de la loi carrée de Lanchester sur la simulation de combat" data-alt-en="Checking Lanchester's square law against the combat simulation"><figcaption class="fr">Vérification de la loi carrée de Lanchester sur la simulation de combat</figcaption><figcaption class="en">Checking Lanchester's square law against the combat simulation</figcaption></figure>
+      </div>
+    </div>
+    <div>
+      <ul class="points">
+        <li><span class="lbl fr">Projet d'équipe</span><span class="lbl en">Team project</span>
+          <span class="fr">Projet Python et programmation orientée objet de la formation STI3A à l'INSA CVL (octobre 2025 – janvier 2026), réalisé à sept. Dépôt de référence : awa-b/python-project-2025-2026. Mon dépôt est un miroir : il conserve l'historique Git complet et les droits de chaque auteur.</span>
+          <span class="en">Python and object-oriented programming project of the STI3A course at INSA CVL (October 2025 – January 2026), built by seven students. Reference repository: awa-b/python-project-2025-2026. My repository is a mirror: it keeps the full Git history and each author's rights.</span></li>
+        <li><span class="lbl fr">Ce que fait le jeu</span><span class="lbl en">What the game does</span>
+          <span class="fr">On configure une bataille (IA de chaque équipe, taille des armées, terrain), puis on la regarde se dérouler : chaque IA donne ses ordres aux unités et le moteur résout les combats. Le jeu se lance en interface graphique plein écran, en vue terminal (curses) ou en ligne de commande.</span>
+          <span class="en">You set up a battle (each team's AI, army size, terrain), then watch it play out: each AI gives orders to its units and the engine resolves the fights. The game runs in a full-screen graphical interface, a terminal view (curses) or on the command line.</span></li>
+        <li><span class="lbl fr">Architecture</span><span class="lbl en">Architecture</span>
+          <span class="fr">Architecture MVP : un modèle (unités, armées, règles de combat), un présentateur qui déroule la bataille, et des vues interchangeables.</span>
+          <span class="en">MVP architecture: a model (units, armies, combat rules), a presenter that runs the battle, and interchangeable views.</span></li>
+      </ul>
+      <p class="stack" style="margin-top:22px">Python · POO · MVP</p>
+      <p class="dlg-links">
+        <a class="tlink" href="https://github.com/aziz3r/medievail-battle" target="_blank" rel="noopener"><span class="fr">Code source ↗</span><span class="en">Source code ↗</span></a>
+      </p>
+    </div>
+  </div>
+</dialog>
+
+<dialog class="dlg" id="d-medievail-p2p" aria-labelledby="t-medievail-p2p">
+  <div class="dlg-head"><h3 id="t-medievail-p2p"><span class="fr">MedievAIl Battle · réseau pair-à-pair</span><span class="en">MedievAIl Battle · peer-to-peer network</span></h3><button type="button" class="tlink" data-close><span class="fr">Fermer ✕</span><span class="en">Close ✕</span></button></div>
+  <div class="dlg-body">
+    <div class="media">
+      <video controls preload="none" playsinline poster="assets/medievail-p2p/combat-debut.jpg" aria-label="Démonstration de la version réseau"><source src="assets/medievail-p2p/demo.mp4" type="video/mp4"></video>
+      <p class="cap fr">démo : deux instances côte à côte, lobby multijoueur (choix de l'IA et de la zone de départ), combat, victoire</p>
+      <p class="cap en">demo: two instances side by side, multiplayer lobby (AI and starting zone), the fight, victory</p>
+      <svg class="diagram" viewBox="0 0 760 200" aria-hidden="true" focusable="false">
+        <defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah" d="M0,0 L10,5 L0,10 z"/></marker></defs>
+        <rect class="m" x="10" y="26" width="300" height="150" rx="8"/>
+        <rect class="m" x="450" y="26" width="300" height="150" rx="8"/>
+        <text class="s l fr" x="24" y="50">machine du joueur 1</text><text class="s l en" x="24" y="50">player 1 machine</text>
+        <text class="s l fr" x="464" y="50">machine du joueur 2</text><text class="s l en" x="464" y="50">player 2 machine</text>
+        <rect class="n" x="28" y="74" width="118" height="70" rx="6"/>
+        <rect class="c" x="176" y="74" width="118" height="70" rx="6"/>
+        <rect class="c" x="466" y="74" width="118" height="70" rx="6"/>
+        <rect class="n" x="614" y="74" width="118" height="70" rx="6"/>
+        <text x="87" y="104"><tspan class="fr">Jeu + IA</tspan><tspan class="en">Game + AI</tspan></text><text class="s" x="87" y="124">Python</text>
+        <text x="235" y="104"><tspan class="fr">Démon réseau</tspan><tspan class="en">Network daemon</tspan></text><text class="s" x="235" y="124">C</text>
+        <text x="525" y="104"><tspan class="fr">Démon réseau</tspan><tspan class="en">Network daemon</tspan></text><text class="s" x="525" y="124">C</text>
+        <text x="673" y="104"><tspan class="fr">Jeu + IA</tspan><tspan class="en">Game + AI</tspan></text><text class="s" x="673" y="124">Python</text>
+        <path d="M148,109 L174,109" marker-start="url(#ah)" marker-end="url(#ah)"/>
+        <path d="M586,109 L612,109" marker-start="url(#ah)" marker-end="url(#ah)"/>
+        <path d="M296,109 L464,109" marker-start="url(#ah)" marker-end="url(#ah)"/>
+        <text class="s" x="161" y="98">IPC</text><text class="s" x="599" y="98">IPC</text>
+        <text class="s" x="380" y="96">UDP / TCP</text>
+        <text class="s fr" x="380" y="132">pair-à-pair, sans serveur</text><text class="s en" x="380" y="132">peer-to-peer, no server</text>
+      </svg>
+      <div class="shots">
+        <figure><img loading="lazy" src="assets/medievail-p2p/lobby-ia.jpg" alt="" data-alt-fr="Lobby multijoueur : choix de l'IA de chaque joueur" data-alt-en="Multiplayer lobby: each player's AI choice"><figcaption class="fr">Lobby multijoueur : chaque joueur choisit son IA</figcaption><figcaption class="en">Multiplayer lobby: each player picks an AI</figcaption></figure>
+        <figure><img loading="lazy" src="assets/medievail-p2p/lobby-zones.jpg" alt="" data-alt-fr="Choix de la zone de départ, créer ou rejoindre une partie" data-alt-en="Starting-zone choice, create or join a game"><figcaption class="fr">Zone de départ, puis créer (hôte) ou rejoindre</figcaption><figcaption class="en">Starting zone, then create (host) or join</figcaption></figure>
+        <figure><img loading="lazy" src="assets/medievail-p2p/combat-debut.jpg" alt="" data-alt-fr="Début du combat sur les deux instances" data-alt-en="Start of the fight on both instances"><figcaption class="fr">Début du combat : les deux instances montrent la même partie</figcaption><figcaption class="en">Start of the fight: both instances show the same game</figcaption></figure>
+        <figure><img loading="lazy" src="assets/medievail-p2p/melee.jpg" alt="" data-alt-fr="Mêlée vue depuis les deux joueurs" data-alt-en="Melee seen from both players"><figcaption class="fr">Mêlée, vue par les deux joueurs</figcaption><figcaption class="en">Melee, as seen by both players</figcaption></figure>
+        <figure><img loading="lazy" src="assets/medievail-p2p/fin.jpg" alt="" data-alt-fr="Victoire de l'équipe B affichée sur les deux instances" data-alt-en="Team B victory shown on both instances"><figcaption class="fr">Fin de partie : la victoire est synchronisée entre les deux</figcaption><figcaption class="en">End of the game: the victory is synchronised on both sides</figcaption></figure>
+      </div>
+    </div>
+    <div>
+      <ul class="points">
+        <li><span class="lbl fr">Projet d'équipe</span><span class="lbl en">Team project</span>
+          <span class="fr">Projet réseaux de la formation STI3A à l'INSA CVL (octobre 2025 – avril 2026), réalisé à onze. Il prolonge la base du jeu Python. Dépôt de référence : YOUSSEF4315/STI3A-Projet_reseaux_1. Mon dépôt est un miroir : il conserve l'historique Git complet et les droits de chaque auteur.</span>
+          <span class="en">Networking project of the STI3A course at INSA CVL (October 2025 – April 2026), built by eleven students. It extends the Python game. Reference repository: YOUSSEF4315/STI3A-Projet_reseaux_1. My repository is a mirror: it keeps the full Git history and each author's rights.</span></li>
+        <li><span class="lbl fr">Deux programmes par machine</span><span class="lbl en">Two programs per machine</span>
+          <span class="fr">Chaque joueur lance le jeu et l'IA en Python, et un démon réseau en C. Ils se parlent en local par IPC ; seuls les démons dialoguent à travers le réseau, en pair-à-pair. Le programme Python n'a jamais conscience d'être en réseau.</span>
+          <span class="en">Each player runs the Python game and AI, and a C network daemon. They talk locally over IPC; only the daemons talk across the network, peer-to-peer. The Python program is never aware it is on a network.</span></li>
+        <li><span class="lbl fr">Propriété réseau</span><span class="lbl en">Network ownership</span>
+          <span class="fr">Sans serveur, deux joueurs peuvent modifier la même unité en même temps. Règle retenue : une entité n'a qu'un seul propriétaire légitime à un instant donné, et pour agir sur une unité qu'il ne possède pas, un nœud négocie d'abord le transfert de propriété.</span>
+          <span class="en">With no server, two players can change the same unit at the same time. The rule: an entity has a single legitimate owner at any moment, and to act on a unit it doesn't own, a node first negotiates the transfer of ownership.</span></li>
+        <li><span class="lbl fr">Deux versions</span><span class="lbl en">Two versions</span>
+          <span class="fr">Version 1 : diffusion « best-effort » sans garantie, d'où des unités en double, des « fantômes » et des états désynchronisés. Version 2 : réseau en C avec propriété réseau, anti-zombie, anti-désynchronisation, victoire synchronisée, délais d'attente et reprise après perte de paquets.</span>
+          <span class="en">Version 1: "best-effort" broadcast with no guarantee, hence duplicated units, "ghosts" and desynchronised states. Version 2: network layer in C with network ownership, anti-zombie, anti-desync, synchronised victory, timeouts and recovery after packet loss.</span></li>
+        <li class="limit"><span class="lbl fr">Pour l'essayer</span><span class="lbl en">To try it</span>
+          <span class="fr">Le README du dépôt décrit un essai sur une seule machine (adresse 127.0.0.1) : compiler le démon avec gcc, lancer deux démons et deux instances du jeu.</span>
+          <span class="en">The repository README describes a single-machine test (address 127.0.0.1): build the daemon with gcc, then start two daemons and two game instances.</span></li>
+      </ul>
+      <p class="stack" style="margin-top:22px">C · Python · UDP / TCP · IPC</p>
+      <p class="dlg-links">
+        <a class="tlink" href="https://github.com/aziz3r/medievail-battle-p2p" target="_blank" rel="noopener"><span class="fr">Code source ↗</span><span class="en">Source code ↗</span></a>
+      </p>
+    </div>
+  </div>
+</dialog>
+
+<dialog class="dlg" id="d-report" aria-labelledby="rep-title">
+  <div class="dlg-head">
+    <h3 id="rep-title"></h3>
+    <div class="hl">
+      <a class="tlink" id="rep-pdf" href="#" target="_blank" rel="noopener"><span class="fr">Ouvrir le PDF ↗</span><span class="en">Open the PDF ↗</span></a>
+      <button type="button" class="tlink" data-close><span class="fr">Fermer ✕</span><span class="en">Close ✕</span></button>
+    </div>
+  </div>
+  <div class="pages" id="rep-pages"></div>
+</dialog>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+(function () {
+  var root = document.documentElement;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var lang = 'fr';
+
+  /* ---------- language ---------- */
+  var saved = null;
+  try { saved = localStorage.getItem('portfolio-lang'); } catch (e) {}
+  var guess = (navigator.language || 'fr').toLowerCase().indexOf('fr') === 0 ? 'fr' : 'en';
+  function setLang(l) {
+    lang = l;
+    root.setAttribute('lang', l);
+    document.querySelectorAll('[data-set-lang]').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.getAttribute('data-set-lang') === l));
+    });
+    document.querySelectorAll('img[data-alt-fr]').forEach(function (img) {
+      img.setAttribute('alt', img.getAttribute('data-alt-' + l) || '');
+    });
+    document.querySelectorAll('video').forEach(function (v) {
+      var n = v.getAttribute('aria-label') || '';
+      v.setAttribute('aria-label', l === 'fr' ? n.replace(/^Demo video/, 'Démonstration') : n.replace(/^Démonstration/, 'Demo video'));
+    });
+    document.title = 'Mohamed Aziz Baoueb';
+    var rep = document.getElementById('d-report');
+    if (rep && rep.open && currentReport) fillReport(currentReport);
+    try { localStorage.setItem('portfolio-lang', l); } catch (e) {}
+  }
+  document.querySelectorAll('[data-set-lang]').forEach(function (b) {
+    b.addEventListener('click', function () { setLang(b.getAttribute('data-set-lang')); });
+  });
+
+  /* ---------- theme: dark by default ---------- */
+  var themeSaved = null;
+  try { themeSaved = localStorage.getItem('portfolio-theme'); } catch (e) {}
+  if (themeSaved === 'light') root.setAttribute('data-theme', 'light');
+  document.getElementById('theme').addEventListener('click', function () {
+    var light = root.getAttribute('data-theme') === 'light';
+    if (light) root.removeAttribute('data-theme'); else root.setAttribute('data-theme', 'light');
+    try { localStorage.setItem('portfolio-theme', light ? 'dark' : 'light'); } catch (e) {}
+    colors();
+  });
+
+  /* ---------- portrait with initials fallback ---------- */
+  var photo = document.getElementById('photo'), initials = document.getElementById('initials');
+  function noPhoto() { photo.hidden = true; initials.hidden = false; }
+  photo.addEventListener('error', noPhoto);
+  if (photo.complete && photo.naturalWidth === 0) noPhoto();
+
+  /* ---------- rotating roles ---------- */
+  var roles = document.querySelectorAll('.role');
+  if (!reduce && roles.length > 1) {
+    var ri = 0;
+    setInterval(function () { roles[ri].classList.remove('active'); ri = (ri + 1) % roles.length; roles[ri].classList.add('active'); }, 2600);
+  }
+
+  /* ---------- toast ---------- */
+  var toast = document.getElementById('toast'), toastT = null;
+  function say(msg) {
+    toast.textContent = msg; toast.hidden = false;
+    clearTimeout(toastT); toastT = setTimeout(function () { toast.hidden = true; }, 3800);
+  }
+
+  /* ---------- dialogs ---------- */
+  document.querySelectorAll('[data-open]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var d = document.getElementById(b.getAttribute('data-open'));
+      if (d && d.showModal) d.showModal();
+    });
+  });
+  document.querySelectorAll('dialog.dlg').forEach(function (d) {
+    d.addEventListener('click', function (e) { if (e.target === d) d.close(); });
+    d.addEventListener('close', function () { d.querySelectorAll('video').forEach(function (v) { v.pause(); }); });
+    var x = d.querySelector('[data-close]');
+    if (x) x.addEventListener('click', function () { d.close(); });
+  });
+
+  /* ---------- report preview ---------- */
+  var REPORTS = {
+    insacloud: { dir: 'assets/reports/insacloud-rapport', n: 5, pdf: 'assets/reports/insacloud-rapport.pdf',
+      title: { fr: 'InsaCloud · Rapport de projet', en: 'InsaCloud · Project report' } },
+    aegis: { dir: 'assets/reports/aegis-rapport', n: 9, pdf: 'assets/reports/aegis-rapport.pdf',
+      title: { fr: 'AEGIS Mini-SOC · Rapport de projet', en: 'AEGIS Mini-SOC · Project report' } },
+    'aegis-dossier': { dir: 'assets/reports/aegis-dossier', n: 14, pdf: 'assets/reports/aegis-dossier.pdf',
+      title: { fr: 'AEGIS Mini-SOC · Dossier technique', en: 'AEGIS Mini-SOC · Technical dossier' } },
+    planner: { dir: 'assets/reports/planner-rapport', n: 20, pdf: 'assets/reports/planner-rapport.pdf',
+      title: { fr: 'Planificateur de révisions · Rapport technique', en: 'Revision planner · Technical report' } },
+    cyberquest: { dir: 'assets/reports/cyberquest-rapport', n: 45, pdf: 'assets/reports/cyberquest-rapport.pdf',
+      title: { fr: 'CyberQuest · Rapport technique', en: 'CyberQuest · Technical report' } }
+  };
+  var currentReport = null;
+  function pad(n) { return n < 10 ? '0' + n : String(n); }
+  function fillReport(key) {
+    var r = REPORTS[key]; if (!r) return;
+    currentReport = key;
+    document.getElementById('rep-title').textContent = r.title[lang] + ' (' + r.n + (lang === 'fr' ? ' pages)' : ' pages)');
+    document.getElementById('rep-pdf').setAttribute('href', r.pdf);
+    var box = document.getElementById('rep-pages');
+    if (box.getAttribute('data-key') === key) return;
+    box.setAttribute('data-key', key); box.textContent = '';
+    for (var i = 1; i <= r.n; i++) {
+      var f = document.createElement('figure'); f.className = 'pg';
+      var im = document.createElement('img'); im.loading = 'lazy'; im.src = r.dir + '/p' + pad(i) + '.jpg';
+      im.alt = (lang === 'fr' ? 'Page ' : 'Page ') + i + ' / ' + r.n;
+      var c = document.createElement('figcaption'); c.textContent = i + ' / ' + r.n;
+      f.appendChild(im); f.appendChild(c); box.appendChild(f);
+    }
+  }
+  document.querySelectorAll('[data-report]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var d = document.getElementById('d-report');
+      fillReport(b.getAttribute('data-report'));
+      if (!d.open) d.showModal();
+      d.scrollTop = 0;
+    });
+  });
+
+  /* ---------- copy email ---------- */
+  var copy = document.getElementById('copy-mail');
+  copy.addEventListener('click', function () {
+    var txt = document.getElementById('mail').textContent;
+    function fallback() {
+      var r = document.createRange(); r.selectNodeContents(document.getElementById('mail'));
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+    }
+    try { navigator.clipboard.writeText(txt).then(function () { say(lang === 'fr' ? 'Adresse copiée' : 'Address copied'); }, fallback); } catch (e) { fallback(); }
+  });
+
+  /* ---------- CV generator (single column, plain text PDF, readable by ATS) ---------- */
+  var CV = {
+    fr: {
+      file: 'CV-Mohamed-Aziz-Baoueb-FR.pdf',
+      title: 'CV - Mohamed Aziz Baoueb',
+      subject: 'Curriculum vitae, stage cybersécurité et cloud & DevOps',
+      keywords: 'cybersécurité, cloud, DevOps, Docker, Ansible, Python, TypeScript, détection d\'intrusion, INSA Centre-Val de Loire',
+      phone: '07 64 40 49 94',
+      headline: 'Élève-ingénieur en cybersécurité · Cloud & DevOps',
+      subline: 'Recherche un stage à partir d\'avril 2027',
+      h: { profile: 'PROFIL', edu: 'FORMATION', exp: 'EXPÉRIENCE PROFESSIONNELLE', proj: 'PROJETS', skills: 'COMPÉTENCES', lang: 'LANGUES ET CERTIFICATIONS', soc: 'ENGAGEMENTS' },
+      profile: 'Élève-ingénieur à l\'INSA Centre-Val de Loire (spécialité Sécurité et Technologies Informatiques, promotion 2028). Je construis des projets à la croisée de la sécurité, du cloud et de l\'automatisation : un mini-cloud (Docker, Ansible), un détecteur d\'intrusion par machine learning, des applications web testées. Je documente chaque projet avec ses mesures et ses limites. Je recherche un stage en cybersécurité ou en cloud & DevOps à partir d\'avril 2027.',
+      edu: [
+        { t: 'Diplôme d\'ingénieur, Sécurité et Technologies Informatiques (STI)', o: 'INSA Centre-Val de Loire', d: '09/2023 - 07/2028' },
+        { t: 'Lycée Pilote de Monastir, section mathématiques', o: 'Monastir, Tunisie · mention très bien', d: '2020 - 2023' }
+      ],
+      exp: [
+        { t: 'Stagiaire développeur web', o: 'Anypli, Tunisie', d: '07/2025 - 08/2025', b: [
+          'Conception et livraison de « Agenda de Révision », application web de planification de révisions (React 18, TypeScript, Redux Toolkit, Strapi), sans expérience préalable du développement web.'
+        ] }
+      ],
+      proj: [
+        { t: 'InsaCloud', m: 'mini-fournisseur de cloud · projet personnel', d: '09/2026 - 10/2026', b: [
+          'Location de machines Linux à la minute (terminal web ou bureau XFCE) : contrôleur Flask pilotant des workers par SSH, reprise automatique sur panne.',
+          'Docker, Ansible (9 rôles idempotents), Vagrant, nginx ; 94 tests, chaîne CI/CD de 11 contrôles (SAST, SCA, DAST, images).'
+        ] },
+        { t: 'AEGIS Mini-SOC', m: 'détection d\'intrusion par machine learning · projet personnel', d: '10/2026', b: [
+          'Détecteur d\'intrusion réseau (scikit-learn, FastAPI, React) et poste d\'analyste temps réel ; deux étages de détection, seuil adaptatif par hôte.',
+          'Rappel de 99,6 % mesuré ; faux positifs ramenés de 341 à 53 par heure ; 9 familles d\'attaque associées à MITRE ATT&CK.'
+        ] },
+        { t: 'Planificateur de révisions', m: 'projet personnel', d: '07/2025 - 10/2026', b: [
+          'Application TypeScript (React 18, Strapi 5) générant un planning par répétition espacée ; refonte après le stage : de 1 à 45 tests, TypeScript strict.'
+        ] },
+        { t: 'MedievAIl Battle', m: 'simulateur de batailles en Python · projet d\'équipe INSA CVL', d: '10/2025 - 01/2026', b: [
+          'Jeu de bataille stratégique en Python (POO, architecture MVP) avec plusieurs IA au choix et simulation de combat.'
+        ] },
+        { t: 'MedievAIl Battle P2P', m: 'jeu en réseau pair-à-pair · projet d\'équipe INSA CVL', d: '10/2025 - 04/2026', b: [
+          'Sans serveur central : démon réseau en C (sockets UDP/TCP) relié au jeu Python par IPC, avec une « propriété réseau » qui garde l\'état cohérent.'
+        ] },
+        { t: 'CyberQuest', m: 'jeu de simulation de pentest · projet d\'équipe INSA CVL', d: '06/2026 - 10/2026', b: [
+          'Jeu web (React 18, Vite, xterm.js) avec terminal intégré : niveaux Linux et web (DVWA), mission Active Directory, défis d\'injection de prompt.'
+        ] }
+      ],
+      skills: [
+        ['Cybersécurité', 'détection d\'intrusion, MITRE ATT&CK, analyse réseau, SAST / SCA / DAST, CSP, CSRF, gestion des secrets'],
+        ['Cloud & DevOps', 'Docker, Ansible, Vagrant, nginx, GitHub Actions, Linux, PostgreSQL'],
+        ['Développement', 'Python, Flask, FastAPI, TypeScript, React, Strapi, C, SQL'],
+        ['Réseau & données', 'scapy, sockets UDP/TCP, IPC, scikit-learn, détection d\'anomalies'],
+        ['Qualité', 'pytest, Vitest, tests d\'intégration, Git, LaTeX']
+      ],
+      langs: [
+        ['Langues', 'français et arabe (langues maternelles) ; anglais (professionnel) ; espagnol (notions)'],
+        ['Certifications', 'TOEIC 950 ; formations ATAST en robotique et programmation (2017, 2019, 2020)']
+      ],
+      soc: [
+        'Ambassadeur REDEX Group (partenariat avec l\'INSA CVL) ; BDE, pôle association ; Team Pilote.',
+        'Bénévolat à Monastir : association El KOLLA (depuis 2020), Notre Grand Bleu (2022), Jasmin Open WTA 250 (2022).'
+      ]
+    },
+    en: {
+      file: 'CV-Mohamed-Aziz-Baoueb-EN.pdf',
+      title: 'CV - Mohamed Aziz Baoueb',
+      subject: 'Resume, cybersecurity and cloud & DevOps internship',
+      keywords: 'cybersecurity, cloud, DevOps, Docker, Ansible, Python, TypeScript, intrusion detection, INSA Centre-Val de Loire',
+      phone: '+33 7 64 40 49 94',
+      headline: 'Cybersecurity engineering student · Cloud & DevOps',
+      subline: 'Seeking an internship from April 2027',
+      h: { profile: 'PROFILE', edu: 'EDUCATION', exp: 'WORK EXPERIENCE', proj: 'PROJECTS', skills: 'SKILLS', lang: 'LANGUAGES AND CERTIFICATIONS', soc: 'COMMUNITY' },
+      profile: 'Engineering student at INSA Centre-Val de Loire (Security and Computer Technologies major, class of 2028). I build projects where security, cloud and automation meet: a mini cloud (Docker, Ansible), a machine-learning intrusion detector, tested web applications. I document each project with its measurements and its limits. I am looking for a cybersecurity or cloud & DevOps internship starting April 2027.',
+      edu: [
+        { t: 'Engineering degree, Security and Computer Technologies (STI)', o: 'INSA Centre-Val de Loire, France', d: '09/2023 - 07/2028' },
+        { t: 'Lycée Pilote de Monastir, mathematics track', o: 'Monastir, Tunisia · with distinction', d: '2020 - 2023' }
+      ],
+      exp: [
+        { t: 'Web Developer Intern', o: 'Anypli, Tunisia', d: '07/2025 - 08/2025', b: [
+          'Designed and delivered "Agenda de Révision", a web application that plans revision sessions (React 18, TypeScript, Redux Toolkit, Strapi), with no prior web development experience.'
+        ] }
+      ],
+      proj: [
+        { t: 'InsaCloud', m: 'mini cloud provider · personal project', d: '09/2026 - 10/2026', b: [
+          'Linux machines rented by the minute (web terminal or XFCE desktop): Flask controller driving workers over SSH, automatic failover.',
+          'Docker, Ansible (9 idempotent roles), Vagrant, nginx; 94 tests and an 11-check CI/CD pipeline (SAST, SCA, DAST, image scanning).'
+        ] },
+        { t: 'AEGIS Mini-SOC', m: 'machine-learning intrusion detection · personal project', d: '10/2026', b: [
+          'Network intrusion detector (scikit-learn, FastAPI, React) with a real-time analyst workstation; two detection stages, adaptive per-host threshold.',
+          '99.6% measured recall; false positives cut from 341 to 53 per hour; 9 attack families mapped to MITRE ATT&CK.'
+        ] },
+        { t: 'Revision planner', m: 'personal project', d: '07/2025 - 10/2026', b: [
+          'TypeScript application (React 18, Strapi 5) generating a spaced-repetition schedule; rebuilt after the internship: from 1 to 45 tests, strict TypeScript.'
+        ] },
+        { t: 'MedievAIl Battle', m: 'battle simulator in Python · team project, INSA CVL', d: '10/2025 - 01/2026', b: [
+          'Strategy battle game in Python (OOP, MVP architecture) with several selectable AIs and a combat simulation.'
+        ] },
+        { t: 'MedievAIl Battle P2P', m: 'peer-to-peer networked game · team project, INSA CVL', d: '10/2025 - 04/2026', b: [
+          'No central server: a C network daemon (UDP/TCP sockets) linked to the Python game over IPC, with a "network ownership" rule that keeps state consistent.'
+        ] },
+        { t: 'CyberQuest', m: 'pentest simulation game · team project, INSA CVL', d: '06/2026 - 10/2026', b: [
+          'Web game (React 18, Vite, xterm.js) with a built-in terminal: Linux and web (DVWA) levels, an Active Directory mission, prompt-injection challenges.'
+        ] }
+      ],
+      skills: [
+        ['Cybersecurity', 'intrusion detection, MITRE ATT&CK, network flow analysis, SAST / SCA / DAST, CSP, CSRF, secrets handling'],
+        ['Cloud & DevOps', 'Docker, Ansible, Vagrant, nginx, GitHub Actions, Linux, PostgreSQL'],
+        ['Development', 'Python, Flask, FastAPI, TypeScript, React, Strapi, C, SQL'],
+        ['Network & data', 'scapy, UDP/TCP sockets, IPC, scikit-learn, anomaly detection'],
+        ['Quality', 'pytest, Vitest, integration tests, Git, LaTeX']
+      ],
+      langs: [
+        ['Languages', 'French and Arabic (native); English (professional); Spanish (basic)'],
+        ['Certifications', 'TOEIC 950; ATAST robotics and programming courses (2017, 2019, 2020)']
+      ],
+      soc: [
+        'REDEX Group ambassador (INSA CVL partnership); BDE student union (associations team); Team Pilote.',
+        'Volunteering in Monastir: El KOLLA association (since 2020), Notre Grand Bleu (2022), Jasmin Open WTA 250 (2022).'
+      ]
+    }
+  };
+
+  function buildCV(l) {
+    var D = CV[l], J = window.jspdf && window.jspdf.jsPDF;
+    if (!J) return null;
+    var doc = new J({ unit: 'mm', format: 'a4', compress: true });
+    var W = 210, H = 297, M = 14, CW = W - 2 * M, y = M;
+    var INK = [18, 26, 38], MUTED = [88, 98, 112], ACC = [8, 96, 70], LH = 3.9, FS = 8.9;
+    doc.setProperties({ title: D.title, author: 'Mohamed Aziz Baoueb', subject: D.subject, keywords: D.keywords, creator: 'Portfolio' });
+    function col(c) { doc.setTextColor(c[0], c[1], c[2]); }
+    function font(style, size, c) { doc.setFont('helvetica', style); doc.setFontSize(size); col(c); }
+    function need(h) { if (y + h > H - 12) { doc.addPage(); y = M; } }
+    function rule(c, w) { doc.setDrawColor(c[0], c[1], c[2]); doc.setLineWidth(w); doc.line(M, y, M + CW, y); }
+    function section(t) { need(14); y += 3.6; font('bold', 9.8, INK); doc.text(t, M, y); y += 1.6; rule(ACC, 0.35); y += 4; }
+    /* title in bold, then muted detail on the same line ("meta | dates") so every line reads left to right */
+    function entry(t, meta, d, sub) {
+      need(11);
+      font('bold', 9.4, INK); doc.text(t, M, y);
+      var x = M + doc.getTextWidth(t);
+      var tail = [meta, d].filter(Boolean).join('  |  ');
+      if (tail && !sub) { font('normal', 8.7, MUTED); doc.text('  |  ' + tail, x, y); }
+      y += LH + 0.2;
+      if (sub) { font('normal', 8.8, MUTED); doc.text([sub, d].filter(Boolean).join('  |  '), M, y); y += LH + 0.2; }
+    }
+    function bullet(s) {
+      font('normal', FS, INK);
+      var lines = doc.splitTextToSize(s, CW - 6);
+      need(lines.length * LH + 0.6);
+      doc.text('•', M + 1.4, y);
+      lines.forEach(function (ln) { doc.text(ln, M + 5, y); y += LH; });
+      y += 0.4;
+    }
+    function labelled(label, txt) {
+      font('bold', FS, INK);
+      var lw = doc.getTextWidth(label + ' : ') + 0.4;
+      font('normal', FS, INK);
+      var first = doc.splitTextToSize(txt, CW - lw)[0] || '';
+      var rest = txt.slice(first.length).trim();
+      var lines = rest ? doc.splitTextToSize(rest, CW) : [];
+      need((1 + lines.length) * LH + 0.6);
+      font('bold', FS, INK); doc.text(label + ' :', M, y);
+      font('normal', FS, INK); doc.text(first, M + lw, y); y += LH;
+      lines.forEach(function (ln) { doc.text(ln, M, y); y += LH; });
+      y += 0.5;
+    }
+
+    /* header */
+    y = M + 6;
+    font('bold', 22, INK); doc.text('Mohamed Aziz Baoueb', M, y); y += 6.8;
+    font('normal', 10.8, ACC); doc.text(D.headline, M, y); y += 4.9;
+    font('normal', 9.2, MUTED); doc.text(D.subline, M, y); y += 4.7;
+    var parts = [
+      { s: D.phone, url: 'tel:+33764404994' },
+      { s: 'mohamed.baoueb@insa-cvl.fr', url: 'mailto:mohamed.baoueb@insa-cvl.fr' },
+      { s: 'linkedin.com/in/mohamed-aziz-baoueb-2a0827301', url: 'https://www.linkedin.com/in/mohamed-aziz-baoueb-2a0827301' },
+      { s: 'github.com/aziz3r', url: 'https://github.com/aziz3r' }
+    ];
+    font('normal', 8.4, INK);
+    var gap = 2.2, bw = doc.getTextWidth('|'), x = M;
+    parts.forEach(function (p, i) {
+      var w = doc.getTextWidth(p.s);
+      if (x + w > M + CW && x > M) { x = M; y += LH; }
+      if (p.url) doc.textWithLink(p.s, x, y, { url: p.url }); else doc.text(p.s, x, y);
+      x += w;
+      if (i < parts.length - 1) { doc.text('|', x + gap, y); x += gap * 2 + bw; }
+    });
+    y += 3.2; rule(INK, 0.5); y += 1.2;
+
+    section(D.h.profile);
+    font('normal', FS, INK);
+    doc.splitTextToSize(D.profile, CW).forEach(function (ln) { need(LH); doc.text(ln, M, y); y += LH; });
+
+    section(D.h.edu);
+    D.edu.forEach(function (e) { entry(e.t, null, e.d, e.o); y += 0.5; });
+
+    section(D.h.exp);
+    D.exp.forEach(function (e) { entry(e.t, null, e.d, e.o); e.b.forEach(bullet); y += 0.4; });
+
+    section(D.h.proj);
+    D.proj.forEach(function (p) { entry(p.t, p.m, p.d); p.b.forEach(bullet); y += 0.5; });
+
+    section(D.h.skills);
+    D.skills.forEach(function (s) { labelled(s[0], s[1]); });
+
+    section(D.h.lang);
+    D.langs.forEach(function (s) { labelled(s[0], s[1]); });
+
+    section(D.h.soc);
+    D.soc.forEach(bullet);
+    return doc;
+  }
+  window.__buildCV = buildCV;
+
+  function saveBuffer(buf, filename) {
+    var dl = null;
+    return Promise.resolve().then(function () {
+      return (window.claude && window.claude.use) ? window.claude.use('downloads') : null;
+    }).catch(function () { return null; }).then(function (d) {
+      dl = d;
+      if (dl) return dl.save({ filename: filename, data: buf }).then(function () { return 'saved'; });
+      var blob = new Blob([buf], { type: 'application/pdf' });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a'); a.href = url; a.download = filename; document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(function () { URL.revokeObjectURL(url); }, 5000);
+      return 'saved';
+    });
+  }
+  document.querySelectorAll('[data-cv]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var l = b.getAttribute('data-cv'); if (l === 'auto') l = lang;
+      var doc;
+      try { doc = buildCV(l); } catch (e) { doc = null; }
+      if (!doc) { say(lang === 'fr' ? 'Le générateur de CV n\'a pas pu se charger. Réessaie dans un instant.' : 'The CV generator could not load. Please try again in a moment.'); return; }
+      saveBuffer(doc.output('arraybuffer'), CV[l].file).then(function () {
+        say(lang === 'fr' ? 'CV prêt : ' + CV[l].file : 'CV ready: ' + CV[l].file);
+      }, function (err) {
+        var c = err && err.code;
+        if (c === 'declined') return;
+        say(lang === 'fr' ? 'Le téléchargement n\'est pas disponible ici. Ouvre le portfolio dans un navigateur.' : 'Downloading is not available here. Open the portfolio in a browser.');
+      });
+    });
+  });
+
+  setLang(saved === 'fr' || saved === 'en' ? saved : guess);
+
+  /* ---------- network background ---------- */
+  var cv = document.getElementById('net'), ctx = cv.getContext('2d');
+  var pts = [], W = 0, H = 0, dpr = 1, accent = '#39E6A0', accent2 = '#4CC9F0';
+  function colors() {
+    var cs = getComputedStyle(root);
+    accent = cs.getPropertyValue('--accent').trim() || accent;
+    accent2 = cs.getPropertyValue('--accent2').trim() || accent2;
+  }
+  function size() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = window.innerWidth; H = window.innerHeight;
+    cv.width = W * dpr; cv.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    var n = Math.max(24, Math.min(70, Math.round(W * H / 22000)));
+    pts = [];
+    for (var k = 0; k < n; k++) pts.push({ x: Math.random() * W, y: Math.random() * H, vx: (Math.random() - .5) * .25, vy: (Math.random() - .5) * .25 });
+  }
+  function draw(step) {
+    ctx.clearRect(0, 0, W, H);
+    for (var a = 0; a < pts.length; a++) {
+      var p = pts[a];
+      if (step) {
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0 || p.x > W) p.vx *= -1;
+        if (p.y < 0 || p.y > H) p.vy *= -1;
+      }
+      for (var b = a + 1; b < pts.length; b++) {
+        var q = pts[b], dx = p.x - q.x, dy = p.y - q.y, d = dx * dx + dy * dy;
+        if (d < 14000) {
+          ctx.globalAlpha = (1 - d / 14000) * .35;
+          ctx.strokeStyle = accent; ctx.lineWidth = 1;
+          ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke();
+        }
+      }
+      ctx.globalAlpha = .8; ctx.fillStyle = accent2;
+      ctx.beginPath(); ctx.arc(p.x, p.y, 1.6, 0, 6.2832); ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+  }
+  function loop() { if (!document.hidden) draw(true); requestAnimationFrame(loop); }
+  colors(); size(); draw(false);
+  window.addEventListener('resize', function () { size(); draw(false); });
+  if (!reduce) requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>
