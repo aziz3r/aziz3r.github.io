@@ -306,9 +306,9 @@ footer { margin-top: 90px; padding-top: 22px; font-family: var(--font-mono); fon
   <div class="focus">
     <div>
       <p class="k fr">cybersécurité</p><p class="k en">cybersecurity</p>
-      <p class="fr">Un <b>détecteur d'intrusion</b> qui apprend à quoi ressemble le trafic normal, et un jeu d'entraînement au pentest conçu en équipe.</p>
-      <p class="en">An <b>intrusion detector</b> that learns what normal traffic looks like, and a pentest training game built as a team.</p>
-      <a class="tlink" href="#p-aegis"><span class="fr">AEGIS Mini-SOC →</span><span class="en">AEGIS Mini-SOC →</span></a>
+      <p class="fr">Un <b>détecteur d'intrusion</b> qui apprend à quoi ressemble le trafic normal, une <b>console d'usine</b> séparée du réseau industriel par une diode de données, et un jeu d'entraînement au pentest conçu en équipe.</p>
+      <p class="en">An <b>intrusion detector</b> that learns what normal traffic looks like, a <b>factory console</b> separated from the industrial network by a data diode, and a pentest training game built as a team.</p>
+      <a class="tlink" href="#p-aegis">AEGIS Mini-SOC →</a> <a class="tlink" href="#p-securiglass">SecuriGlass →</a>
     </div>
     <div>
       <p class="k">cloud &amp; devops</p>
@@ -331,8 +331,8 @@ footer { margin-top: 90px; padding-top: 22px; font-family: var(--font-mono); fon
     </div>
     <div class="about">
       <div class="copy">
-        <p class="fr">Élève-ingénieur à l'INSA Centre-Val de Loire, spécialité <b>Sécurité et Technologies Informatiques</b> (promotion 2028). Mon premier projet web date d'un stage de l'été 2025 chez Anypli, en Tunisie. Depuis, j'ai construit un mini-cloud et un détecteur d'intrusion par machine learning.</p>
-        <p class="en">Engineering student at INSA Centre-Val de Loire, <b>Security and Computer Technologies</b> major (class of 2028). My first web project came from an internship at Anypli, in Tunisia, in summer 2025. Since then I have built a mini cloud and a machine-learning intrusion detector.</p>
+        <p class="fr">Élève-ingénieur à l'INSA Centre-Val de Loire, spécialité <b>Sécurité et Technologies Informatiques</b> (promotion 2028). Mon premier projet web date d'un stage de l'été 2025 chez Anypli, en Tunisie. Depuis, j'ai construit un mini-cloud, un détecteur d'intrusion par machine learning et une console de supervision industrielle sécurisée.</p>
+        <p class="en">Engineering student at INSA Centre-Val de Loire, <b>Security and Computer Technologies</b> major (class of 2028). My first web project came from an internship at Anypli, in Tunisia, in summer 2025. Since then I have built a mini cloud, a machine-learning intrusion detector and a secure industrial supervision console.</p>
         <p class="fr"><b>Ma façon de travailler :</b> mesurer, documenter, et dire ce qui ne marche pas. Chaque projet a ses tests, ses chiffres et ses limites.</p>
         <p class="en"><b>How I work:</b> measure, document, and say what doesn't work. Every project has its tests, its numbers and its limits.</p>
         <p class="fr">Je cherche un stage <b>à partir de début avril 2027</b>, en cybersécurité ou en cloud et DevOps.</p>
@@ -346,6 +346,7 @@ INSA CVL · STI · <span class="fr">promo</span><span class="en">class of</span>
 <span class="fr">dès avril 2027 · cybersécurité | cloud &amp; DevOps</span><span class="en">from April 2027 · cybersecurity | cloud &amp; DevOps</span>
 <span class="p">$</span> ls <span class="fr">projets</span><span class="en">projects</span>/
 <span class="c">insacloud/  aegis-mini-soc/  planificateur/
+cap-stage/  securiglass-factory-os/
 medievail-battle/  medievail-p2p/  cyberquest/</span></pre>
     </div>
   </section>
@@ -514,6 +515,46 @@ medievail-battle/  medievail-p2p/  cyberquest/</span></pre>
     </script>
     </article>
 
+    <article class="proj" id="p-securiglass">
+      <button type="button" class="pm" data-open="d-securiglass" aria-label="SecuriGlass Factory OS : démo et étude de cas">
+        <img loading="lazy" src="assets/securiglass/production.jpg" alt="" data-alt-fr="Console de supervision du four de trempe de SecuriGlass, thème sombre" data-alt-en="SecuriGlass tempering-furnace supervision console, dark theme"><span class="play" aria-hidden="true">▶</span>
+      </button>
+      <div>
+        <p class="tag"><span class="fr">Projet personnel · oct. 2026</span><span class="en">Personal project · Oct 2026</span></p>
+        <h3>SecuriGlass Factory OS</h3>
+        <p class="one fr">Une console de supervision sécurisée pour une ligne de trempe de verre : un automate simulé en C, une diode de données à sens unique entre le réseau industriel et le système d'information, une console web qui montre à chaque rôle ce qu'il doit voir, et un assistant IA protégé par quatre barrières.</p>
+        <p class="one en">A secure supervision console for a glass-tempering line: a simulated PLC written in C, a one-way data diode between the industrial network and the information system, a web console that shows each role only what it needs, and an AI assistant guarded by four barriers.</p>
+        <p class="mini fr">6 rôles · journal d'audit chaîné · attaque réseau réelle rejouée dans la vidéo</p>
+        <p class="mini en">6 roles · hash-chained audit log · a real network attack replayed in the video</p>
+        <p class="stack">C11 · Python · FastAPI · React · TypeScript · PostgreSQL · Modbus TCP</p>
+        <p class="plinks">
+          <button type="button" class="tlink" data-open="d-securiglass"><span class="fr">▶ Démo &amp; étude</span><span class="en">▶ Demo &amp; case study</span></button>
+          <button type="button" class="tlink" data-report="securiglass"><span class="fr">Rapport de projet</span><span class="en">Project report</span></button>
+          <button type="button" class="tlink" data-report="securiglass-technique"><span class="fr">Rapport technique</span><span class="en">Technical report</span></button>
+          <a class="tlink" href="https://github.com/aziz3r/securiglass-factory-os" target="_blank" rel="noopener"><span class="fr">Code source ↗</span><span class="en">Source code ↗</span></a>
+        </p>
+      </div>
+    <script type="application/json" class="cv-data">
+      {
+        "date": "10/2026",
+        "fr": {
+          "m": "supervision de cybersécurité industrielle OT/IT · projet personnel",
+          "b": [
+            "Chaîne OT/IT de bout en bout selon le modèle de Purdue : automate C11 simulé, diode de données UDP à sens unique signée Ed25519, API FastAPI, console React par rôle.",
+            "RBAC/ABAC, chiffrement AES-256-GCM, journal d'audit chaîné SHA-256, assistant IA à 4 barrières ; 563 tests d'API, 763 cas de fuzzing C, attaque Modbus réelle rejouée."
+          ]
+        },
+        "en": {
+          "m": "OT/IT industrial cybersecurity supervision · personal project",
+          "b": [
+            "End-to-end OT/IT chain following the Purdue model: simulated C11 PLC, one-way UDP data diode signed with Ed25519, FastAPI backend, role-based React console.",
+            "RBAC/ABAC, AES-256-GCM encryption, SHA-256 chained audit log, 4-barrier AI assistant; 563 API tests, 763 C fuzzing cases, real Modbus attack replayed."
+          ]
+        }
+      }
+    </script>
+    </article>
+
     <p class="subhead">~/<b><span class="fr">projets-d-équipe</span><span class="en">team-projects</span></b></p>
 
     <article class="proj flip" id="p-medievail">
@@ -525,11 +566,12 @@ medievail-battle/  medievail-p2p/  cyberquest/</span></pre>
         <h3>MedievAIl Battle</h3>
         <p class="one fr">Un simulateur de batailles médiévales en Python : deux armées pilotées par des IA, choisies parmi plusieurs stratégies, s'affrontent sur un champ de bataille avec mini-carte.</p>
         <p class="one en">A medieval battle simulator in Python: two armies driven by AIs, picked from several strategies, fight on a battlefield with a mini-map.</p>
-        <p class="mini fr">5 IA au choix · arbalétriers, chevaliers, piquiers · architecture MVP</p>
-        <p class="mini en">5 AIs to choose from · crossbowmen, knights, pikemen · MVP architecture</p>
+        <p class="mini fr">5 IA au choix · tournoi de 500 matchs entre elles · architecture MVP</p>
+        <p class="mini en">5 AIs to choose from · a 500-match tournament between them · MVP architecture</p>
         <p class="stack">Python · POO · MVP</p>
         <p class="plinks">
           <button type="button" class="tlink" data-open="d-medievail-jeu"><span class="fr">▶ Démo &amp; étude</span><span class="en">▶ Demo &amp; case study</span></button>
+          <button type="button" class="tlink" data-report="medievail-jeu"><span class="fr">Rapport</span><span class="en">Report</span></button>
           <a class="tlink" href="https://github.com/aziz3r/medievail-battle" target="_blank" rel="noopener"><span class="fr">Code source ↗</span><span class="en">Source code ↗</span></a>
         </p>
       </div>
@@ -559,13 +601,14 @@ medievail-battle/  medievail-p2p/  cyberquest/</span></pre>
       <div>
         <p class="tag"><span class="fr">Projet d'équipe · INSA CVL · oct. 2025 – avril 2026</span><span class="en">Team project · INSA CVL · Oct 2025 – Apr 2026</span></p>
         <h3><span class="fr">MedievAIl Battle · réseau pair-à-pair</span><span class="en">MedievAIl Battle · peer-to-peer network</span></h3>
-        <p class="one fr">Le même jeu, joué à deux machines sans serveur central : chaque joueur lance le jeu en Python et un démon réseau en C, et une « propriété réseau » garantit qu'une unité n'a qu'un seul maître à la fois.</p>
-        <p class="one en">The same game, played across two machines with no central server: each player runs the Python game and a C network daemon, and a "network ownership" rule guarantees a unit has only one master at a time.</p>
-        <p class="mini fr">2 processus par machine · sockets UDP/TCP · aucun serveur central</p>
-        <p class="mini en">2 processes per machine · UDP/TCP sockets · no central server</p>
-        <p class="stack">C · Python · UDP / TCP · IPC</p>
+        <p class="one fr">Le même jeu, joué à deux machines sans serveur central : chaque joueur lance le jeu en Python et un petit démon réseau en C qui relaie les messages en UDP vers l'autre machine.</p>
+        <p class="one en">The same game, played across two machines with no central server: each player runs the Python game and a small C network daemon that relays messages over UDP to the other machine.</p>
+        <p class="mini fr">2 processus par machine · relais UDP en C (177 lignes) · aucun serveur central</p>
+        <p class="mini en">2 processes per machine · UDP relay in C (177 lines) · no central server</p>
+        <p class="stack">C · Python · UDP · IPC</p>
         <p class="plinks">
           <button type="button" class="tlink" data-open="d-medievail-p2p"><span class="fr">▶ Démo &amp; étude</span><span class="en">▶ Demo &amp; case study</span></button>
+          <button type="button" class="tlink" data-report="medievail-p2p"><span class="fr">Rapport</span><span class="en">Report</span></button>
           <a class="tlink" href="https://github.com/aziz3r/medievail-battle-p2p" target="_blank" rel="noopener"><span class="fr">Code source ↗</span><span class="en">Source code ↗</span></a>
         </p>
       </div>
@@ -575,13 +618,13 @@ medievail-battle/  medievail-p2p/  cyberquest/</span></pre>
         "fr": {
           "m": "jeu en réseau pair-à-pair · projet d'équipe INSA CVL",
           "b": [
-            "Sans serveur central : démon réseau en C (sockets UDP/TCP) relié au jeu Python par IPC, avec une « propriété réseau » qui garde l'état cohérent."
+            "Sans serveur central : démon réseau en C (relais UDP) relié au jeu Python par IPC ; lobby multijoueur et synchronisation de l'état des armées entre deux machines."
           ]
         },
         "en": {
           "m": "peer-to-peer networked game · team project, INSA CVL",
           "b": [
-            "No central server: a C network daemon (UDP/TCP sockets) linked to the Python game over IPC, with a \"network ownership\" rule that keeps state consistent."
+            "No central server: a C network daemon (UDP relay) linked to the Python game over IPC; multiplayer lobby and army-state synchronisation between two machines."
           ]
         },
         "title": "MedievAIl Battle P2P"
@@ -637,30 +680,30 @@ medievail-battle/  medievail-p2p/  cyberquest/</span></pre>
     <ul class="arsenal">
       <li data-cv-fr="Cybersécurité" data-cv-en="Cybersecurity">
         <h3><span class="fr">cybersécurité</span><span class="en">cybersecurity</span></h3>
-        <p class="skills fr">Détection d'intrusion · MITRE ATT&amp;CK · analyse de flux · CSP / CSRF · SAST, SCA, DAST · gestion des secrets · OAuth 2.0 · chiffrement AES-GCM</p>
-        <p class="skills en">Intrusion detection · MITRE ATT&amp;CK · flow analysis · CSP / CSRF · SAST, SCA, DAST · secrets handling · OAuth 2.0 · AES-GCM encryption</p>
-        <p class="used">AEGIS Mini-SOC, InsaCloud, CyberQuest, Cap Stage</p>
+        <p class="skills fr">Détection d'intrusion · MITRE ATT&amp;CK · analyse de flux · CSP / CSRF · SAST, SCA, DAST · gestion des secrets · OAuth 2.0 · chiffrement AES-GCM · segmentation OT/IT · RBAC / ABAC</p>
+        <p class="skills en">Intrusion detection · MITRE ATT&amp;CK · flow analysis · CSP / CSRF · SAST, SCA, DAST · secrets handling · OAuth 2.0 · AES-GCM encryption · OT/IT segmentation · RBAC / ABAC</p>
+        <p class="used">AEGIS Mini-SOC, InsaCloud, CyberQuest, Cap Stage, SecuriGlass</p>
       </li>
       <li data-cv-fr="Cloud &amp; DevOps" data-cv-en="Cloud &amp; DevOps">
         <h3>cloud &amp; devops</h3>
         <p class="skills">Docker · Ansible · Vagrant · nginx · GitHub Actions · Linux · PostgreSQL</p>
-        <p class="used">InsaCloud</p>
+        <p class="used">InsaCloud, SecuriGlass</p>
       </li>
       <li data-cv-fr="Développement" data-cv-en="Development">
         <h3><span class="fr">développement</span><span class="en">development</span></h3>
         <p class="skills">Python · Flask · FastAPI · TypeScript · JavaScript · React · Strapi · C · SQL</p>
-        <p class="used fr">InsaCloud, AEGIS, Planificateur, MedievAIl Battle, Cap Stage</p><p class="used en">InsaCloud, AEGIS, Revision planner, MedievAIl Battle, Cap Stage</p>
+        <p class="used fr">InsaCloud, AEGIS, Planificateur, MedievAIl Battle, Cap Stage, SecuriGlass</p><p class="used en">InsaCloud, AEGIS, Revision planner, MedievAIl Battle, Cap Stage, SecuriGlass</p>
       </li>
       <li data-cv-fr="Réseau &amp; données" data-cv-en="Network &amp; data">
         <h3><span class="fr">réseau &amp; données</span><span class="en">network &amp; data</span></h3>
-        <p class="skills fr">scapy · sockets UDP / TCP · IPC · scikit-learn · détection d'anomalies</p>
-        <p class="skills en">scapy · UDP / TCP sockets · IPC · scikit-learn · anomaly detection</p>
-        <p class="used fr">AEGIS Mini-SOC, MedievAIl Battle (version réseau)</p><p class="used en">AEGIS Mini-SOC, MedievAIl Battle (network version)</p>
+        <p class="skills fr">scapy · sockets UDP / TCP · Modbus TCP · IPC · scikit-learn · détection d'anomalies</p>
+        <p class="skills en">scapy · UDP / TCP sockets · Modbus TCP · IPC · scikit-learn · anomaly detection</p>
+        <p class="used fr">AEGIS Mini-SOC, SecuriGlass, MedievAIl Battle (version réseau)</p><p class="used en">AEGIS Mini-SOC, SecuriGlass, MedievAIl Battle (network version)</p>
       </li>
       <li data-cv-fr="Qualité" data-cv-en="Quality">
         <h3><span class="fr">qualité &amp; docs</span><span class="en">quality &amp; docs</span></h3>
-        <p class="skills fr">pytest · Vitest · tests d'intégration · Git · LaTeX</p>
-        <p class="skills en">pytest · Vitest · integration tests · Git · LaTeX</p>
+        <p class="skills fr">pytest · Vitest · fuzzing · tests d'intégration · Git · LaTeX</p>
+        <p class="skills en">pytest · Vitest · fuzzing · integration tests · Git · LaTeX</p>
         <p class="used fr">Rapports et dossiers techniques des projets personnels</p><p class="used en">Reports and technical dossiers of the personal projects</p>
       </li>
       <li>
@@ -689,6 +732,7 @@ medievail-battle/  medievail-p2p/  cyberquest/</span></pre>
       <li><span class="when"><span class="fr">sept. 2026</span><span class="en">Sep 2026</span></span><span class="what"><b>InsaCloud</b> <span class="fr">Mini-cloud construit de zéro.</span><span class="en">Mini cloud built from scratch.</span></span></li>
       <li><span class="when"><span class="fr">oct. 2026</span><span class="en">Oct 2026</span></span><span class="what"><b>AEGIS Mini-SOC</b> <span class="fr">Détection d'intrusion par machine learning.</span><span class="en">Intrusion detection with machine learning.</span></span></li>
       <li><span class="when"><span class="fr">oct. 2026</span><span class="en">Oct 2026</span></span><span class="what"><b>Cap Stage</b> <span class="fr">Suivi de candidatures de stage, sans serveur, avec synchronisation Google Drive.</span><span class="en">Internship-application tracker, serverless, with Google Drive sync.</span></span></li>
+      <li><span class="when"><span class="fr">oct. 2026</span><span class="en">Oct 2026</span></span><span class="what"><b>SecuriGlass Factory OS</b> <span class="fr">Console de supervision d'une usine de verre, avec diode de données et assistant IA protégé.</span><span class="en">Supervision console for a glass factory, with a data diode and a guarded AI assistant.</span></span></li>
       <li class="next"><span class="when"><span class="fr">avril 2027</span><span class="en">April 2027</span></span><span class="what"><b><span class="fr">Stage recherché</span><span class="en">Internship wanted</span></b> <span class="fr">Cybersécurité ou cloud &amp; DevOps.</span><span class="en">Cybersecurity or cloud &amp; DevOps.</span></span></li>
     </ol>
   </section>
@@ -921,6 +965,61 @@ medievail-battle/  medievail-p2p/  cyberquest/</span></pre>
   </div>
 </dialog>
 
+<dialog class="dlg" id="d-securiglass" aria-labelledby="t-securiglass">
+  <div class="dlg-head"><h3 id="t-securiglass">SecuriGlass Factory OS</h3><button type="button" class="tlink" data-close><span class="fr">Fermer ✕</span><span class="en">Close ✕</span></button></div>
+  <div class="dlg-body">
+    <div class="media">
+      <video controls preload="none" playsinline poster="assets/securiglass/production.jpg" aria-label="Démonstration de SecuriGlass Factory OS"><source src="assets/securiglass/demo.mp4" type="video/mp4"></video>
+      <p class="cap fr">démo (1 min 08) : connexion par rôle, redémarrage de l'automate, cycle de chauffe, attaque Modbus directe, alertes MITRE, arrêt d'urgence, injection de prompt bloquée, journal d'audit</p>
+      <p class="cap en">demo (1 min 08): role-based sign-in, PLC restart, heating cycle, direct Modbus attack, MITRE alerts, emergency stop, blocked prompt injection, audit log</p>
+      <div class="shots">
+        <figure><img loading="lazy" src="assets/securiglass/production.jpg" alt="" data-alt-fr="Page Production : température du four en direct" data-alt-en="Production page: live furnace temperature"><figcaption class="fr">Production : la température monte, le détecteur d'anomalies signale déjà un écart entre les zones</figcaption><figcaption class="en">Production: the temperature rises, the anomaly detector already flags a gap between zones</figcaption></figure>
+        <figure><img loading="lazy" src="assets/securiglass/redteam-bornes.jpg" alt="" data-alt-fr="Terminal : une consigne de 900 °C refusée par l'automate" data-alt-en="Terminal: a 900 °C setpoint refused by the PLC"><figcaption class="fr">Attaque directe sur l'automate : 900 °C refusés par son firmware (bornes 500 – 750 °C)</figcaption><figcaption class="en">Direct attack on the PLC: 900 °C refused by its firmware (limits 500 – 750 °C)</figcaption></figure>
+        <figure><img loading="lazy" src="assets/securiglass/arret-urgence.jpg" alt="" data-alt-fr="Terminal : arrêt d'urgence accepté, levée refusée" data-alt-en="Terminal: emergency stop accepted, reset refused"><figcaption class="fr">Arrêt d'urgence envoyé par le réseau : accepté ; sa levée est refusée, il faut un acquittement physique</figcaption><figcaption class="en">Emergency stop sent over the network: accepted; the reset is refused, a physical acknowledgement is required</figcaption></figure>
+        <figure><img loading="lazy" src="assets/securiglass/alertes-mitre.jpg" alt="" data-alt-fr="Alertes de sécurité qualifiées MITRE ATT&amp;CK et ATLAS" data-alt-en="Security alerts tagged with MITRE ATT&amp;CK and ATLAS"><figcaption class="fr">Alertes qualifiées MITRE ATT&amp;CK et ATLAS, puis schéma de circulation des données OT → IT</figcaption><figcaption class="en">Alerts tagged with MITRE ATT&amp;CK and ATLAS, then the OT → IT data-flow diagram</figcaption></figure>
+        <figure><img loading="lazy" src="assets/securiglass/assistant-ia.jpg" alt="" data-alt-fr="L'assistant refuse une injection de prompt" data-alt-en="The assistant refuses a prompt injection"><figcaption class="fr">L'assistant refuse une injection de prompt : motif hostile intercepté, incident consigné</figcaption><figcaption class="en">The assistant refuses a prompt injection: hostile pattern intercepted, incident logged</figcaption></figure>
+        <figure><img loading="lazy" src="assets/securiglass/journal-audit.jpg" alt="" data-alt-fr="Journal d'audit avec vérification de la chaîne" data-alt-en="Audit log with chain verification"><figcaption class="fr">Journal d'audit : la chaîne SHA-256 est recalculée côté serveur, 823 enregistrements vérifiés</figcaption><figcaption class="en">Audit log: the SHA-256 chain is recomputed on the server, 823 records checked</figcaption></figure>
+      </div>
+    </div>
+    <div>
+      <div class="facts" role="list">
+        <div role="listitem"><b>563</b><span class="fr">tests de l'API, sur une vraie base PostgreSQL</span><span class="en">API tests, run against a real PostgreSQL</span></div>
+        <div role="listitem"><b>763</b><span class="fr">cas de fuzzing sur l'automate C, aucun plantage</span><span class="en">fuzzing cases on the C PLC, no crash</span></div>
+        <div role="listitem"><b>4</b><span class="fr">barrières devant l'assistant IA</span><span class="en">barriers in front of the AI assistant</span></div>
+      </div>
+      <ul class="points">
+        <li><span class="lbl fr">Projet personnel</span><span class="lbl en">Personal project</span>
+          <span class="fr">Preuve de concept de cybersécurité industrielle réalisée en octobre 2026 : une démonstration technique, pas un produit homologué. Tout tourne en local, sans service cloud, ce qui permet de l'attaquer sans risque pour un système réel.</span>
+          <span class="en">An industrial-cybersecurity proof of concept built in October 2026: a technical demonstration, not a certified product. Everything runs locally, with no cloud service, so it can be attacked with no risk to a real system.</span></li>
+        <li><span class="lbl fr">Ce que ça simule</span><span class="lbl en">What it simulates</span>
+          <span class="fr">La supervision d'une ligne de trempe de verre (norme EN 12150-1) : un automate en C11 pilote un four à quatre zones de chauffe, une passerelle lit ses mesures en lecture seule, une diode de données les transmet à sens unique à une API, puis à une console web qui affiche à chaque rôle ce qu'il a le droit de voir.</span>
+          <span class="en">The supervision of a glass-tempering line (EN 12150-1): a C11 PLC drives a four-zone furnace, a gateway reads its measurements read-only, a data diode sends them one way to an API, then to a web console that shows each role what it is allowed to see.</span></li>
+        <li><span class="lbl fr">La diode de données</span><span class="lbl en">The data diode</span>
+          <span class="fr">Un émetteur UDP qui n'appelle jamais <span class="mono">recv()</span> : il n'existe aucune route de retour du système d'information vers l'automate. Les trames sont signées (Ed25519, SHA-256) et numérotées contre le rejeu.</span>
+          <span class="en">A UDP sender that never calls <span class="mono">recv()</span>: there is no return route from the information system to the PLC. Frames are signed (Ed25519, SHA-256) and numbered against replay.</span></li>
+        <li><span class="lbl fr">Accès, données, traçabilité</span><span class="lbl en">Access, data, traceability</span>
+          <span class="fr">Six rôles ; contrôle par rôle (RBAC) puis règles contextuelles (ABAC) qui refusent tout par défaut, appliqués côté serveur. Données clients chiffrées au repos (AES-256-GCM), mots de passe en Argon2id, journal d'audit chaîné par SHA-256 et vérifié côté serveur.</span>
+          <span class="en">Six roles; role-based control (RBAC) then contextual rules (ABAC) that deny by default, enforced on the server. Customer data encrypted at rest (AES-256-GCM), passwords hashed with Argon2id, audit log chained with SHA-256 and verified on the server.</span></li>
+        <li><span class="lbl fr">L'assistant IA</span><span class="lbl en">The AI assistant</span>
+          <span class="fr">Quatre barrières successives : filtrage de la question, corpus fermé sur la norme EN 12150, génération contrainte, contrôle des grandeurs physiques en sortie. La démo montre une injection de prompt interceptée et consignée.</span>
+          <span class="en">Four successive barriers: question filtering, a closed corpus on the EN 12150 standard, constrained generation, a check of physical quantities on output. The demo shows a prompt injection intercepted and logged.</span></li>
+        <li><span class="lbl fr">L'attaque rejouée</span><span class="lbl en">The replayed attack</span>
+          <span class="fr">Une écriture Modbus directe sur l'automate, sans passer par la console : 900 °C refusés par le firmware ; 750 °C sur deux zones acceptés, le four sort de la plage de sécurité affichée (620 – 730 °C) et le modèle d'anomalies le détecte ; arrêt d'urgence accepté à distance, mais sa levée refusée.</span>
+          <span class="en">A direct Modbus write to the PLC, bypassing the console: 900 °C refused by the firmware; 750 °C on two zones accepted, the furnace leaves the displayed safety range (620 – 730 °C) and the anomaly model catches it; emergency stop accepted remotely, but its reset refused.</span></li>
+        <li class="limit"><span class="lbl fr">Limites relevées par le rapport</span><span class="lbl en">Limits listed in the report</span>
+          <span class="fr">Cette attaque directe sur le réseau industriel n'apparaît pas dans les alertes de la console, faute de sonde réseau. Hors périmètre : plan de reprise, signature des consignes envoyées à l'automate, image Docker distroless, homologation. Certains tests sont ignorés sous macOS et restent à exécuter sous Linux.</span>
+          <span class="en">This direct attack on the industrial network does not show up in the console's alerts, for lack of a network probe. Out of scope: disaster recovery, signing the setpoints sent to the PLC, a distroless Docker image, certification. Some tests are skipped on macOS and still have to run on Linux.</span></li>
+      </ul>
+      <p class="stack" style="margin-top:22px">C11 · Python · FastAPI · React · TypeScript · PostgreSQL · Modbus TCP</p>
+      <p class="dlg-links">
+        <button type="button" class="tlink" data-report="securiglass"><span class="fr">Lire le rapport de projet</span><span class="en">Read the project report</span></button>
+        <button type="button" class="tlink" data-report="securiglass-technique"><span class="fr">Lire le rapport technique</span><span class="en">Read the technical report</span></button>
+        <a class="tlink" href="https://github.com/aziz3r/securiglass-factory-os" target="_blank" rel="noopener"><span class="fr">Code source ↗</span><span class="en">Source code ↗</span></a>
+      </p>
+    </div>
+  </div>
+</dialog>
+
 <dialog class="dlg" id="d-cyberquest" aria-labelledby="t-cyberquest">
   <div class="dlg-head"><h3 id="t-cyberquest">CyberQuest</h3><button type="button" class="tlink" data-close><span class="fr">Fermer ✕</span><span class="en">Close ✕</span></button></div>
   <div class="dlg-body">
@@ -980,7 +1079,7 @@ medievail-battle/  medievail-p2p/  cyberquest/</span></pre>
         <figure><img loading="lazy" src="assets/medievail-jeu/vue-ensemble.jpg" alt="" data-alt-fr="Les deux armées se déploient" data-alt-en="The two armies deploy"><figcaption class="fr">Les armées se déploient : effectifs de chaque équipe et mini-carte à l'écran</figcaption><figcaption class="en">The armies deploy: each team's headcount and a mini-map on screen</figcaption></figure>
         <figure><img loading="lazy" src="assets/medievail-jeu/zoom-melee.jpg" alt="" data-alt-fr="Mêlée entre chevaliers, piquiers et arbalétriers" data-alt-en="Melee between knights, pikemen and crossbowmen"><figcaption class="fr">Mêlée : chevaliers, piquiers et arbalétriers au contact</figcaption><figcaption class="en">Melee: knights, pikemen and crossbowmen in contact</figcaption></figure>
         <figure><img loading="lazy" src="assets/medievail-jeu/victoire.jpg" alt="" data-alt-fr="Écran de victoire de l'équipe B" data-alt-en="Team B victory screen"><figcaption class="fr">Fin de bataille : victoire de l'équipe B</figcaption><figcaption class="en">End of the battle: team B wins</figcaption></figure>
-        <figure><img loading="lazy" src="assets/medievail-jeu/lanchester.png" alt="" data-alt-fr="Vérification de la loi carrée de Lanchester sur la simulation de combat" data-alt-en="Checking Lanchester's square law against the combat simulation"><figcaption class="fr">Vérification de la loi carrée de Lanchester sur la simulation de combat</figcaption><figcaption class="en">Checking Lanchester's square law against the combat simulation</figcaption></figure>
+        <figure><img loading="lazy" src="assets/medievail-jeu/lanchester.png" alt="" data-alt-fr="Loi carrée de Lanchester : survivants mesurés et prédiction" data-alt-en="Lanchester's square law: measured survivors and prediction"><figcaption class="fr">Loi carrée de Lanchester : survivants mesurés (rouge) et prédiction (bleu), scénario N contre 2N</figcaption><figcaption class="en">Lanchester's square law: measured survivors (red) and prediction (blue), N versus 2N scenario</figcaption></figure>
       </div>
     </div>
     <div>
@@ -994,9 +1093,16 @@ medievail-battle/  medievail-p2p/  cyberquest/</span></pre>
         <li><span class="lbl fr">Architecture</span><span class="lbl en">Architecture</span>
           <span class="fr">Architecture MVP : un modèle (unités, armées, règles de combat), un présentateur qui déroule la bataille, et des vues interchangeables.</span>
           <span class="en">MVP architecture: a model (units, armies, combat rules), a presenter that runs the battle, and interchangeable views.</span></li>
+        <li><span class="lbl fr">Les expériences du rapport</span><span class="lbl en">The report's experiments</span>
+          <span class="fr">Un tournoi de 500 matchs entre les cinq IA (131 secondes de calcul) donne un classement net, de Predict EINSTEIN à Captain BRAINDEAD. Surprise : l'IA à règles par type de cible, General STRATEGUS, perd contre une simple charge. La loi carrée de Lanchester n'est confirmée que partiellement : le camp le plus nombreux gagne toujours, mais avec plus de survivants que prévu.</span>
+          <span class="en">A 500-match tournament between the five AIs (131 seconds of computing) gives a clear ranking, from Predict EINSTEIN to Captain BRAINDEAD. Surprise: the AI with per-target-type rules, General STRATEGUS, loses to a plain charge. Lanchester's square law is only partly confirmed: the larger side always wins, but with more survivors than predicted.</span></li>
+        <li class="limit"><span class="lbl fr">Limites relevées par le rapport</span><span class="lbl en">Limits listed in the report</span>
+          <span class="fr">Aucun test automatisé ; l'aléa n'est pas initialisé par une graine, donc deux tournois identiques peuvent différer ; le ciblage est quadratique (0,5 s de calcul pour 54 unités, 6,8 s pour 210). Le menu décrit Predict EINSTEIN comme une IA qui « simule 5 coups », ce que le code ne fait pas.</span>
+          <span class="en">No automated tests; randomness is not seeded, so two identical tournaments can differ; targeting is quadratic (0.5 s of computing for 54 units, 6.8 s for 210). The menu describes Predict EINSTEIN as an AI that "simulates 5 moves ahead", which the code does not do.</span></li>
       </ul>
       <p class="stack" style="margin-top:22px">Python · POO · MVP</p>
       <p class="dlg-links">
+        <button type="button" class="tlink" data-report="medievail-jeu"><span class="fr">Lire le rapport technique</span><span class="en">Read the technical report</span></button>
         <a class="tlink" href="https://github.com/aziz3r/medievail-battle" target="_blank" rel="noopener"><span class="fr">Code source ↗</span><span class="en">Source code ↗</span></a>
       </p>
     </div>
@@ -1008,8 +1114,8 @@ medievail-battle/  medievail-p2p/  cyberquest/</span></pre>
   <div class="dlg-body">
     <div class="media">
       <video controls preload="none" playsinline poster="assets/medievail-p2p/combat-debut.jpg" aria-label="Démonstration de la version réseau"><source src="assets/medievail-p2p/demo.mp4" type="video/mp4"></video>
-      <p class="cap fr">démo : deux instances côte à côte, lobby multijoueur (choix de l'IA et de la zone de départ), combat, victoire</p>
-      <p class="cap en">demo: two instances side by side, multiplayer lobby (AI and starting zone), the fight, victory</p>
+      <p class="cap fr">démo : deux instances côte à côte, lobby multijoueur (choix de l'IA et de la zone de départ), combat, fin de partie</p>
+      <p class="cap en">demo: two instances side by side, multiplayer lobby (AI and starting zone), the fight, end of the game</p>
       <svg class="diagram" viewBox="0 0 760 200" aria-hidden="true" focusable="false">
         <defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah" d="M0,0 L10,5 L0,10 z"/></marker></defs>
         <rect class="m" x="10" y="26" width="300" height="150" rx="8"/>
@@ -1028,7 +1134,7 @@ medievail-battle/  medievail-p2p/  cyberquest/</span></pre>
         <path d="M586,109 L612,109" marker-start="url(#ah)" marker-end="url(#ah)"/>
         <path d="M296,109 L464,109" marker-start="url(#ah)" marker-end="url(#ah)"/>
         <text class="s" x="161" y="98">IPC</text><text class="s" x="599" y="98">IPC</text>
-        <text class="s" x="380" y="96">UDP / TCP</text>
+        <text class="s" x="380" y="96">UDP</text>
         <text class="s fr" x="380" y="132">pair-à-pair, sans serveur</text><text class="s en" x="380" y="132">peer-to-peer, no server</text>
       </svg>
       <div class="shots">
@@ -1036,29 +1142,33 @@ medievail-battle/  medievail-p2p/  cyberquest/</span></pre>
         <figure><img loading="lazy" src="assets/medievail-p2p/lobby-zones.jpg" alt="" data-alt-fr="Choix de la zone de départ, créer ou rejoindre une partie" data-alt-en="Starting-zone choice, create or join a game"><figcaption class="fr">Zone de départ, puis créer (hôte) ou rejoindre</figcaption><figcaption class="en">Starting zone, then create (host) or join</figcaption></figure>
         <figure><img loading="lazy" src="assets/medievail-p2p/combat-debut.jpg" alt="" data-alt-fr="Début du combat sur les deux instances" data-alt-en="Start of the fight on both instances"><figcaption class="fr">Début du combat : les deux instances montrent la même partie</figcaption><figcaption class="en">Start of the fight: both instances show the same game</figcaption></figure>
         <figure><img loading="lazy" src="assets/medievail-p2p/melee.jpg" alt="" data-alt-fr="Mêlée vue depuis les deux joueurs" data-alt-en="Melee seen from both players"><figcaption class="fr">Mêlée, vue par les deux joueurs</figcaption><figcaption class="en">Melee, as seen by both players</figcaption></figure>
-        <figure><img loading="lazy" src="assets/medievail-p2p/fin.jpg" alt="" data-alt-fr="Victoire de l'équipe B affichée sur les deux instances" data-alt-en="Team B victory shown on both instances"><figcaption class="fr">Fin de partie : la victoire est synchronisée entre les deux</figcaption><figcaption class="en">End of the game: the victory is synchronised on both sides</figcaption></figure>
+        <figure><img loading="lazy" src="assets/medievail-p2p/fin.jpg" alt="" data-alt-fr="Fin de la partie enregistrée : victoire affichée côté client seulement" data-alt-en="End of the recorded game: victory shown on the client side only"><figcaption class="fr">Fin de la partie enregistrée : le client affiche la victoire de l'équipe B, l'hôte n'a pas détecté la fin (les deux vues divergent)</figcaption><figcaption class="en">End of the recorded game: the client shows team B's victory, the host has not detected the end (the two views diverge)</figcaption></figure>
       </div>
     </div>
     <div>
       <ul class="points">
         <li><span class="lbl fr">Projet d'équipe</span><span class="lbl en">Team project</span>
-          <span class="fr">Projet réseaux de la formation STI3A à l'INSA CVL (octobre 2025 – avril 2026), réalisé à onze. Il prolonge la base du jeu Python. Dépôt de référence : YOUSSEF4315/STI3A-Projet_reseaux_1. Mon dépôt est un miroir : il conserve l'historique Git complet et les droits de chaque auteur.</span>
-          <span class="en">Networking project of the STI3A course at INSA CVL (October 2025 – April 2026), built by eleven students. It extends the Python game. Reference repository: YOUSSEF4315/STI3A-Projet_reseaux_1. My repository is a mirror: it keeps the full Git history and each author's rights.</span></li>
+          <span class="fr">Projet réseaux de la formation STI3A à l'INSA CVL (octobre 2025 – avril 2026), réalisé à onze. Il prolonge la base du jeu Python ; le code réseau a été écrit du 8 au 29 avril 2026. Dépôt de référence : YOUSSEF4315/STI3A-Projet_reseaux_1. Mon dépôt est un miroir : il conserve l'historique Git complet et les droits de chaque auteur.</span>
+          <span class="en">Networking project of the STI3A course at INSA CVL (October 2025 – April 2026), built by eleven students. It extends the Python game; the network code was written between 8 and 29 April 2026. Reference repository: YOUSSEF4315/STI3A-Projet_reseaux_1. My repository is a mirror: it keeps the full Git history and each author's rights.</span></li>
         <li><span class="lbl fr">Deux programmes par machine</span><span class="lbl en">Two programs per machine</span>
-          <span class="fr">Chaque joueur lance le jeu et l'IA en Python, et un démon réseau en C. Ils se parlent en local par IPC ; seuls les démons dialoguent à travers le réseau, en pair-à-pair. Le programme Python n'a jamais conscience d'être en réseau.</span>
-          <span class="en">Each player runs the Python game and AI, and a C network daemon. They talk locally over IPC; only the daemons talk across the network, peer-to-peer. The Python program is never aware it is on a network.</span></li>
-        <li><span class="lbl fr">Propriété réseau</span><span class="lbl en">Network ownership</span>
-          <span class="fr">Sans serveur, deux joueurs peuvent modifier la même unité en même temps. Règle retenue : une entité n'a qu'un seul propriétaire légitime à un instant donné, et pour agir sur une unité qu'il ne possède pas, un nœud négocie d'abord le transfert de propriété.</span>
-          <span class="en">With no server, two players can change the same unit at the same time. The rule: an entity has a single legitimate owner at any moment, and to act on a unit it doesn't own, a node first negotiates the transfer of ownership.</span></li>
+          <span class="fr">Chaque joueur lance le jeu avec son IA (Python) et un démon réseau en C. Le jeu ne parle qu'à son démon local, en JSON sur UDP (IPC) ; seuls les démons communiquent à travers le réseau, en UDP pair-à-pair. Le démon est un relais : il transmet tel quel ce que le jeu lui confie.</span>
+          <span class="en">Each player runs the game with its AI (Python) and a C network daemon. The game only talks to its local daemon, in JSON over UDP (IPC); only the daemons communicate across the network, over peer-to-peer UDP. The daemon is a relay: it forwards as is whatever the game hands it.</span></li>
+        <li><span class="lbl fr">Synchronisation de l'état</span><span class="lbl en">State synchronisation</span>
+          <span class="fr">Chaque instance fait tourner sa propre simulation. Toutes les cinq images, elle diffuse l'état de ses unités (type, position, points de vie) et les points de vie des unités adverses : le premier message pèse 12,5 Ko pour 150 unités par camp.</span>
+          <span class="en">Each instance runs its own simulation. Every five frames, it broadcasts the state of its units (type, position, hit points) and the hit points of the opposing units: the first message weighs 12.5 KB for 150 units per side.</span></li>
         <li><span class="lbl fr">Deux versions</span><span class="lbl en">Two versions</span>
-          <span class="fr">Version 1 : diffusion « best-effort » sans garantie, d'où des unités en double, des « fantômes » et des états désynchronisés. Version 2 : réseau en C avec propriété réseau, anti-zombie, anti-désynchronisation, victoire synchronisée, délais d'attente et reprise après perte de paquets.</span>
-          <span class="en">Version 1: "best-effort" broadcast with no guarantee, hence duplicated units, "ghosts" and desynchronised states. Version 2: network layer in C with network ownership, anti-zombie, anti-desync, synchronised victory, timeouts and recovery after packet loss.</span></li>
-        <li class="limit"><span class="lbl fr">Pour l'essayer</span><span class="lbl en">To try it</span>
-          <span class="fr">Le README du dépôt décrit un essai sur une seule machine (adresse 127.0.0.1) : compiler le démon avec gcc, lancer deux démons et deux instances du jeu.</span>
-          <span class="en">The repository README describes a single-machine test (address 127.0.0.1): build the daemon with gcc, then start two daemons and two game instances.</span></li>
+          <span class="fr">Le README distingue une version 1 « best-effort » (un routeur Python de secours, qui montre les défauts d'un réseau sans cohérence : unités en double, « fantômes ») et une version 2 qui annonce un démon C avec propriété réseau, anti-zombie et victoire synchronisée.</span>
+          <span class="en">The README distinguishes a "best-effort" version 1 (a fallback Python router that shows the flaws of a network with no consistency: duplicated units, "ghosts") and a version 2 that announces a C daemon with network ownership, anti-zombie and synchronised victory.</span></li>
+        <li class="limit"><span class="lbl fr">Limites relevées par le rapport</span><span class="lbl en">Limits listed in the report</span>
+          <span class="fr">Le rapport constate que la propriété réseau, l'anti-zombie et la victoire synchronisée annoncées par le README ne sont pas dans le code du dépôt : le démon est un simple relais et les points de vie reçus sont écrits sans arbitrage. Sur la partie enregistrée, les deux écrans divergent en fin de combat. Sous macOS, le démon d'origine perd les paquets de plus de 9 Ko : la démo utilise une copie à tampons agrandis. Ni authentification ni chiffrement.</span>
+          <span class="en">The report finds that the network ownership, anti-zombie and synchronised victory announced by the README are not in the repository's code: the daemon is a plain relay and received hit points are written without arbitration. On the recorded game, the two screens diverge at the end of the fight. On macOS, the original daemon drops packets over 9 KB: the demo uses a copy with larger buffers. No authentication and no encryption.</span></li>
+        <li><span class="lbl fr">Pour l'essayer</span><span class="lbl en">To try it</span>
+          <span class="fr">Le README du dépôt décrit un essai sur une seule machine (adresse 127.0.0.1) : compiler le démon avec gcc, lancer deux démons et deux instances du jeu. Le rapport détaille la procédure, en quatre terminaux.</span>
+          <span class="en">The repository README describes a single-machine test (address 127.0.0.1): build the daemon with gcc, then start two daemons and two game instances. The report details the procedure, in four terminals.</span></li>
       </ul>
-      <p class="stack" style="margin-top:22px">C · Python · UDP / TCP · IPC</p>
+      <p class="stack" style="margin-top:22px">C · Python · UDP · IPC</p>
       <p class="dlg-links">
+        <button type="button" class="tlink" data-report="medievail-p2p"><span class="fr">Lire le rapport technique</span><span class="en">Read the technical report</span></button>
         <a class="tlink" href="https://github.com/aziz3r/medievail-battle-p2p" target="_blank" rel="noopener"><span class="fr">Code source ↗</span><span class="en">Source code ↗</span></a>
       </p>
     </div>
@@ -1167,7 +1277,15 @@ medievail-battle/  medievail-p2p/  cyberquest/</span></pre>
     cyberquest: { dir: 'assets/reports/cyberquest-rapport', n: 45, pdf: 'assets/reports/cyberquest-rapport.pdf',
       title: { fr: 'CyberQuest · Rapport technique', en: 'CyberQuest · Technical report' } },
     'cap-stage': { dir: 'assets/reports/cap-stage-rapport', n: 13, pdf: 'assets/reports/cap-stage-rapport.pdf',
-      title: { fr: 'Cap Stage · Rapport de projet', en: 'Cap Stage · Project report (in French)' } }
+      title: { fr: 'Cap Stage · Rapport de projet', en: 'Cap Stage · Project report (in French)' } },
+    securiglass: { dir: 'assets/reports/securiglass-rapport', n: 15, pdf: 'assets/reports/securiglass-rapport.pdf',
+      title: { fr: 'SecuriGlass Factory OS · Rapport de projet', en: 'SecuriGlass Factory OS · Project report (in French)' } },
+    'securiglass-technique': { dir: 'assets/reports/securiglass-technique', n: 17, pdf: 'assets/reports/securiglass-technique.pdf',
+      title: { fr: 'SecuriGlass Factory OS · Rapport technique', en: 'SecuriGlass Factory OS · Technical report (in French)' } },
+    'medievail-jeu': { dir: 'assets/reports/medievail-jeu-rapport', n: 8, pdf: 'assets/reports/medievail-jeu-rapport.pdf',
+      title: { fr: 'MedievAIl Battle · Rapport technique', en: 'MedievAIl Battle · Technical report (in French)' } },
+    'medievail-p2p': { dir: 'assets/reports/medievail-p2p-rapport', n: 8, pdf: 'assets/reports/medievail-p2p-rapport.pdf',
+      title: { fr: 'MedievAIl Battle P2P · Rapport technique', en: 'MedievAIl Battle P2P · Technical report (in French)' } }
   };
   var currentReport = null;
   function pad(n) { return n < 10 ? '0' + n : String(n); }
@@ -1300,12 +1418,13 @@ medievail-battle/  medievail-p2p/  cyberquest/</span></pre>
     return out;
   }
 
-  function buildCV(l) {
+  function buildCV(l, k) {
+    k = k || 1;
     var D = CV[l], J = window.jspdf && window.jspdf.jsPDF;
     if (!J) return null;
     var doc = new J({ unit: 'mm', format: 'a4', compress: true });
     var W = 210, H = 297, M = 14, CW = W - 2 * M, y = M;
-    var INK = [18, 26, 38], MUTED = [88, 98, 112], ACC = [8, 96, 70], LH = 3.7, FS = 8.8;
+    var INK = [18, 26, 38], MUTED = [88, 98, 112], ACC = [8, 96, 70], LH = 3.7 * k, FS = 8.8 * k;
     doc.setProperties({ title: D.title, author: 'Mohamed Aziz Baoueb', subject: D.subject, keywords: D.keywords, creator: 'Portfolio' });
     function col(c) { doc.setTextColor(c[0], c[1], c[2]); }
     function font(style, size, c) { doc.setFont('helvetica', style); doc.setFontSize(size); col(c); }
@@ -1315,12 +1434,12 @@ medievail-battle/  medievail-p2p/  cyberquest/</span></pre>
     /* title in bold, then muted detail on the same line ("meta | dates") so every line reads left to right */
     function entry(t, meta, d, sub) {
       need(11);
-      font('bold', 9.4, INK); doc.text(t, M, y);
+      font('bold', 9.4 * k, INK); doc.text(t, M, y);
       var x = M + doc.getTextWidth(t);
       var tail = [meta, d].filter(Boolean).join('  |  ');
-      if (tail && !sub) { font('normal', 8.7, MUTED); doc.text('  |  ' + tail, x, y); }
+      if (tail && !sub) { font('normal', 8.7 * k, MUTED); doc.text('  |  ' + tail, x, y); }
       y += LH + 0.2;
-      if (sub) { font('normal', 8.8, MUTED); doc.text([sub, d].filter(Boolean).join('  |  '), M, y); y += LH + 0.2; }
+      if (sub) { font('normal', 8.8 * k, MUTED); doc.text([sub, d].filter(Boolean).join('  |  '), M, y); y += LH + 0.2; }
     }
     function bullet(s) {
       font('normal', FS, INK);
@@ -1389,7 +1508,18 @@ medievail-battle/  medievail-p2p/  cyberquest/</span></pre>
     D.soc.forEach(bullet);
     return doc;
   }
-  window.__buildCV = buildCV;
+  /* the CV must stay on one page: shrink spacing and type a little until it fits */
+  function buildCVFit(l) {
+    var doc = null;
+    for (var k = 1; k >= 0.84; k -= 0.02) {
+      doc = buildCV(l, k);
+      if (!doc) return doc;
+      doc.cvScale = k;
+      if (doc.getNumberOfPages() === 1) return doc;
+    }
+    return doc;
+  }
+  window.__buildCV = buildCVFit;
 
   function saveBuffer(buf, filename) {
     var dl = null;
@@ -1409,7 +1539,7 @@ medievail-battle/  medievail-p2p/  cyberquest/</span></pre>
     b.addEventListener('click', function () {
       var l = b.getAttribute('data-cv'); if (l === 'auto') l = lang;
       var doc;
-      try { doc = buildCV(l); } catch (e) { doc = null; }
+      try { doc = buildCVFit(l); } catch (e) { doc = null; }
       if (!doc) { say(lang === 'fr' ? 'Le générateur de CV n\'a pas pu se charger. Réessaie dans un instant.' : 'The CV generator could not load. Please try again in a moment.'); return; }
       saveBuffer(doc.output('arraybuffer'), CV[l].file).then(function () {
         say(lang === 'fr' ? 'CV prêt : ' + CV[l].file : 'CV ready: ' + CV[l].file);
