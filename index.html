@@ -226,8 +226,33 @@ footer { margin-top: 90px; padding-top: 22px; font-family: var(--font-mono); fon
 #toast { position: fixed; left: 50%; bottom: calc(22px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); z-index: 50; max-width: min(92vw, 30rem); padding: 11px 18px; border-radius: 999px; background: var(--ink); color: var(--bg); font-size: .86rem; text-align: center; }
 #toast[hidden] { display: none; }
 
+/* cover letter: same rule as the rest, no boxes; fields are underlined, the letter sits behind the accent line */
+.letter { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 56px; align-items: start; }
+.lleft { display: grid; gap: 34px; min-width: 0; }
+.lform { display: grid; gap: 22px; min-width: 0; }
+.lrow { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+.lform label, .lcap { display: block; min-width: 0; font-family: var(--font-mono); font-size: .74rem; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); }
+.lform input[type="text"], .lform select, .lform textarea { display: block; width: 100%; margin-top: 6px; padding: 8px 0; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; background: transparent; color: var(--ink); font: 400 .96rem/1.5 var(--font-body); letter-spacing: 0; text-transform: none; }
+.lform select { cursor: pointer; }
+.lform textarea { resize: vertical; }
+.lform input[type="text"]:focus, .lform select:focus, .lform textarea:focus { outline: none; border-bottom-color: var(--accent); box-shadow: 0 1px 0 var(--accent); }
+.lform ::placeholder, .lout ::placeholder { color: var(--muted); opacity: .75; }
+.lout { min-width: 0; }
+.lcap { margin-bottom: 8px; }
+.lout textarea { display: block; width: 100%; margin-top: 16px; min-height: 36rem; padding: 4px 0 4px 22px; border: 0; border-left: 2px solid var(--accent); border-radius: 0; background: transparent; color: var(--ink); font: 400 .93rem/1.62 var(--font-body); resize: vertical; }
+.lout textarea:focus { outline: none; box-shadow: -1px 0 0 var(--accent); }
+.lbar { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; }
+.lmeta { margin-top: 14px; font-family: var(--font-mono); font-size: .76rem; color: var(--accent2); }
+.lnote { margin-top: 4px; font-size: .84rem; color: var(--warn); }
+.lnote:empty { display: none; }
+.lkw { display: grid; gap: 12px; font-size: .92rem; color: var(--muted); }
+.lkw b { display: block; font-family: var(--font-mono); font-size: .74rem; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: var(--accent2); margin-bottom: 2px; }
+.lkw .miss b { color: var(--warn); }
+.lhelp { margin-top: -14px; font-size: .84rem; color: var(--muted); }
+.lkw:empty { display: none; }
+
 @media (max-width: 900px) {
-  .hero, .about, .proj, .dlg-body, .two { grid-template-columns: minmax(0, 1fr); }
+  .hero, .about, .proj, .dlg-body, .two, .letter { grid-template-columns: minmax(0, 1fr); }
   .hero { gap: 36px; padding-block: 40px 24px; }
   .avatar { order: -1; width: min(60vw, 240px); }
   .proj { gap: 28px; margin-bottom: 72px; }
@@ -243,6 +268,7 @@ footer { margin-top: 90px; padding-top: 22px; font-family: var(--font-mono); fon
   .links { order: 3; width: 100%; flex-wrap: nowrap; overflow-x: auto; white-space: nowrap; gap: 18px; padding-bottom: 4px; }
   .arsenal { grid-template-columns: minmax(0, 1fr); }
   .shots.three { grid-template-columns: minmax(0, 1fr); }
+  .lrow { grid-template-columns: minmax(0, 1fr); }
   .focus { grid-template-columns: minmax(0, 1fr); gap: 30px; padding-block: 40px 0; }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -265,6 +291,7 @@ footer { margin-top: 90px; padding-top: 22px; font-family: var(--font-mono); fon
       <a href="#arsenal">~/arsenal</a>
       <a href="#parcours">~/<span class="fr">parcours</span><span class="en">timeline</span></a>
       <a href="#engagements">~/<span class="fr">engagements</span><span class="en">community</span></a>
+      <a href="#lettre">~/<span class="fr">lettre</span><span class="en">letter</span></a>
       <a href="#contact">~/contact</a>
     </nav>
     <div class="tools">
@@ -768,6 +795,79 @@ medievail-battle/  medievail-p2p/  cyberquest/</span></pre>
     </ul>
   </section>
 
+  <section id="lettre">
+    <div class="sec-head">
+      <p class="kick">~/<span class="fr">lettre</span><span class="en">cover-letter</span></p>
+      <h2 class="sec-title"><span class="fr">Lettre de motivation</span><span class="en">Cover letter</span></h2>
+      <p class="sec-lead fr">Un générateur de lettre pour une candidature de stage. Renseigner l'entreprise, coller l'offre : la lettre se compose à partir des projets de cette page et reprend les mots-clés de l'offre qui correspondent à un vrai parcours. Tout se passe dans le navigateur, rien n'est envoyé.</p>
+      <p class="sec-lead en">A letter generator for internship applications. Enter the company, paste the offer: the letter is composed from the projects on this page and picks up the offer's keywords that match real experience. Everything runs in the browser, nothing is sent.</p>
+    </div>
+    <div class="letter">
+      <div class="lleft">
+        <form class="lform" id="lform" autocomplete="off" onsubmit="return false">
+          <div class="lrow">
+            <label for="l-co"><span class="fr">Entreprise</span><span class="en">Company</span>
+              <input id="l-co" type="text" maxlength="80" data-ph-fr="Nom de l'entreprise" data-ph-en="Company name"></label>
+            <label for="l-role"><span class="fr">Intitulé de l'offre</span><span class="en">Offer title</span>
+              <input id="l-role" type="text" maxlength="120" data-ph-fr="Stage ingénieur cybersécurité" data-ph-en="Cybersecurity engineering internship"></label>
+          </div>
+          <div class="lrow">
+            <label for="l-to"><span class="fr">Destinataire (facultatif)</span><span class="en">Recipient (optional)</span>
+              <input id="l-to" type="text" maxlength="80" data-ph-fr="Prénom Nom" data-ph-en="First name Last name"></label>
+            <label for="l-dur"><span class="fr">Durée (facultatif)</span><span class="en">Duration (optional)</span>
+              <input id="l-dur" type="text" maxlength="40" data-ph-fr="4 à 6 mois" data-ph-en="4 to 6 months"></label>
+          </div>
+          <div class="lrow">
+            <label for="l-dom"><span class="fr">Domaine</span><span class="en">Domain</span>
+              <select id="l-dom">
+                <option value="auto" data-fr="Auto (selon l'offre)" data-en="Auto (from the offer)">Auto (selon l'offre)</option>
+                <option value="cyber" data-fr="Cybersécurité" data-en="Cybersecurity">Cybersécurité</option>
+                <option value="cloud" data-fr="Cloud &amp; DevOps" data-en="Cloud &amp; DevOps">Cloud &amp; DevOps</option>
+                <option value="ot" data-fr="Cybersécurité industrielle (OT/IT)" data-en="Industrial cybersecurity (OT/IT)">Cybersécurité industrielle (OT/IT)</option>
+                <option value="ia" data-fr="Sécurité &amp; IA" data-en="Security &amp; AI">Sécurité &amp; IA</option>
+                <option value="dev" data-fr="Développement logiciel" data-en="Software development">Développement logiciel</option>
+              </select></label>
+            <label for="l-lang"><span class="fr">Langue de la lettre</span><span class="en">Letter language</span>
+              <select id="l-lang">
+                <option value="fr">Français</option>
+                <option value="en">English</option>
+              </select></label>
+          </div>
+          <div class="lrow">
+            <label for="l-size"><span class="fr">Longueur</span><span class="en">Length</span>
+              <select id="l-size">
+                <option value="full" data-fr="Complète (tous les projets)" data-en="Full (every project)">Complète (tous les projets)</option>
+                <option value="short" data-fr="Concise (un projet détaillé)" data-en="Concise (one project in detail)">Concise (un projet détaillé)</option>
+              </select></label>
+            <label for="l-kwline"><span class="fr">Ligne de mots-clés (ATS)</span><span class="en">Keyword line (ATS)</span>
+              <select id="l-kwline">
+                <option value="yes" data-fr="Oui, en fin de lettre" data-en="Yes, at the end of the letter">Oui, en fin de lettre</option>
+                <option value="no" data-fr="Non" data-en="No">Non</option>
+              </select></label>
+          </div>
+          <label for="l-offer"><span class="fr">Offre de stage (texte collé)</span><span class="en">Internship offer (pasted text)</span>
+            <textarea id="l-offer" rows="7" maxlength="20000" data-ph-fr="Coller ici le texte de l'offre : les mots-clés techniques sont repérés, ceux qui ne figurent pas dans mes projets sont signalés mais jamais ajoutés à la lettre." data-ph-en="Paste the offer text here: technical keywords are picked up, those that do not appear in my projects are flagged but never added to the letter."></textarea></label>
+          <label for="l-why"><span class="fr">Pourquoi cette entreprise (facultatif, une ou deux phrases)</span><span class="en">Why this company (optional, one or two sentences)</span>
+            <textarea id="l-why" rows="2" maxlength="400" data-ph-fr="Ce qui attire dans cette mission ou cette équipe, avec ses propres mots." data-ph-en="What draws you to this mission or team, in your own words."></textarea></label>
+        </form>
+        <div class="lkw" id="l-ats" aria-live="polite"></div>
+        <p class="lhelp fr">Pour les ATS : PDF sur une colonne avec du vrai texte, mots-clés de l'offre repris tels quels, sigles et formes longues ensemble. Relire avant d'envoyer : seules les compétences réellement mises en pratique dans les projets sont ajoutées.</p>
+        <p class="lhelp en">For ATS: a single-column PDF with real text, the offer's keywords reused as written, acronyms next to their long forms. Read it before sending: only skills actually used in the projects are added.</p>
+      </div>
+      <div class="lout">
+        <label class="lcap" for="l-out"><span class="fr">Lettre (modifiable)</span><span class="en">Letter (editable)</span></label>
+        <div class="lbar">
+          <button type="button" class="pill solid" id="l-pdf"><span class="fr">Télécharger en PDF</span><span class="en">Download as PDF</span></button>
+          <button type="button" class="pill" id="l-copy"><span class="fr">Copier le texte</span><span class="en">Copy the text</span></button>
+          <button type="button" class="tlink" id="l-regen"><span class="fr">Régénérer</span><span class="en">Regenerate</span></button>
+        </div>
+        <p class="lmeta" id="l-meta"></p>
+        <p class="lnote" id="l-note"></p>
+        <textarea id="l-out" spellcheck="true" rows="30"></textarea>
+      </div>
+    </div>
+  </section>
+
   <section class="contact" id="contact">
     <div class="sec-head" style="margin-bottom:0">
       <p class="kick">~/contact</p>
@@ -782,6 +882,7 @@ medievail-battle/  medievail-p2p/  cyberquest/</span></pre>
     <div class="cv">
       <button type="button" class="pill solid" data-cv="fr">CV · Français (PDF)</button>
       <button type="button" class="pill" data-cv="en">CV · English (PDF)</button>
+      <a class="pill" href="#lettre"><span class="fr">Lettre de motivation</span><span class="en">Cover letter</span></a>
     </div>
     <footer>
       <span class="fr">© 2026 Mohamed Aziz Baoueb</span>
@@ -1213,6 +1314,7 @@ medievail-battle/  medievail-p2p/  cyberquest/</span></pre>
     document.title = 'Mohamed Aziz Baoueb';
     var rep = document.getElementById('d-report');
     if (rep && rep.open && currentReport) fillReport(currentReport);
+    onLetterLang(l);
     try { localStorage.setItem('portfolio-lang', l); } catch (e) {}
   }
   document.querySelectorAll('[data-set-lang]').forEach(function (b) {
@@ -1550,6 +1652,519 @@ medievail-battle/  medievail-p2p/  cyberquest/</span></pre>
       });
     });
   });
+
+  /* ---------- cover letter generator ----------
+     Composed in the browser from facts already on this page (project cards, arsenal, CV constants).
+     The pasted offer is matched against LT.TERMS, a dictionary of skills really used in the projects;
+     tools the offer names that are not in the dictionary are only listed (LT.GAPS), never written into the letter.
+     Wording avoids gendered agreements ("motivé", "ravi"): the letter is signed with the name only. */
+  var LT = {};
+  LT.ORDER = ['sg', 'ae', 'ic', 'cq', 'cs', 'pl', 'p2p', 'mb'];
+  LT.TEAM = { cq: 1, p2p: 1, mb: 1 };
+  LT.NAME = {
+    sg: ['SecuriGlass Factory OS', 'SecuriGlass Factory OS'],
+    ae: ['AEGIS Mini-SOC', 'AEGIS Mini-SOC'],
+    ic: ['InsaCloud', 'InsaCloud'],
+    cq: ['CyberQuest', 'CyberQuest'],
+    cs: ['Cap Stage', 'Cap Stage'],
+    pl: ["le planificateur de révisions", 'the revision planner'],
+    p2p: ['MedievAIl Battle P2P', 'MedievAIl Battle P2P'],
+    mb: ['MedievAIl Battle', 'MedievAIl Battle']
+  };
+  /* one paragraph per featured project, one noun phrase per project mentioned in passing: [fr, en] */
+  LT.LONG = {
+    sg: ["SecuriGlass Factory OS supervise une ligne de trempe de verre selon le modèle de Purdue : automate simulé en C11 (Modbus TCP), diode de données UDP à sens unique aux trames signées Ed25519, API FastAPI et console React/TypeScript par rôle, avec RBAC/ABAC, chiffrement AES-256-GCM, journal d'audit chaîné SHA-256 et assistant IA protégé par quatre barrières. Il est validé par 563 tests d'API, 763 cas de fuzzing sur le code C et le rejeu d'une attaque Modbus réelle.",
+      'SecuriGlass Factory OS supervises a glass tempering line following the Purdue model: a simulated PLC in C11 (Modbus TCP), a one-way UDP data diode with Ed25519-signed frames, a FastAPI backend and a role-based React/TypeScript console, with RBAC/ABAC, AES-256-GCM encryption, a SHA-256 chained audit log and an AI assistant guarded by four barriers. It is validated by 563 API tests, 763 fuzzing cases on the C code and the replay of a real Modbus attack.'],
+    ae: ["AEGIS Mini-SOC est un détecteur d'intrusion réseau par machine learning (scikit-learn, scapy, FastAPI, React) à deux étages de détection et seuil adaptatif par hôte : 99,6 % de rappel mesuré, faux positifs ramenés de 341 à 53 par heure, et 9 familles d'attaque associées à MITRE ATT&CK, présentées dans un poste d'analyste temps réel.",
+      'AEGIS Mini-SOC is a machine-learning network intrusion detector (scikit-learn, scapy, FastAPI, React) with two detection stages and an adaptive per-host threshold: 99.6% measured recall, false positives cut from 341 to 53 per hour, and 9 attack families mapped to MITRE ATT&CK, shown in a real-time analyst workstation.'],
+    ic: ["InsaCloud est un mini-fournisseur de cloud construit de zéro : un contrôleur Flask pilote des workers par SSH et loue des machines Linux à la minute, avec reprise automatique sur panne. L'infrastructure est décrite en code (Docker, 9 rôles Ansible idempotents, Vagrant, nginx) et validée par 94 tests et une chaîne CI/CD de 11 contrôles (SAST, SCA, DAST, analyse d'images).",
+      'InsaCloud is a mini cloud provider built from scratch: a Flask controller drives workers over SSH and rents Linux machines by the minute, with automatic failover. The infrastructure is described as code (Docker, 9 idempotent Ansible roles, Vagrant, nginx) and checked by 94 tests and an 11-check CI/CD pipeline (SAST, SCA, DAST, image scanning).'],
+    cs: ["Cap Stage est un suivi de candidatures de stage sans serveur, en JavaScript : connexion OAuth 2.0 à Google, données conservées dans le Drive de chaque utilisateur, politique CSP interdisant tout appel réseau hors Google et chiffrement AES-256-GCM optionnel (PBKDF2, Web Crypto).",
+      'Cap Stage is a serverless internship-application tracker written in JavaScript: Google OAuth 2.0 sign-in, data kept in each user\'s own Drive, a CSP forbidding any network call except to Google, and optional AES-256-GCM encryption (PBKDF2, Web Crypto).'],
+    pl: ["Mon planificateur de révisions (TypeScript strict, React 18, Strapi 5, Vite, Vitest) génère un planning par répétition espacée ; né de mon stage chez Anypli, je l'ai refondu jusqu'à 45 tests.",
+      'My revision planner (strict TypeScript, React 18, Strapi 5, Vite, Vitest) generates a spaced-repetition schedule; born from my Anypli internship, I rebuilt it up to 45 tests.'],
+    cq: ["En équipe de quatre, j'ai participé à CyberQuest, un jeu de simulation de pentest (React 18, Vite, xterm.js, Node.js) : le joueur progresse depuis un terminal intégré à travers des niveaux Linux et web (DVWA, OWASP Top 10), une mission Active Directory dont chaque étape cite sa technique MITRE ATT&CK, et des défis d'injection de prompt sur des LLM.",
+      'In a team of four, I took part in CyberQuest, a pentest simulation game (React 18, Vite, xterm.js, Node.js): the player moves forward from a built-in terminal through Linux and web levels (DVWA, OWASP Top 10), an Active Directory mission whose every step cites its MITRE ATT&CK technique, and prompt-injection challenges on LLMs.'],
+    p2p: ["En équipe, j'ai aussi participé à la version pair-à-pair de MedievAIl Battle : sans serveur central, un démon réseau en C relaie en UDP les messages entre deux machines et dialogue avec le jeu Python par IPC, pour un lobby multijoueur et la synchronisation de l'état des armées.",
+      'As part of a team, I also took part in the peer-to-peer version of MedievAIl Battle: with no central server, a C network daemon relays messages over UDP between two machines and talks to the Python game over IPC, for a multiplayer lobby and army-state synchronisation.'],
+    mb: ["En équipe, j'ai participé à MedievAIl Battle, un simulateur de batailles en Python (programmation orientée objet, architecture MVP) où cinq IA s'affrontent ; un tournoi de 500 matchs entre elles les a départagées.",
+      'As part of a team, I took part in MedievAIl Battle, a battle simulator in Python (object-oriented programming, MVP architecture) where five AIs fight each other; a 500-match tournament between them ranked them.']
+  };
+  LT.SHORT = {
+    sg: ["SecuriGlass Factory OS, une console de cybersécurité industrielle OT/IT (C11, Modbus TCP, FastAPI, RBAC/ABAC)",
+      'SecuriGlass Factory OS, an OT/IT industrial cybersecurity console (C11, Modbus TCP, FastAPI, RBAC/ABAC)'],
+    ae: ["AEGIS Mini-SOC, un détecteur d'intrusion par machine learning (scikit-learn, scapy, MITRE ATT&CK)",
+      'AEGIS Mini-SOC, a machine-learning intrusion detector (scikit-learn, scapy, MITRE ATT&CK)'],
+    ic: ["InsaCloud, un mini-cloud (Flask, Docker, Ansible, CI/CD de 11 contrôles)",
+      'InsaCloud, a mini cloud (Flask, Docker, Ansible, 11-check CI/CD)'],
+    cs: ["Cap Stage, un suivi de candidatures sans serveur (JavaScript, OAuth 2.0, CSP, AES-256-GCM)",
+      'Cap Stage, a serverless application tracker (JavaScript, OAuth 2.0, CSP, AES-256-GCM)'],
+    pl: ["un planificateur de révisions par répétition espacée (TypeScript, React, Strapi, 45 tests)",
+      'a spaced-repetition revision planner (TypeScript, React, Strapi, 45 tests)'],
+    cq: ["CyberQuest, un jeu de simulation de pentest (React, Node.js, Active Directory, DVWA, injection de prompt)",
+      'CyberQuest, a pentest simulation game (React, Node.js, Active Directory, DVWA, prompt injection)'],
+    p2p: ["la version pair-à-pair de MedievAIl Battle (démon réseau en C, relais UDP, IPC)",
+      'the peer-to-peer version of MedievAIl Battle (C network daemon, UDP relay, IPC)'],
+    mb: ["MedievAIl Battle, un simulateur de batailles en Python (POO, architecture MVP)",
+      'MedievAIl Battle, a battle simulator in Python (OOP, MVP architecture)']
+  };
+
+  /* which projects to feature for each domain, before the offer's keywords add their weight */
+  LT.AFF = {
+    cyber: { sg: 3, ae: 3, ic: 2, cq: 2, cs: 2 },
+    cloud: { ic: 4, sg: 2, ae: 1, cs: 1 },
+    ot: { sg: 5, ae: 2, p2p: 1, ic: 1, cq: 1 },
+    ia: { ae: 4, sg: 2, cq: 2 },
+    dev: { pl: 2, cs: 2, sg: 2, ic: 2, ae: 1, mb: 1, p2p: 1 }
+  };
+  LT.DOM = {
+    cyber: {
+      name: ['Cybersécurité', 'Cybersecurity'], stage: ['stage en cybersécurité', 'cybersecurity internship'],
+      hook: ["La cybersécurité est le fil conducteur de mes projets : détection d'intrusion, durcissement, cryptographie et traçabilité, toujours mesurés et documentés.",
+        'Cybersecurity is the common thread of my projects: intrusion detection, hardening, cryptography and traceability, always measured and documented.'],
+      kw: 'cyber ids soc mitre pentest owasp devsecops vuln crypto iam harden fuzz linux docker ansible cicd net python c ts fastapi tests git doc eng'
+    },
+    cloud: {
+      name: ['Cloud & DevOps', 'Cloud & DevOps'], stage: ['stage en cloud et DevOps', 'cloud & DevOps internship'],
+      hook: ["Le cloud et le DevOps sont au cœur de mes projets : infrastructure décrite en code, déploiements reproductibles, intégration et déploiement continus (CI/CD) et sécurité intégrée à la chaîne (DevSecOps).",
+        'Cloud and DevOps are at the heart of my projects: infrastructure described as code, reproducible deployments, continuous integration and delivery (CI/CD) and security built into the pipeline (DevSecOps).'],
+      kw: 'cloud docker ansible vagrant cicd linux nginx ha devsecops harden vuln monitoring auto python flask api db tests cyber git doc eng'
+    },
+    ot: {
+      name: ['Cybersécurité industrielle (OT/IT)', 'Industrial cybersecurity (OT/IT)'], stage: ['stage en cybersécurité industrielle (OT/IT)', 'industrial cybersecurity (OT/IT) internship'],
+      hook: ["La cybersécurité industrielle m'attire particulièrement : segmentation OT/IT, diode de données, protocole Modbus, contrôle d'accès par rôle et traçabilité des actions.",
+        'Industrial cybersecurity interests me in particular: OT/IT segmentation, data diode, Modbus protocol, role-based access control and action traceability.'],
+      kw: 'ot cyber net c python crypto iam audit mitre fuzz monitoring harden fastapi db docker ansible tests linux git doc eng'
+    },
+    ia: {
+      name: ['Sécurité & IA', 'Security & AI'], stage: ["stage en sécurité et intelligence artificielle", 'security and artificial intelligence internship'],
+      hook: ["Je m'intéresse à la sécurité appuyée par l'intelligence artificielle : détection d'anomalies par machine learning, réduction des faux positifs, sécurité des assistants à base de LLM.",
+        'I am interested in security supported by artificial intelligence: machine-learning anomaly detection, false-positive reduction, security of LLM-based assistants.'],
+      kw: 'ml ids anom ai llm mitre soc cyber python fastapi react tests net git doc eng'
+    },
+    dev: {
+      name: ['Développement logiciel', 'Software development'], stage: ['stage en développement logiciel', 'software development internship'],
+      hook: ["Je conçois des applications complètes, de l'API (FastAPI, Flask, Strapi) à l'interface (React, TypeScript), testées et documentées.",
+        'I build complete applications, from the API (FastAPI, Flask, Strapi) to the interface (React, TypeScript), tested and documented.'],
+      kw: 'python ts js react node fastapi flask api strapi front db tests cicd docker poo c git team doc eng'
+    }
+  };
+
+  /* skills really used in the projects. re: matched on the offer lowercased, accents stripped, apostrophes as ".";
+     d: domains where the term counts; p: projects that prove it; w: weight; g: generic (kept for the keyword line only) */
+  LT.TERMS = [
+    { id: 'cyber', fr: 'cybersécurité', en: 'cybersecurity', d: 'cyber ot ia', p: 'sg ae ic cq cs', w: 2,
+      re: 'cyber ?securite|cybersecurity|securite informatique|securite des (?:systemes|si)(?: d.information)?|information security|infosec' },
+    { id: 'ids', fr: "détection d'intrusion (IDS/NIDS)", en: 'intrusion detection (IDS/NIDS)', d: 'cyber ia', p: 'ae', w: 3,
+      re: 'detection d.intrusions?|detection des intrusions|intrusion detection|n?ids|ips|intrusion prevention' },
+    { id: 'soc', fr: "SOC et analyse d'alertes", en: 'SOC and alert triage', d: 'cyber ia', p: 'ae sg', w: 3,
+      re: 'soc(?! ?2)|security operations|blue team|centre de supervision|triage' },
+    { id: 'mitre', fr: 'MITRE ATT&CK', en: 'MITRE ATT&CK', d: 'cyber ia ot', p: 'ae sg cq', w: 3, re: 'mitre|att ?& ?ck' },
+    { id: 'ml', fr: 'machine learning (scikit-learn)', en: 'machine learning (scikit-learn)', d: 'ia cyber', p: 'ae', w: 3,
+      re: 'machine learning|apprentissage (?:automatique|statistique)|ml|scikit.?learn|data science' },
+    { id: 'anom', fr: "détection d'anomalies", en: 'anomaly detection', d: 'ia cyber ot', p: 'ae sg', w: 2,
+      re: 'detection d.anomalies?|anomaly detection|anomal[a-z]*|isolation forest' },
+    { id: 'ai', fr: 'intelligence artificielle', en: 'artificial intelligence', d: 'ia', p: 'ae sg cq', w: 2,
+      re: 'ia|ai|intelligence artificielle|artificial intelligence' },
+    { id: 'llm', fr: "sécurité des LLM (injection de prompt)", en: 'LLM security (prompt injection)', d: 'ia cyber', p: 'sg cq', w: 3,
+      re: 'llms?|large language models?|prompt injections?|injections? de prompts?|rag|chatgpt|gpt|ia generative|generative ai|genai' },
+    { id: 'pentest', fr: "pentest (tests d'intrusion)", en: 'pentest (penetration testing)', d: 'cyber', p: 'cq sg', w: 3,
+      re: 'pentest[a-z]*|pen test[a-z]*|penetration test[a-z]*|tests? d.intrusion|red ?team[a-z]*|ethical hacking|hacking ethique|offensive security|securite offensive' },
+    { id: 'ad', fr: 'Active Directory', en: 'Active Directory', d: 'cyber', p: 'cq', w: 3, re: 'active directory' },
+    { id: 'owasp', fr: 'sécurité web (OWASP Top 10 / CSP / CSRF)', en: 'web security (OWASP Top 10 / CSP / CSRF)', d: 'cyber dev', p: 'cq ic cs', w: 3,
+      re: 'owasp|dvwa|xss|csrf|csp|content security policy|injections? sql|sql injection|securite (?:web|applicative)|web (?:application )?security|application security|appsec' },
+    { id: 'devsecops', fr: 'DevSecOps (SAST / SCA / DAST)', en: 'DevSecOps (SAST / SCA / DAST)', d: 'cloud cyber', p: 'ic', w: 3,
+      re: 'devsecops|sast|sca|dast|iast|sbom|supply chain|analyse statique|static analysis|secure sdlc|shift.left' },
+    { id: 'vuln', fr: 'analyse de vulnérabilités', en: 'vulnerability scanning', d: 'cyber cloud', p: 'ic', w: 2,
+      re: 'vulnerabilit[a-z]*|vulnerabilities|vulnerability|cve|cvss|pip.audit|nuclei|trivy' },
+    { id: 'crypto', fr: 'cryptographie (AES-256-GCM / Ed25519 / SHA-256)', en: 'cryptography (AES-256-GCM / Ed25519 / SHA-256)', d: 'cyber ot', p: 'sg cs ic', w: 3,
+      re: 'cryptograph[a-z]*|chiffrement|encryption|encrypt[a-z]*|aes(?:.?256)?(?:.?gcm)?|ed25519|sha.?256|pbkdf2|argon2[a-z]*|hash[a-z]*' },
+    { id: 'iam', fr: "contrôle d'accès (RBAC/ABAC)", en: 'access control (RBAC/ABAC)', d: 'cyber ot', p: 'sg', w: 3,
+      re: 'rbac|abac|controle d.acces|access control|gestion des (?:acces|habilitations|droits|identites)|habilitations?|moindre privilege|least privilege|authorization|autorisations?' },
+    { id: 'authn', fr: 'authentification (OAuth 2.0 / Argon2id)', en: 'authentication (OAuth 2.0 / Argon2id)', d: 'cyber dev', p: 'cs sg', w: 2,
+      re: 'oauth(?: ?2(?:.0)?)?|authentification|authentication|jwt' },
+    { id: 'audit', fr: "journal d'audit et traçabilité", en: 'audit logging and traceability', d: 'cyber ot', p: 'sg', w: 2,
+      re: 'journal d.audit|audit logs?|audit trail|tracabilite|traceability|journalisation|logging|pgaudit' },
+    { id: 'ot', fr: 'cybersécurité industrielle (OT/IT / Modbus TCP)', en: 'industrial cybersecurity (OT/IT / Modbus TCP)', d: 'ot', p: 'sg', w: 3,
+      re: 'ot|ics|scada|plc|modbus|purdue|industrial|industriel[a-z]*|automates?|industrie 4.0|industry 4.0|diodes?' },
+    { id: 'net', fr: 'réseaux (TCP / UDP / sockets / scapy)', en: 'networking (TCP / UDP / sockets / scapy)', d: 'cyber ot dev', p: 'p2p ae sg', w: 2,
+      re: 'tcp(?: ?/ ?ip)?|udp|sockets?|reseaux?|network[a-z]*|protocoles?|protocols?|paquets?|packets?|pcap|scapy|ipc' },
+    { id: 'linux', fr: 'Linux (SSH)', en: 'Linux (SSH)', d: 'cloud cyber', p: 'ic cq sg', w: 2, re: 'linux|unix|ssh' },
+    { id: 'docker', fr: 'Docker (conteneurs)', en: 'Docker (containers)', d: 'cloud', p: 'ic sg', w: 3,
+      re: 'docker[a-z]*|conteneur[a-z]*|containers?|containeri[a-z]*|hadolint' },
+    { id: 'ansible', fr: 'Ansible (infrastructure as code)', en: 'Ansible (infrastructure as code)', d: 'cloud', p: 'ic sg', w: 3,
+      re: 'ansible[a-z-]*|iac|infrastructure.as.code|infrastructure en tant que code|gestion de configuration|configuration management|idempoten[a-z]*' },
+    { id: 'vagrant', fr: 'Vagrant', en: 'Vagrant', d: 'cloud', p: 'ic', w: 2, re: 'vagrant' },
+    { id: 'cicd', fr: 'CI/CD (GitHub Actions)', en: 'CI/CD (GitHub Actions)', d: 'cloud cyber', p: 'ic sg', w: 3,
+      re: 'ci ?/ ?cd|ci.cd|cicd|integration continue|continuous integration|deploiement continu|continuous (?:deployment|delivery)|pipelines?|github actions' },
+    { id: 'cloud', fr: 'cloud et virtualisation', en: 'cloud and virtualization', d: 'cloud', p: 'ic', w: 3,
+      re: 'cloud[a-z-]*|iaas|virtualisation|virtualization|machines? virtuelles?|virtual machines?|vms?|hyperviseurs?|hypervisors?|infrastructures?' },
+    { id: 'nginx', fr: 'nginx (reverse proxy)', en: 'nginx (reverse proxy)', d: 'cloud', p: 'ic', w: 2, re: 'nginx|reverse.proxy|proxy inverse' },
+    { id: 'ha', fr: 'reprise sur panne (failover)', en: 'failover and availability', d: 'cloud', p: 'ic', w: 2,
+      re: 'haute disponibilite|high availability|failover|reprise (?:automatique )?sur panne|resilien[a-z]*|resilience|resilient' },
+    { id: 'monitoring', fr: 'supervision et monitoring', en: 'monitoring and supervision', d: 'cloud ot cyber', p: 'sg ae', w: 2,
+      re: 'supervision|monitoring|observabilit[a-z]*|observability|alerting|alertes?' },
+    { id: 'auto', fr: 'automatisation (scripts, Ansible)', en: 'automation (scripting, Ansible)', d: 'cloud', p: 'ic sg', w: 2,
+      re: 'automatis[a-z]*|automation|scripting|scripts?' },
+    { id: 'python', fr: 'Python', en: 'Python', d: 'cyber cloud ia dev ot', p: 'ic ae sg mb p2p', w: 3, re: 'python[0-9]?' },
+    { id: 'c', fr: 'C (C11)', en: 'C (C11)', d: 'ot dev cyber', p: 'sg p2p', w: 3, re: "c(?:11|99)?(?!')" },
+    { id: 'cpp', fr: 'C++', en: 'C++', d: 'dev', p: '', w: 2, re: 'c\\+\\+|cpp' },
+    { id: 'ts', fr: 'TypeScript', en: 'TypeScript', d: 'dev', p: 'sg pl', w: 3, re: 'typescript' },
+    { id: 'js', fr: 'JavaScript', en: 'JavaScript', d: 'dev', p: 'cs cq', w: 3, re: 'javascript|ecmascript' },
+    { id: 'node', fr: 'Node.js', en: 'Node.js', d: 'dev', p: 'cq', w: 2, re: 'node.?js|nodejs' },
+    { id: 'react', fr: 'React', en: 'React', d: 'dev', p: 'ae sg pl cq', w: 3, re: 'react(?:.?js)?' },
+    { id: 'fastapi', fr: 'FastAPI', en: 'FastAPI', d: 'dev cyber', p: 'ae sg', w: 2, re: 'fastapi' },
+    { id: 'flask', fr: 'Flask', en: 'Flask', d: 'dev cloud', p: 'ic', w: 2, re: 'flask' },
+    { id: 'api', fr: 'API REST', en: 'REST APIs', d: 'dev cloud', p: 'ic ae sg pl', w: 2, re: 'apis?|rest(?:ful)?|back.?end|back end' },
+    { id: 'strapi', fr: 'Strapi', en: 'Strapi', d: 'dev', p: 'pl', w: 2, re: 'strapi|headless cms' },
+    { id: 'front', fr: 'développement front-end (React / Vite)', en: 'front-end development (React / Vite)', d: 'dev', p: 'ae sg pl cq', w: 2,
+      re: 'front.?end|front end|interfaces? web|single.page|vite' },
+    { id: 'db', fr: 'PostgreSQL / SQL', en: 'PostgreSQL / SQL', d: 'dev ot', p: 'sg', w: 2, re: 'postgres(?:ql)?|sql|bases? de donnees|databases?|sgbd|rdbms' },
+    { id: 'tests', fr: 'tests automatisés (pytest / Vitest)', en: 'automated testing (pytest / Vitest)', d: 'dev cloud cyber', p: 'ic sg pl', w: 2,
+      re: 'tests?|testing|pytest|vitest|tdd|qualite logicielle|test automation' },
+    { id: 'fuzz', fr: 'fuzzing', en: 'fuzzing', d: 'cyber ot', p: 'sg', w: 3, re: 'fuzz[a-z]*' },
+    { id: 'harden', fr: 'durcissement (hardening)', en: 'hardening', d: 'cyber cloud ot', p: 'ic sg', w: 3,
+      re: 'durcissement|hardening|cis benchmarks?|cis|secure by design|security by design|defense en profondeur|defense in depth' },
+    { id: 'secrets', fr: 'gestion des secrets', en: 'secrets management', d: 'cyber cloud', p: 'ic cs', w: 2,
+      re: 'gestion des secrets|secrets? management|gitleaks' },
+    { id: 'sless', fr: 'architecture sans serveur (serverless)', en: 'serverless architecture', d: 'cloud dev', p: 'cs', w: 2, re: 'serverless|sans serveur' },
+    { id: 'poo', fr: 'POO et architecture MVP', en: 'OOP and MVP architecture', d: 'dev', p: 'mb p2p', w: 2,
+      re: 'poo|oop|programmation orientee objet|object.oriented|design patterns?|mvp|mvc' },
+    { id: 'git', fr: 'Git / GitHub', en: 'Git / GitHub', d: '', p: 'ic ae sg pl cs cq mb p2p', w: 1, g: 1,
+      re: 'git|github|gestion de versions?|controle de versions?|version control' },
+    { id: 'doc', fr: 'documentation technique (LaTeX)', en: 'technical documentation (LaTeX)', d: '', p: 'ic ae sg pl cs cq mb p2p', w: 1, g: 1,
+      re: 'documentation|latex|redaction|rapports? techniques?|technical writing|dossiers? techniques?' },
+    { id: 'team', fr: "travail en équipe", en: 'teamwork', d: '', p: 'mb p2p cq', w: 1, g: 1, re: 'equipes?|team[a-z]*|collaborat[a-z]*|esprit d.equipe' },
+    { id: 'rigor', fr: 'autonomie et rigueur', en: 'autonomy and rigor', d: '', p: '', w: 1, g: 1, re: 'autonom[a-z]*|rigueur|rigorous|rigou?r' },
+    { id: 'eng', fr: 'anglais professionnel (TOEIC 950)', en: 'professional English (TOEIC 950)', d: '', p: '', w: 1, g: 1, re: 'anglais|english|toeic|bilingue|bilingual' }
+  ];
+  /* named in many offers, absent from the projects: reported to the author, never added to the letter */
+  LT.GAPS = [
+    { n: 'Kubernetes / Helm', re: 'kubernetes|k8s|helm|openshift' },
+    { n: 'AWS', re: 'aws|amazon web services|ec2' },
+    { n: 'Azure', re: 'azure' },
+    { n: 'Google Cloud', re: 'gcp|google cloud' },
+    { n: 'Terraform', re: 'terraform',
+      note: ['des fichiers déclaratifs existent dans SecuriGlass : à ajouter à la main seulement si c\'est défendable en entretien',
+        'declarative files exist in SecuriGlass: add by hand only if you can defend it in an interview'] },
+    { n: 'Jenkins', re: 'jenkins' },
+    { n: 'GitLab CI', re: 'gitlab' },
+    { n: 'SIEM (Splunk / ELK / Wazuh)', re: 'siem|splunk|elk|elasticsearch|elastic stack|wazuh|qradar|sentinel' },
+    { n: 'Wireshark / Nmap', re: 'wireshark|nmap' },
+    { n: 'Metasploit / Burp / Nessus', re: 'metasploit|burp|nessus|kali' },
+    { n: 'Java / Spring', re: 'java|spring' },
+    { n: 'C# / .NET', re: 'c#|\\.net|dotnet' },
+    { n: 'Go', re: 'Go|Golang', cs: 1 },
+    { n: 'Rust', re: 'rust' },
+    { n: 'PHP / Laravel / Symfony', re: 'php|laravel|symfony' },
+    { n: 'Angular / Vue', re: 'angular|vue' },
+    { n: 'Django', re: 'django' },
+    { n: 'MongoDB / MySQL / Oracle / Redis', re: 'mongodb|mysql|mariadb|oracle|redis' },
+    { n: 'Kafka / RabbitMQ', re: 'kafka|rabbitmq' },
+    { n: 'Grafana / Prometheus', re: 'grafana|prometheus|datadog|nagios|zabbix' },
+    { n: 'pare-feu / VPN / Cisco', re: 'pare.feu|firewalls?|palo alto|fortinet|pfsense|cisco|vpn|ipsec' },
+    { n: 'ISO 27001 / EBIOS / NIST / IEC 62443', re: 'iso ?27001|ebios|nist|pci.dss|secnumcloud|iec ?62443' },
+    { n: 'RGPD / GDPR', re: 'rgpd|gdpr' },
+    { n: 'Agile / Scrum / Jira', re: 'agile|scrum|jira|kanban' },
+    { n: 'PowerShell / Windows Server', re: 'powershell|windows server' },
+    { n: 'IAM / Zero Trust / PKI / SSO', re: 'iam|zero.trust|pki|sso|mfa|2fa|oidc|openid' },
+    { n: 'PRA / PCA', re: 'pra|pca|disaster recovery|plan de reprise' },
+    { n: 'forensic / réponse à incident', re: 'forensic[a-z]*|incident response|reponse a incident[s]?|dfir' }
+  ];
+
+  var ltRx = {};
+  function ltRegex(src, cs) {
+    var k = (cs ? 'c:' : 'i:') + src;
+    if (!ltRx[k]) {
+      var cls = (cs ? 'A-Za-z' : 'a-z') + '0-9+#';
+      ltRx[k] = new RegExp('(^|[^' + cls + '])(?:' + src + ')(?![' + cls + '])', cs ? '' : 'i');
+    }
+    return ltRx[k];
+  }
+  function ltNorm(s) {
+    return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[‘’ʼ`´]/g, "'").replace(/\s+/g, ' ');
+  }
+  function ltAnalyse(raw) {
+    var out = { hit: [], gaps: [], empty: !/\S/.test(raw) };
+    if (out.empty) return out;
+    var n = ltNorm(raw);
+    LT.TERMS.forEach(function (t) { if (ltRegex(t.re).test(n)) out.hit.push(t); });
+    LT.GAPS.forEach(function (g) { if (ltRegex(g.re, g.cs).test(g.cs ? raw : n)) out.gaps.push(g); });
+    return out;
+  }
+  function ltDomain(hit) {
+    var s = { cyber: 0, cloud: 0, ot: 0, ia: 0, dev: 0 }, best = 'cyber';
+    hit.forEach(function (t) { t.d.split(' ').forEach(function (d) { if (d) s[d] += t.w; }); });
+    Object.keys(s).forEach(function (d) { if (s[d] > s[best]) best = d; });
+    return best;
+  }
+  function ltProjects(dom, hit) {
+    var s = {};
+    LT.ORDER.forEach(function (p) { s[p] = LT.AFF[dom][p] || 0; });
+    hit.forEach(function (t) { if (t.w > 1) t.p.split(' ').forEach(function (p) { if (p) s[p] += t.w; }); });
+    return LT.ORDER.slice().sort(function (a, b) { return s[b] - s[a] || LT.ORDER.indexOf(a) - LT.ORDER.indexOf(b); });
+  }
+  function ltList(a, l, sep) {
+    if (a.length < 2) return a[0] || '';
+    return a.slice(0, -1).join(sep || ', ') + (l === 'fr' ? ' et ' : ' and ') + a[a.length - 1];
+  }
+  function ltBare(label) { return label.replace(/\s*\(.*\)\s*$/, ''); }
+  function ltSentence(s) { s = s.trim(); return /[.!?]$/.test(s) ? s : s + '.'; }
+
+  function ltCompose(o) {
+    var l = o.l, i = l === 'fr' ? 0 : 1, fr = i === 0, D0 = CV[l];
+    var an = ltAnalyse(o.offer);
+    var dom = o.dom === 'auto' ? ltDomain(an.hit) : o.dom, D = LT.DOM[dom];
+    var brief = o.size === 'short';
+    var order = ltProjects(dom, an.hit), feat = order.slice(0, brief ? 1 : 2), rest = order.slice(brief ? 1 : 2);
+    var co = o.company, role = o.role, dur = o.dur;
+    var deCo = co ? (/^[aeiouyàâäéèêëîïôöùûü]/i.test(co) ? "d'" : 'de ') + co : 'de votre entreprise';
+    var B = [];
+
+    /* sender, recipient, date */
+    B.push(['Mohamed Aziz Baoueb', D0.phone + ' | mohamed.baoueb@insa-cvl.fr',
+      'linkedin.com/in/mohamed-aziz-baoueb-2a0827301 | github.com/aziz3r | aziz3r.github.io'].join('\n'));
+    var to = [co, o.to ? (fr ? "À l'attention de " : 'Attn: ') + o.to : ''].filter(Boolean);
+    if (to.length) B.push(to.join('\n'));
+    B.push(new Date().toLocaleDateString(fr ? 'fr-FR' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' }));
+
+    /* subject and salutation */
+    B.push(fr
+      ? 'Objet : Candidature ' + (role ? "à l'offre « " + role + ' »' : "à un " + D.stage[0]) + (co ? ' – ' + co : '') + ' (début avril 2027)'
+      : 'Subject: Application for ' + (role ? 'the "' + role + '" offer' : 'a ' + D.stage[1]) + (co ? ' – ' + co : '') + ' (starting April 2027)');
+    B.push(o.to ? (fr ? 'Bonjour ' + o.to + ',' : 'Dear ' + o.to + ',') : (fr ? 'Madame, Monsieur,' : 'Dear Hiring Team,'));
+
+    /* who I am, what I apply for, why this domain */
+    var apply = fr
+      ? "Actuellement en cycle ingénieur à l'INSA Centre-Val de Loire (spécialité Sécurité et Technologies Informatiques, promotion 2028), je vous adresse ma candidature "
+        + (role ? "à l'offre « " + role + ' »' + (co ? ' ' + deCo : '') + ', pour un stage à partir de début avril 2027'
+                : 'pour un ' + D.stage[0] + ' au sein ' + deCo + ', à partir de début avril 2027')
+        + (dur ? ' (durée : ' + dur + ')' : '') + '.'
+      : 'I am currently an engineering student at INSA Centre-Val de Loire (Security and Computer Technologies major, class of 2028), and I am applying '
+        + (role ? 'for the "' + role + '" offer' + (co ? ' at ' + co : '') + ', for an internship starting early April 2027'
+                : 'for a ' + D.stage[1] + ' ' + (co ? 'at ' + co : 'with your company') + ', starting early April 2027')
+        + (dur ? ' (duration: ' + dur + ')' : '') + '.';
+    B.push(apply + ' ' + D.hook[i] + (fr ? ' Mes projets en témoignent.' : ' My projects show it.'));
+
+    /* why this company, and what in the offer matches the projects */
+    var fit = [];
+    if (o.why) fit.push(ltSentence(o.why));
+    var key = an.hit.filter(function (t) { return !t.g; }).sort(function (a, b) { return b.w - a.w; }).slice(0, 8);
+    if (key.length) {
+      var cnt = {};
+      key.forEach(function (t) { t.p.split(' ').forEach(function (p) { if (p) cnt[p] = (cnt[p] || 0) + 1; }); });
+      var proof = Object.keys(cnt).sort(function (a, b) { return cnt[b] - cnt[a] || LT.ORDER.indexOf(a) - LT.ORDER.indexOf(b); }).slice(0, 3)
+        .map(function (p) { return LT.NAME[p][i]; });
+      var words = ltList(key.map(function (t) { return ltBare(t[l]); }), l);
+      fit.push(fr
+        ? 'Votre annonce met en avant ' + words + ' : ce sont des technologies et des pratiques que j\'ai déjà mises en œuvre' + (proof.length ? ', notamment dans ' + ltList(proof, l) : '') + '.'
+        : 'Your offer highlights ' + words + ': these are technologies and practices I have already put to work' + (proof.length ? ', notably in ' + ltList(proof, l) : '') + '.');
+    }
+    if (fit.length) B.push(fit.join(' '));
+
+    /* the two featured projects, then the others in one breath */
+    feat.forEach(function (p) { B.push(LT.LONG[p][i]); });
+    var mine = rest.filter(function (p) { return !LT.TEAM[p]; }).slice(0, brief ? 3 : 9).map(function (p) { return LT.SHORT[p][i]; });
+    var team = rest.filter(function (p) { return LT.TEAM[p]; }).slice(0, brief ? 2 : 9).map(function (p) { return LT.SHORT[p][i]; });
+    var more = [];
+    if (mine.length) more.push((fr ? "J'ai également réalisé " : 'I have also built ') + ltList(mine, l, fr ? ' ; ' : '; ') + '.');
+    if (team.length) more.push((fr ? "En équipe, j'ai aussi participé à " : 'As part of a team, I also took part in ') + ltList(team, l, fr ? ' ; ' : '; ') + '.');
+    if (more.length) B.push(more.join(' '));
+
+    /* method, internship, English */
+    B.push(brief ? (fr
+      ? "Ma façon de travailler : mesurer, documenter et dire ce qui ne marche pas ; chaque projet est livré avec ses tests, ses chiffres et un rapport qui en expose aussi les limites. Mon stage chez Anypli en 2025 (première application web : React, TypeScript, Strapi) et mon anglais professionnel (TOEIC 950) complètent ce profil."
+      : 'How I work: measure, document, and say what does not work; every project ships with its tests, its numbers and a report that also states its limits. My 2025 internship at Anypli (first web application: React, TypeScript, Strapi) and my professional English (TOEIC 950) complete this profile.')
+      : fr
+      ? "Ma façon de travailler : mesurer, documenter et dire ce qui ne marche pas. Chaque projet est livré avec ses tests, ses chiffres et un rapport technique qui en expose aussi les limites. Mon stage de juillet-août 2025 chez Anypli (Tunisie), où j'ai conçu et livré ma première application web (React 18, TypeScript, Redux Toolkit, Strapi), m'a appris à monter vite en compétence sur un sujet nouveau, et mon anglais professionnel (TOEIC 950) me permet de travailler sur de la documentation technique internationale."
+      : 'How I work: measure, document, and say what does not work. Every project ships with its tests, its numbers and a technical report that also states its limits. My July-August 2025 internship at Anypli (Tunisia), where I designed and delivered my first web application (React 18, TypeScript, Redux Toolkit, Strapi), taught me to ramp up quickly on a new subject, and my professional English (TOEIC 950) lets me work with international technical documentation.');
+
+    /* keyword line for applicant tracking systems: the offer's terms first, then the domain's usual ones */
+    var seen = {}, kw = [];
+    function add(t) { if (t && !seen[t.id] && kw.length < (brief ? 18 : 26)) { seen[t.id] = 1; kw.push(t[l]); } }
+    an.hit.filter(function (t) { return !t.g; }).sort(function (a, b) { return b.w - a.w; }).forEach(add);
+    an.hit.filter(function (t) { return t.g; }).forEach(add);
+    D.kw.split(' ').forEach(function (id) { add(LT.TERMS.filter(function (t) { return t.id === id; })[0]); });
+    if (o.kwline) B.push((fr ? 'Compétences clés : ' : 'Key skills: ') + kw.join(', '));
+
+    /* availability, links, closing, signature */
+    B.push(fr
+      ? 'Je suis disponible à partir de début avril 2027. Les démonstrations, rapports et codes sources de mes projets sont en ligne sur aziz3r.github.io et github.com/aziz3r ; un entretien me permettrait de les détailler et d\'échanger sur les missions du stage' + (co ? ' chez ' + co : '') + '.'
+      : 'I am available from early April 2027. Demos, reports and source code for my projects are online at aziz3r.github.io and github.com/aziz3r; an interview would let me walk you through them and discuss the missions of the internship' + (co ? ' at ' + co : '') + '.');
+    B.push(o.to ? (fr ? 'Cordialement,' : 'Kind regards,')
+      : (fr ? "Dans l'attente de votre réponse, je vous prie d'agréer, Madame, Monsieur, l'expression de mes salutations distinguées." : 'Kind regards,'));
+    B.push('Mohamed Aziz Baoueb');
+    return { text: B.join('\n\n'), dom: dom, hit: an.hit, gaps: an.gaps, empty: an.empty, kw: kw };
+  }
+
+  /* ---- PDF: one column, real text, standard font; shrinks a little until it fits one page ---- */
+  function ltSafe(s) {
+    return s.replace(/[‘’ʼ]/g, "'").replace(/[“”]/g, '"').replace(/[  ]/g, ' ')
+      .replace(/[^\n -~¡-ÿ–—•…Œœ]/g, '');
+  }
+  function buildLetter(text, l, k, keywords) {
+    var J = window.jspdf && window.jspdf.jsPDF;
+    if (!J) return null;
+    k = k || 1;
+    var doc = new J({ unit: 'mm', format: 'a4', compress: true });
+    var W = 210, H = 297, M = 20, CW = W - 2 * M, TOP = 18, y = TOP;
+    var INK = [18, 26, 38], MUTED = [88, 98, 112], ACC = [8, 96, 70];
+    var FS = 10.2 * k, LH = FS * 0.49, GAP = LH * 0.8;
+    doc.setProperties({
+      title: l === 'fr' ? 'Lettre de motivation - Mohamed Aziz Baoueb' : 'Cover letter - Mohamed Aziz Baoueb',
+      author: 'Mohamed Aziz Baoueb', subject: CV[l].subject, keywords: keywords || CV[l].keywords, creator: 'Portfolio'
+    });
+    function font(style, size, c) { doc.setFont('helvetica', style); doc.setFontSize(size); doc.setTextColor(c[0], c[1], c[2]); }
+    function need(h) { if (y + h > H - 16) { doc.addPage(); y = TOP; } }
+    function urlOf(s) {
+      if (s.indexOf('@') > 0) return 'mailto:' + s;
+      if (/^(linkedin\.com|github\.com)\//.test(s) || /\.github\.io$/.test(s)) return 'https://' + s;
+      if (/^\+?[0-9 ]{9,}$/.test(s)) return 'tel:+33' + s.replace(/\D/g, '').replace(/^(33|0)/, '');
+      return null;
+    }
+    function head(lines) {
+      font('bold', 17, INK); doc.text(lines[0], M, y + 4); y += 10;
+      lines.slice(1).forEach(function (ln) {
+        font('normal', 8.6, INK);
+        var x = M, bw = doc.getTextWidth('|');
+        ln.split(' | ').forEach(function (tok, j) {
+          if (j) { doc.text('|', x + 2.2, y); x += 4.4 + bw; }
+          var u = urlOf(tok);
+          if (u) doc.textWithLink(tok, x, y, { url: u }); else doc.text(tok, x, y);
+          x += doc.getTextWidth(tok);
+        });
+        y += 4.2;
+      });
+      y += 0.6; doc.setDrawColor(ACC[0], ACC[1], ACC[2]); doc.setLineWidth(0.4); doc.line(M, y, M + CW, y); y += 7 * k;
+    }
+    function para(blk, style) {
+      font(style || 'normal', FS, INK);
+      blk.split('\n').forEach(function (ln) {
+        doc.splitTextToSize(ln, CW).forEach(function (w) { need(LH); doc.text(w, M, y); y += LH; });
+      });
+    }
+    function labelled(label, txt) {
+      font('bold', FS, INK);
+      var lw = doc.getTextWidth(label + ' ');
+      font('normal', FS, INK);
+      var first = doc.splitTextToSize(txt, CW - lw)[0] || '', rest = txt.slice(first.length).trim();
+      var more = rest ? doc.splitTextToSize(rest, CW) : [];
+      need((1 + more.length) * LH);
+      font('bold', FS, INK); doc.text(label, M, y);
+      font('normal', FS, INK); doc.text(first, M + lw, y); y += LH;
+      more.forEach(function (w) { doc.text(w, M, y); y += LH; });
+    }
+
+    var blocks = ltSafe(text).replace(/\r/g, '').trim().split(/\n{2,}/);
+    blocks.forEach(function (blk, n) {
+      if (n === 0) { head(blk.split('\n')); return; }
+      var lab = /^(Objet|Subject) ?:|^(Compétences clés|Key skills) ?:/.exec(blk);
+      if (n === blocks.length - 1) y += 5 * k;
+      if (/^(Objet|Subject) ?:/.test(blk)) para(blk, 'bold');
+      else if (lab) labelled(lab[0], blk.slice(lab[0].length).trim());
+      else para(blk, n === blocks.length - 1 ? 'bold' : 'normal');
+      y += GAP;
+    });
+    return doc;
+  }
+  function buildLetterFit(text, l, keywords) {
+    var doc = null;
+    for (var k = 1; k >= 0.84; k -= 0.02) {
+      doc = buildLetter(text, l, k, keywords);
+      if (!doc) return doc;
+      doc.ltScale = k;
+      if (doc.getNumberOfPages() === 1) return doc;
+    }
+    return doc;
+  }
+  window.__buildLetter = buildLetterFit;
+
+  /* ---- form wiring ---- */
+  var ltN = {}, ltDirty = false, ltTouched = false, ltTimer = null, ltLast = null;
+  function ltNode(id) { return document.getElementById(id); }
+  function ltRead() {
+    return { l: ltN.lang.value, company: ltN.co.value.trim(), role: ltN.role.value.trim(), to: ltN.to.value.trim(), dur: ltN.dur.value.trim(),
+      dom: ltN.dom.value, size: ltN.size.value, kwline: ltN.kwline.value === 'yes', offer: ltN.offer.value, why: ltN.why.value.trim() };
+  }
+  function ltPaintAts(r, o) {
+    var box = ltN.ats, fr = lang === 'fr';
+    box.textContent = '';
+    function row(cls, title, body) {
+      var p = document.createElement('p'); if (cls) p.className = cls;
+      var b = document.createElement('b'); b.textContent = title;
+      p.appendChild(b); p.appendChild(document.createTextNode(body)); box.appendChild(p);
+    }
+    row('', fr ? 'Domaine retenu' : 'Domain used', LT.DOM[r.dom].name[fr ? 0 : 1] + (o.dom !== 'auto' ? '' : r.empty ? (fr ? ' (par défaut)' : ' (default)') : (fr ? ' (déduit de l\'offre)' : ' (inferred from the offer)')));
+    if (r.empty) { row('', fr ? 'Mots-clés' : 'Keywords', fr ? 'Sans offre collée, la lettre reprend les mots-clés habituels du domaine.' : 'With no offer pasted, the letter uses the usual keywords of the domain.'); return; }
+    var lab = r.hit.map(function (t) { return t[o.l]; });
+    row('', (fr ? 'Mots-clés de l\'offre repris (' : 'Offer keywords used (') + lab.length + ')', lab.length ? lab.join(' · ') : (fr ? 'aucun terme technique reconnu dans ce texte.' : 'no technical term recognised in this text.'));
+    if (r.gaps.length) {
+      row('miss', (fr ? 'Dans l\'offre, hors du parcours : non ajoutés (' : 'In the offer, outside the background: not added (') + r.gaps.length + ')',
+        r.gaps.map(function (g) { return g.n + (g.note ? ' (' + g.note[fr ? 0 : 1] + ')' : ''); }).join(' · '));
+    }
+  }
+  function ltMeta() {
+    var txt = ltN.out.value, words = (txt.match(/\S+/g) || []).length, doc = null, pages = '';
+    try { doc = buildLetterFit(txt, ltN.lang.value, ltLast ? ltLast.kw.join(', ') : ''); } catch (e) { doc = null; }
+    if (doc) pages = doc.getNumberOfPages() === 1 ? (lang === 'fr' ? ' · tient sur 1 page A4' : ' · fits on 1 A4 page')
+      : (lang === 'fr' ? ' · dépasse 1 page : choisir « Concise » ou raccourcir' : ' · over 1 page: pick "Concise" or shorten it');
+    ltN.meta.textContent = words + (lang === 'fr' ? ' mots' : ' words') + pages;
+    ltN.note.textContent = ltDirty ? (lang === 'fr' ? 'Texte modifié à la main : « Régénérer » repart des champs et écrase les retouches.' : 'Text edited by hand: "Regenerate" starts again from the fields and overwrites the edits.') : '';
+  }
+  /* the letter is shown whole, no inner scrollbar */
+  function ltGrow() { var o = ltN.out; o.style.height = 'auto'; o.style.height = o.scrollHeight + 'px'; }
+  function ltRefresh(force) {
+    var o = ltRead(), r = ltCompose(o);
+    ltLast = r;
+    ltPaintAts(r, o);
+    if (force || !ltDirty) { ltN.out.value = r.text; ltDirty = false; }
+    ltN.out.setAttribute('lang', o.l);
+    ltGrow();
+    ltMeta();
+  }
+  function ltLater() { clearTimeout(ltTimer); ltTimer = setTimeout(function () { ltRefresh(false); }, 200); }
+
+  /* called by setLang: labels of the selects and placeholders follow the page language */
+  function onLetterLang(l) {
+    if (!ltN.out) return;
+    document.querySelectorAll('#lform option[data-fr]').forEach(function (op) { op.textContent = op.getAttribute('data-' + l); });
+    document.querySelectorAll('#lform [data-ph-fr]').forEach(function (n) { n.setAttribute('placeholder', n.getAttribute('data-ph-' + l)); });
+    if (!ltTouched) ltN.lang.value = l;
+    ltRefresh(false);
+  }
+
+  (function () {
+    ['lang:l-lang', 'co:l-co', 'role:l-role', 'to:l-to', 'dur:l-dur', 'dom:l-dom', 'size:l-size', 'kwline:l-kwline', 'offer:l-offer', 'why:l-why', 'out:l-out',
+      'ats:l-ats', 'meta:l-meta', 'note:l-note', 'pdf:l-pdf', 'copy:l-copy', 'regen:l-regen'].forEach(function (s) {
+      var p = s.split(':'); ltN[p[0]] = ltNode(p[1]);
+    });
+    if (!ltN.out) return;
+    ltN.lang.addEventListener('change', function () { ltTouched = true; });
+    ltNode('lform').addEventListener('input', ltLater);
+    ltNode('lform').addEventListener('change', ltLater);
+    ltN.out.addEventListener('input', function () { ltDirty = true; ltGrow(); clearTimeout(ltTimer); ltTimer = setTimeout(ltMeta, 250); });
+    window.addEventListener('resize', ltGrow);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(ltGrow);
+    ltN.regen.addEventListener('click', function () { ltRefresh(true); say(lang === 'fr' ? 'Lettre régénérée' : 'Letter regenerated'); });
+    ltN.copy.addEventListener('click', function () {
+      var txt = ltN.out.value;
+      function fallback() { ltN.out.focus(); ltN.out.select(); }
+      try { navigator.clipboard.writeText(txt).then(function () { say(lang === 'fr' ? 'Lettre copiée' : 'Letter copied'); }, fallback); } catch (e) { fallback(); }
+    });
+    ltN.pdf.addEventListener('click', function () {
+      var l = ltN.lang.value, doc = null;
+      try { doc = buildLetterFit(ltN.out.value, l, ltLast ? ltLast.kw.join(', ') : ''); } catch (e) { doc = null; }
+      if (!doc) { say(lang === 'fr' ? 'Le générateur de PDF n\'a pas pu se charger. Réessaie dans un instant.' : 'The PDF generator could not load. Please try again in a moment.'); return; }
+      var slug = ltNorm(ltN.co.value).replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 40);
+      var name = (l === 'fr' ? 'Lettre-motivation-Mohamed-Aziz-Baoueb' : 'Cover-letter-Mohamed-Aziz-Baoueb') + (slug ? '-' + slug : '') + '.pdf';
+      saveBuffer(doc.output('arraybuffer'), name).then(function () {
+        say((lang === 'fr' ? 'Lettre prête : ' : 'Letter ready: ') + name + (doc.getNumberOfPages() > 1 ? (lang === 'fr' ? ' (plus d\'une page)' : ' (more than one page)') : ''));
+      }, function (err) {
+        if (err && err.code === 'declined') return;
+        say(lang === 'fr' ? 'Le téléchargement n\'est pas disponible ici. Ouvre le portfolio dans un navigateur.' : 'Downloading is not available here. Open the portfolio in a browser.');
+      });
+    });
+  })();
 
   setLang(saved === 'fr' || saved === 'en' ? saved : guess);
 
