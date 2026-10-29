@@ -347,7 +347,7 @@ INSA CVL · STI · <span class="fr">promo</span><span class="en">class of</span>
 <span class="fr">dès avril 2027 · cybersécurité | cloud &amp; DevOps</span><span class="en">from April 2027 · cybersecurity | cloud &amp; DevOps</span>
 <span class="p">$</span> ls <span class="fr">projets</span><span class="en">projects</span>/
 <span class="c">insacloud/  aegis-mini-soc/  planificateur/
-cap-stage/  securiglass-factory-os/
+cap-stage/  securiglass-factory-os/  ai4brain/
 medievail-battle/  medievail-p2p/  cyberquest/</span></pre>
     </div>
   </section>
@@ -575,10 +575,50 @@ medievail-battle/  medievail-p2p/  cyberquest/</span></pre>
       }
     </script>
     </article>
+    <article class="proj flip" id="p-ai4brain">
+      <button type="button" class="pm" data-open="d-ai4brain" aria-label="AI4BRAIN : démo et étude de cas">
+        <img loading="lazy" src="assets/ai4brain/profil-fourchettes.jpg" alt="" data-alt-fr="Profil d'AI4BRAIN : une fourchette par compétence" data-alt-en="AI4BRAIN profile: one range per skill"><span class="play" aria-hidden="true">▶</span>
+      </button>
+      <div>
+        <p class="tag"><span class="fr">Défi IEEE CISTAC 1.0 · oct. 2026</span><span class="en">IEEE CISTAC 1.0 challenge · Oct 2026</span></p>
+        <h3>AI4BRAIN</h3>
+        <p class="one fr">Un agent d'aide à l'apprentissage, non clinique : cinq jeux d'une minute estiment cinq compétences du quotidien, chaque estimation est une fourchette qui se resserre avec la pratique, et un coach recommande le prochain jeu en expliquant pourquoi.</p>
+        <p class="one en">A non-clinical learning-support agent: five one-minute games estimate five everyday skills, each estimate is a range that narrows with practice, and a coach recommends the next game and explains why.</p>
+        <p class="mini fr">fourchettes à 95 % · 97,2 % de couverture en simulation · 19 tests</p>
+        <p class="mini en">95% ranges · 97.2% coverage in simulation · 19 tests</p>
+        <p class="stack">Python · FastAPI · Pydantic · Next.js 14 · TypeScript · Tailwind · Recharts</p>
+        <p class="plinks">
+          <button type="button" class="tlink" data-open="d-ai4brain"><span class="fr">▶ Démo &amp; étude</span><span class="en">▶ Demo &amp; case study</span></button>
+          <button type="button" class="tlink" data-report="ai4brain"><span class="fr">Rapport IEEE</span><span class="en">IEEE report</span></button>
+          <a class="tlink" href="https://github.com/aziz3r/ai4brain-cistac" target="_blank" rel="noopener"><span class="fr">Code source ↗</span><span class="en">Source code ↗</span></a>
+        </p>
+      </div>
+    <script type="application/json" class="cv-data">
+      {
+        "date": "10/2026",
+        "fr": {
+          "m": "agent d'aide à l'apprentissage non clinique · défi IEEE CISTAC 1.0",
+          "b": [
+            "Cinq jeux d'une minute estiment cinq compétences par filtre bayésien de type Kalman (fourchettes à 95 %) ; coach à explication vérifiée, consentement et suppression des données (FastAPI, Next.js 14) ; 19 tests, 97 % de couverture simulée."
+          ],
+          "l": "AI4BRAIN estime cinq compétences par des fourchettes bayésiennes (filtre de type Kalman, FastAPI, Next.js) et recommande le prochain exercice avec une explication vérifiée ; il est non clinique, conçu pour la confidentialité (consentement, export et suppression des données) et validé par 19 tests et une simulation de 200 utilisateurs.",
+          "s": "AI4BRAIN, un agent d'aide à l'apprentissage non clinique (FastAPI, Next.js, filtre bayésien, confidentialité dès la conception)"
+        },
+        "en": {
+          "m": "non-clinical learning-support agent · IEEE CISTAC 1.0 challenge",
+          "b": [
+            "Five one-minute games estimate five skills with a Kalman-type Bayesian filter (95% ranges); coach with a checked explanation, consent and data deletion (FastAPI, Next.js 14); 19 tests, 97% simulated coverage."
+          ],
+          "l": "AI4BRAIN estimates five skills as Bayesian ranges (Kalman-type filter, FastAPI, Next.js) and recommends the next exercise with a checked explanation; it is non-clinical, built for privacy (consent, data export and deletion) and validated by 19 tests and a 200-user simulation.",
+          "s": "AI4BRAIN, a non-clinical learning-support agent (FastAPI, Next.js, Bayesian filter, privacy by design)"
+        }
+      }
+    </script>
+    </article>
 
     <p class="subhead">~/<b><span class="fr">projets-d-équipe</span><span class="en">team-projects</span></b></p>
 
-    <article class="proj flip" id="p-medievail">
+    <article class="proj" id="p-medievail">
       <button type="button" class="pm" data-open="d-medievail-jeu" aria-label="MedievAIl Battle : démo et étude de cas">
         <img loading="lazy" src="assets/medievail-jeu/vue-ensemble.jpg" alt="" data-alt-fr="Deux armées qui se déploient face à face dans MedievAIl Battle" data-alt-en="Two armies deploying face to face in MedievAIl Battle"><span class="play" aria-hidden="true">▶</span>
       </button>
@@ -619,7 +659,7 @@ medievail-battle/  medievail-p2p/  cyberquest/</span></pre>
     </script>
     </article>
 
-    <article class="proj" id="p-p2p">
+    <article class="proj flip" id="p-p2p">
       <button type="button" class="pm" data-open="d-medievail-p2p" aria-label="MedievAIl Battle réseau pair-à-pair : démo et étude de cas">
         <img loading="lazy" src="assets/medievail-p2p/thumb.jpg" alt="" data-alt-fr="Mêlée vue depuis l'écran du joueur 1" data-alt-en="Melee as seen on player 1's screen"><span class="play" aria-hidden="true">▶</span>
       </button>
@@ -661,7 +701,7 @@ medievail-battle/  medievail-p2p/  cyberquest/</span></pre>
     </script>
     </article>
 
-    <article class="proj flip" id="p-cyberquest">
+    <article class="proj" id="p-cyberquest">
       <button type="button" class="pm" data-open="d-cyberquest" aria-label="CyberQuest : démo et étude de cas">
         <img loading="lazy" src="assets/cyberquest/carte-reseau.jpg" alt="" data-alt-fr="Carte réseau de CyberQuest : Kali, Linux, Active Directory, application web et cœur IA" data-alt-en="CyberQuest network map: Kali, Linux, Active Directory, web application and AI core"><span class="play" aria-hidden="true">▶</span>
       </button>
@@ -713,9 +753,9 @@ medievail-battle/  medievail-p2p/  cyberquest/</span></pre>
     <ul class="arsenal">
       <li data-cv-fr="Cybersécurité" data-cv-en="Cybersecurity">
         <h3><span class="fr">cybersécurité</span><span class="en">cybersecurity</span></h3>
-        <p class="skills fr">Détection d'intrusion · MITRE ATT&amp;CK · analyse de flux · CSP / CSRF · SAST, SCA, DAST · gestion des secrets · OAuth 2.0 · chiffrement AES-GCM · segmentation OT/IT · RBAC / ABAC</p>
-        <p class="skills en">Intrusion detection · MITRE ATT&amp;CK · flow analysis · CSP / CSRF · SAST, SCA, DAST · secrets handling · OAuth 2.0 · AES-GCM encryption · OT/IT segmentation · RBAC / ABAC</p>
-        <p class="used">AEGIS Mini-SOC, InsaCloud, CyberQuest, Cap Stage, SecuriGlass</p>
+        <p class="skills fr">Détection d'intrusion · MITRE ATT&amp;CK · analyse de flux · CSP / CSRF · SAST, SCA, DAST · gestion des secrets · OAuth 2.0 · chiffrement AES-GCM · segmentation OT/IT · RBAC / ABAC · confidentialité dès la conception (RGPD)</p>
+        <p class="skills en">Intrusion detection · MITRE ATT&amp;CK · flow analysis · CSP / CSRF · SAST, SCA, DAST · secrets handling · OAuth 2.0 · AES-GCM encryption · OT/IT segmentation · RBAC / ABAC · privacy by design (GDPR)</p>
+        <p class="used">AEGIS Mini-SOC, InsaCloud, CyberQuest, Cap Stage, SecuriGlass, AI4BRAIN</p>
       </li>
       <li data-cv-fr="Cloud &amp; DevOps" data-cv-en="Cloud &amp; DevOps">
         <h3>cloud &amp; devops</h3>
@@ -724,14 +764,14 @@ medievail-battle/  medievail-p2p/  cyberquest/</span></pre>
       </li>
       <li data-cv-fr="Développement" data-cv-en="Development">
         <h3><span class="fr">développement</span><span class="en">development</span></h3>
-        <p class="skills">Python · Flask · FastAPI · TypeScript · JavaScript · React · Strapi · C · SQL</p>
-        <p class="used fr">InsaCloud, AEGIS, Planificateur, MedievAIl Battle, Cap Stage, SecuriGlass</p><p class="used en">InsaCloud, AEGIS, Revision planner, MedievAIl Battle, Cap Stage, SecuriGlass</p>
+        <p class="skills">Python · Flask · FastAPI · TypeScript · JavaScript · React · Next.js · Strapi · C · SQL</p>
+        <p class="used fr">InsaCloud, AEGIS, Planificateur, MedievAIl Battle, Cap Stage, SecuriGlass, AI4BRAIN</p><p class="used en">InsaCloud, AEGIS, Revision planner, MedievAIl Battle, Cap Stage, SecuriGlass, AI4BRAIN</p>
       </li>
       <li data-cv-fr="Réseau &amp; données" data-cv-en="Network &amp; data">
         <h3><span class="fr">réseau &amp; données</span><span class="en">network &amp; data</span></h3>
-        <p class="skills fr">scapy · sockets UDP / TCP · Modbus TCP · IPC · scikit-learn · détection d'anomalies</p>
-        <p class="skills en">scapy · UDP / TCP sockets · Modbus TCP · IPC · scikit-learn · anomaly detection</p>
-        <p class="used fr">AEGIS Mini-SOC, SecuriGlass, MedievAIl Battle (version réseau)</p><p class="used en">AEGIS Mini-SOC, SecuriGlass, MedievAIl Battle (network version)</p>
+        <p class="skills fr">scapy · sockets UDP / TCP · Modbus TCP · IPC · scikit-learn · détection d'anomalies · filtrage bayésien (Kalman)</p>
+        <p class="skills en">scapy · UDP / TCP sockets · Modbus TCP · IPC · scikit-learn · anomaly detection · Bayesian filtering (Kalman)</p>
+        <p class="used fr">AEGIS Mini-SOC, SecuriGlass, AI4BRAIN, MedievAIl Battle (version réseau)</p><p class="used en">AEGIS Mini-SOC, SecuriGlass, AI4BRAIN, MedievAIl Battle (network version)</p>
       </li>
       <li data-cv-fr="Qualité" data-cv-en="Quality">
         <h3><span class="fr">qualité &amp; docs</span><span class="en">quality &amp; docs</span></h3>
@@ -766,6 +806,7 @@ medievail-battle/  medievail-p2p/  cyberquest/</span></pre>
       <li><span class="when"><span class="fr">oct. 2026</span><span class="en">Oct 2026</span></span><span class="what"><b>AEGIS Mini-SOC</b> <span class="fr">Détection d'intrusion par machine learning.</span><span class="en">Intrusion detection with machine learning.</span></span></li>
       <li><span class="when"><span class="fr">oct. 2026</span><span class="en">Oct 2026</span></span><span class="what"><b>Cap Stage</b> <span class="fr">Suivi de candidatures de stage, sans serveur, avec synchronisation Google Drive.</span><span class="en">Internship-application tracker, serverless, with Google Drive sync.</span></span></li>
       <li><span class="when"><span class="fr">oct. 2026</span><span class="en">Oct 2026</span></span><span class="what"><b>SecuriGlass Factory OS</b> <span class="fr">Console de supervision d'une usine de verre, avec diode de données et assistant IA protégé.</span><span class="en">Supervision console for a glass factory, with a data diode and a guarded AI assistant.</span></span></li>
+      <li><span class="when"><span class="fr">oct. 2026</span><span class="en">Oct 2026</span></span><span class="what"><b>AI4BRAIN</b> <span class="fr">Agent d'aide à l'apprentissage non clinique, pour le défi IEEE CISTAC 1.0.</span><span class="en">Non-clinical learning-support agent, for the IEEE CISTAC 1.0 challenge.</span></span></li>
       <li class="next"><span class="when"><span class="fr">avril 2027</span><span class="en">April 2027</span></span><span class="what"><b><span class="fr">Stage recherché</span><span class="en">Internship wanted</span></b> <span class="fr">Cybersécurité ou cloud &amp; DevOps.</span><span class="en">Cybersecurity or cloud &amp; DevOps.</span></span></li>
     </ol>
   </section>
@@ -1054,6 +1095,67 @@ medievail-battle/  medievail-p2p/  cyberquest/</span></pre>
     </div>
   </div>
 </dialog>
+<dialog class="dlg" id="d-ai4brain" aria-labelledby="t-ai4brain">
+  <div class="dlg-head"><h3 id="t-ai4brain">AI4BRAIN</h3><button type="button" class="tlink" data-close><span class="fr">Fermer ✕</span><span class="en">Close ✕</span></button></div>
+  <div class="dlg-body">
+    <div class="media">
+      <video controls preload="none" playsinline poster="assets/ai4brain/profil-fourchettes.jpg" aria-label="Démonstration d'AI4BRAIN"><source src="assets/ai4brain/demo.mp4" type="video/mp4"></video>
+      <p class="cap fr">démo (4 min, commentaire vocal en anglais) : présentation, consentement, un jeu, profil en fourchettes, coach, score de collaboration, profils de démonstration, version française, modèle bayésien, ce qui est validé et ce qui reste à faire</p>
+      <p class="cap en">demo (4 min, English voice-over): overview, consent, a game, profile as ranges, coach, collaboration score, demo profiles, French version, Bayesian model, what is validated and what comes next</p>
+      <div class="shots">
+        <figure><img loading="lazy" src="assets/ai4brain/accueil-fr.jpg" alt="" data-alt-fr="Page d'accueil d'AI4BRAIN en français" data-alt-en="AI4BRAIN landing page in French"><figcaption class="fr">Accueil en français : l'application dit ce qu'elle est, et ce qu'elle n'est pas, avant de demander quoi que ce soit</figcaption><figcaption class="en">Landing page in French: the app says what it is, and is not, before asking for anything</figcaption></figure>
+        <figure><img loading="lazy" src="assets/ai4brain/consentement.jpg" alt="" data-alt-fr="Page de consentement : données enregistrées et durée de conservation" data-alt-en="Consent page: recorded data and retention period"><figcaption class="fr">Consentement d'abord : ce qui est enregistré, ce qui ne l'est jamais, durée de conservation au choix</figcaption><figcaption class="en">Consent first: what is recorded, what never is, a retention period of your choice</figcaption></figure>
+        <figure><img loading="lazy" src="assets/ai4brain/briefing.jpg" alt="" data-alt-fr="Briefing du jeu Arrow Focus avec démonstration animée" data-alt-en="Arrow Focus game briefing with an animated demo"><figcaption class="fr">Briefing avant chaque jeu : ce qu'il entraîne, un exemple du quotidien, les règles et une démonstration animée</figcaption><figcaption class="en">Briefing before each game: what it trains, an everyday example, the rules and an animated demo</figcaption></figure>
+        <figure><img loading="lazy" src="assets/ai4brain/coach.jpg" alt="" data-alt-fr="Le coach recommande Quick Reaction et explique pourquoi" data-alt-en="The coach recommends Quick Reaction and explains why"><figcaption class="fr">Le coach : « la rapidité est autour de 56, à 8 près » ; la raison vient des chiffres qui ont décidé (profil de démonstration)</figcaption><figcaption class="en">The coach: "Speed is around 56, give or take 8"; the reason comes from the numbers that decided (demo profile)</figcaption></figure>
+        <figure><img loading="lazy" src="assets/ai4brain/profil-fourchettes.jpg" alt="" data-alt-fr="Profil : une fourchette par compétence" data-alt-en="Profile: one range per skill"><figcaption class="fr">Profil : une fourchette à 95 % par compétence et sa fiabilité, jamais un score seul (profil de démonstration, données simulées)</figcaption><figcaption class="en">Profile: a 95% range per skill and its reliability, never a lone score (demo profile, simulated data)</figcaption></figure>
+        <figure><img loading="lazy" src="assets/ai4brain/collaboration-ia.jpg" alt="" data-alt-fr="Score de collaboration avec l'IA et ses cinq composantes" data-alt-en="AI collaboration score and its five components"><figcaption class="fr">Score de collaboration avec l'IA : cinq composantes calculées à partir des échanges avec le coach (profil de démonstration)</figcaption><figcaption class="en">AI collaboration score: five components computed from the exchanges with the coach (demo profile)</figcaption></figure>
+      </div>
+      <p class="cap fr">Captures de l'application réelle, interface en anglais sauf la première : elle est bilingue FR / EN.</p>
+      <p class="cap en">Captures of the running app, interface in English except the first: it is bilingual FR / EN.</p>
+    </div>
+    <div>
+      <div class="facts" role="list">
+        <div role="listitem"><b>97,2 %</b><span class="fr">des vraies valeurs dans l'intervalle à 95 % (simulation, séance 12)</span><span class="en">of true values inside the 95% interval (simulation, session 12)</span></div>
+        <div role="listitem"><b>−27 %</b><span class="fr">d'erreur grâce à l'amortissement des séances d'inattention (simulation)</span><span class="en">error thanks to damping of lapse sessions (simulation)</span></div>
+        <div role="listitem"><b>19</b><span class="fr">tests automatisés, dont un contrôle du vocabulaire sur 200 traces par langue</span><span class="en">automated tests, including a vocabulary check on 200 traces per language</span></div>
+      </div>
+      <ul class="points">
+        <li><span class="lbl fr">Le défi</span><span class="lbl en">The challenge</span>
+          <span class="fr">Participation au défi IEEE CISTAC 1.0 (IEEE Computational Intelligence Society, section Tunisie) : concevoir un agent de « croissance cognitive » explicable, non clinique et honnête sur son incertitude. Le rapport IEEE de 5 pages est signé « Team AI4BRAIN ».</span>
+          <span class="en">An entry to the IEEE CISTAC 1.0 challenge (IEEE Computational Intelligence Society, Tunisia Chapter): build an explainable, non-clinical "cognitive growth" agent that is honest about its uncertainty. The 5-page IEEE report is signed "Team AI4BRAIN".</span></li>
+        <li><span class="lbl fr">Ce que ça mesure</span><span class="lbl en">What it measures</span>
+          <span class="fr">Cinq jeux d'environ une minute : mémoire (n-back spatial), concentration (flanker), flexibilité (changement de règle), rapidité (temps de réaction à choix) et raisonnement (matrices). Chaque compétence est une fourchette à 95 % qui se resserre avec la pratique ; jamais de score seul, de diagnostic ni de comparaison avec d'autres personnes.</span>
+          <span class="en">Five games of about a minute: memory (spatial n-back), focus (flanker), flexibility (task switching), speed (choice reaction time) and reasoning (matrices). Each skill is a 95% range that narrows with practice; never a lone score, a diagnosis or a comparison with other people.</span></li>
+        <li><span class="lbl fr">Le modèle « Brain Twin »</span><span class="lbl en">The "Brain Twin" model</span>
+          <span class="fr">Un filtre bayésien de type Kalman par compétence : une croyance gaussienne (estimation et incertitude) qui tient compte de la difficulté, du compromis vitesse-précision et de l'effet d'entraînement. Un écart au-delà de trois écarts-types gonfle le bruit pour qu'une mauvaise séance ne fasse presque pas bouger l'estimation ; une dérive minimale empêche l'incertitude de tomber à zéro, le modèle ne prétend jamais être certain.</span>
+          <span class="en">A Kalman-type Bayesian filter per skill: a Gaussian belief (estimate and uncertainty) that accounts for difficulty, the speed-accuracy trade-off and practice effects. A deviation beyond three standard deviations inflates the noise so that one bad session barely moves the estimate; a minimal drift keeps uncertainty from collapsing to zero, so the model never claims certainty.</span></li>
+        <li><span class="lbl fr">Un coach qui ne peut pas inventer</span><span class="lbl en">A coach that cannot make things up</span>
+          <span class="fr">Une politique déterministe choisit le prochain jeu (marge de progression, incertitude, ancienneté de la pratique) ; un modèle de langage ne fait que la reformuler. Sa réponse doit être un JSON valide qui recopie la décision et ne contient aucun nombre absent de la trace, sinon l'application retombe sur un gabarit bilingue. Un garde-fou refuse le vocabulaire diagnostique et les comparaisons, en anglais et en français.</span>
+          <span class="en">A deterministic policy picks the next game (room to grow, uncertainty, recency of practice); a language model only rephrases it. Its answer must be valid JSON that copies the decision and contains no number absent from the trace, otherwise the app falls back to a bilingual template. A guardrail rejects diagnostic vocabulary and comparisons, in English and French.</span></li>
+        <li><span class="lbl fr">Score de collaboration avec l'IA</span><span class="lbl en">AI collaboration score</span>
+          <span class="fr">Une note de 0 à 100 à la formule explicite (clarification, vérification critique, itération, autonomie, usage responsable), calculée à partir des échanges avec le coach et masquée tant qu'il n'y a pas assez de données.</span>
+          <span class="en">A 0 to 100 score with an explicit formula (clarification, critical verification, iteration, autonomy, responsible use), computed from the exchanges with the coach and hidden until there is enough data.</span></li>
+        <li><span class="lbl fr">Vie privée</span><span class="lbl en">Privacy</span>
+          <span class="fr">Identifiant pseudonyme aléatoire, ni nom, ni e-mail, ni caméra, ni micro. Le consentement et une durée de conservation (30, 90 ou 365 jours) sont exigés avant toute évaluation (HTTP 403 sinon) ; export JSON et suppression avec reçu à tout moment, purge des données expirées.</span>
+          <span class="en">Random pseudonymous id, no name, e-mail, camera or microphone. Consent and a retention period (30, 90 or 365 days) are required before any assessment (HTTP 403 otherwise); JSON export and deletion with a receipt at any time, purge of expired data.</span></li>
+        <li><span class="lbl fr">L'évaluation</span><span class="lbl en">The evaluation</span>
+          <span class="fr">Simulation de 200 utilisateurs × 5 compétences × 12 séances, avec un générateur volontairement différent de l'estimateur : l'écart-type de l'estimation passe de 25 à 4,1 points, l'erreur est de 3,55 contre 4,84 sans amortissement, 82,6 % des séances d'inattention sont amorties pour 0,12 % de fausses alertes, et la corrélation avec la vraie capacité atteint 0,94.</span>
+          <span class="en">A simulation of 200 users × 5 skills × 12 sessions with a generator deliberately different from the estimator: the standard deviation of the estimate falls from 25 to 4.1 points, the error is 3.55 against 4.84 without damping, 82.6% of lapse sessions are damped for 0.12% false alarms, and the correlation with true ability reaches 0.94.</span></li>
+        <li class="limit"><span class="lbl fr">Limites relevées par le rapport</span><span class="lbl en">Limits listed in the report</span>
+          <span class="fr">Aucune étude avec de vrais participants : tous les chiffres de fiabilité viennent de simulation, et aucune étude d'utilisabilité n'a été menée. Une minute de jeu donne des estimations bruitées, surtout pour le raisonnement (6 items). Compétences modélisées indépendamment, constantes de conception à calibrer. Pas d'authentification (le pseudonyme sert de secret) et un stockage en mémoire. Interface bilingue vérifiée automatiquement, pas par des locuteurs natifs. Les profils de la démo sont des personas simulés ; la page d'accueil compte les séances toutes compétences confondues et le graphique de projection ne couvre que la mémoire.</span>
+          <span class="en">No study with real participants: every reliability figure comes from simulation, and no usability study has been run. One minute of play gives noisy estimates, especially for reasoning (6 items). Skills are modelled independently, design constants need calibration. No authentication (the pseudonym acts as a secret) and an in-memory store. The bilingual interface was checked automatically, not by native speakers. Demo profiles are simulated personas; the home page counts sessions across skills and the projection chart covers only memory.</span></li>
+        <li><span class="lbl fr">Pour l'essayer</span><span class="lbl en">To try it</span>
+          <span class="fr">Python 3.9+ et Node 18+ : <span class="mono">bash start.sh</span> lance l'API (port 8000) et l'application (port 3000) ; la page <span class="mono">/demo</span> charge trois profils simulés.</span>
+          <span class="en">Python 3.9+ and Node 18+: <span class="mono">bash start.sh</span> starts the API (port 8000) and the app (port 3000); the <span class="mono">/demo</span> page loads three simulated profiles.</span></li>
+      </ul>
+      <p class="stack" style="margin-top:22px">Python · FastAPI · Pydantic · Next.js 14 · TypeScript · Tailwind · Recharts</p>
+      <p class="dlg-links">
+        <button type="button" class="tlink" data-report="ai4brain"><span class="fr">Lire le rapport IEEE (en anglais)</span><span class="en">Read the IEEE report</span></button>
+        <a class="tlink" href="https://github.com/aziz3r/ai4brain-cistac" target="_blank" rel="noopener"><span class="fr">Code source ↗</span><span class="en">Source code ↗</span></a>
+      </p>
+    </div>
+  </div>
+</dialog>
 
 <dialog class="dlg" id="d-cyberquest" aria-labelledby="t-cyberquest">
   <div class="dlg-head"><h3 id="t-cyberquest">CyberQuest</h3><button type="button" class="tlink" data-close><span class="fr">Fermer ✕</span><span class="en">Close ✕</span></button></div>
@@ -1320,7 +1422,9 @@ medievail-battle/  medievail-p2p/  cyberquest/</span></pre>
     'medievail-jeu': { dir: 'assets/reports/medievail-jeu-rapport', n: 8, pdf: 'assets/reports/medievail-jeu-rapport.pdf',
       title: { fr: 'MedievAIl Battle · Rapport technique', en: 'MedievAIl Battle · Technical report (in French)' } },
     'medievail-p2p': { dir: 'assets/reports/medievail-p2p-rapport', n: 8, pdf: 'assets/reports/medievail-p2p-rapport.pdf',
-      title: { fr: 'MedievAIl Battle P2P · Rapport technique', en: 'MedievAIl Battle P2P · Technical report (in French)' } }
+      title: { fr: 'MedievAIl Battle P2P · Rapport technique', en: 'MedievAIl Battle P2P · Technical report (in French)' } },
+    ai4brain: { dir: 'assets/reports/ai4brain-rapport', n: 5, pdf: 'assets/reports/ai4brain-rapport.pdf', h: 1295,
+      title: { fr: 'AI4BRAIN · Rapport IEEE, en anglais', en: 'AI4BRAIN · IEEE technical report' } }
   };
   var currentReport = null;
   function pad(n) { return n < 10 ? '0' + n : String(n); }
@@ -1334,7 +1438,7 @@ medievail-battle/  medievail-p2p/  cyberquest/</span></pre>
     box.setAttribute('data-key', key); box.textContent = '';
     for (var i = 1; i <= r.n; i++) {
       var f = document.createElement('figure'); f.className = 'pg';
-      var im = document.createElement('img'); im.loading = 'lazy'; im.src = r.dir + '/p' + pad(i) + '.jpg';
+      var im = document.createElement('img'); im.loading = 'lazy'; im.src = r.dir + '/p' + pad(i) + '.jpg'; if (r.h) im.style.aspectRatio = '1000 / ' + r.h;
       im.alt = (lang === 'fr' ? 'Page ' : 'Page ') + i + ' / ' + r.n;
       var c = document.createElement('figcaption'); c.textContent = i + ' / ' + r.n;
       f.appendChild(im); f.appendChild(c); box.appendChild(f);
@@ -1598,7 +1702,7 @@ medievail-battle/  medievail-p2p/  cyberquest/</span></pre>
       subject: 'Objet : Candidature à un stage de 4 mois en cybersécurité (à partir de début avril 2027)',
       hello: 'Madame, Monsieur,',
       intro: "Actuellement en cycle ingénieur à l'INSA Centre-Val de Loire (spécialité Sécurité et Technologies Informatiques, promotion 2028), je vous adresse ma candidature pour un stage de 4 mois en cybersécurité, à partir de début avril 2027. Tout type de mission m'intéresse : détection d'intrusion et SOC, tests d'intrusion (pentest), sécurité du cloud et du DevOps (DevSecOps), cybersécurité industrielle OT/IT, sécurité des applications web et des assistants à base de LLM. Mes projets en témoignent.",
-      mine: "J'ai également réalisé ", team: "En équipe, j'ai aussi participé à ", sep: ' ; ', and: ' et ',
+      mine: "J'ai également réalisé ", team: "En équipe, j'ai aussi participé à ", other: "J'ai aussi participé au défi IEEE CISTAC 1.0 avec ", sep: ' ; ', and: ' et ',
       method: "Ma façon de travailler : mesurer, documenter et dire ce qui ne marche pas ; chaque projet est livré avec ses tests, ses chiffres et un rapport qui en expose aussi les limites. Mon stage chez Anypli en 2025 (première application web : React, TypeScript, Strapi) et mon anglais professionnel (TOEIC 950) complètent ce profil.",
       kw: 'Compétences clés : ',
       kwHead: "cybersécurité, SOC, détection d'intrusion (IDS/NIDS), pentest (tests d'intrusion), DevSecOps, CI/CD, infrastructure as code, sécurité cloud, cybersécurité industrielle (OT/IT), sécurité des LLM (injection de prompt), machine learning, cryptographie, durcissement (hardening), Active Directory, OWASP Top 10, TCP/IP",
@@ -1611,7 +1715,7 @@ medievail-battle/  medievail-p2p/  cyberquest/</span></pre>
       subject: 'Subject: Application for a 4-month cybersecurity internship (starting early April 2027)',
       hello: 'Dear Hiring Team,',
       intro: 'I am currently an engineering student at INSA Centre-Val de Loire (Security and Computer Technologies major, class of 2028), and I am applying for a 4-month cybersecurity internship starting early April 2027. Any kind of mission interests me: intrusion detection and SOC, penetration testing (pentest), cloud and DevOps security (DevSecOps), OT/IT industrial cybersecurity, web application security and the security of LLM-based assistants. My projects show it.',
-      mine: 'I have also built ', team: 'As part of a team, I also took part in ', sep: '; ', and: ' and ',
+      mine: 'I have also built ', team: 'As part of a team, I also took part in ', other: 'I also took part in the IEEE CISTAC 1.0 challenge with ', sep: '; ', and: ' and ',
       method: 'How I work: measure, document, and say what does not work; every project ships with its tests, its numbers and a report that also states its limits. My 2025 internship at Anypli (first web application: React, TypeScript, Strapi) and my professional English (TOEIC 950) complete this profile.',
       kw: 'Key skills: ',
       kwHead: 'cybersecurity, SOC, intrusion detection (IDS/NIDS), pentest (penetration testing), DevSecOps, CI/CD, infrastructure as code, cloud security, industrial cybersecurity (OT/IT), LLM security (prompt injection), machine learning, cryptography, hardening, Active Directory, OWASP Top 10, TCP/IP',
@@ -1623,7 +1727,8 @@ medievail-battle/  medievail-p2p/  cyberquest/</span></pre>
   var LETTER_ORDER = {
     main: ['p-securiglass', 'p-aegis', 'p-insacloud'],
     mine: ['p-cap-stage', 'p-planner'],
-    team: ['p-cyberquest', 'p-medievail', 'p-p2p']
+    team: ['p-cyberquest', 'p-medievail', 'p-p2p'],
+    other: ['p-ai4brain']
   };
 
   function letterCards(l) {
@@ -1647,9 +1752,11 @@ medievail-battle/  medievail-p2p/  cyberquest/</span></pre>
     ids(LETTER_ORDER.main).forEach(function (id) { B.push(cards[id].l); });
     var mine = ids(LETTER_ORDER.mine).map(function (id) { return cards[id].s; });
     var team = ids(LETTER_ORDER.team).map(function (id) { return cards[id].s; });
+    var other = ids(LETTER_ORDER.other).map(function (id) { return cards[id].s; });
     var more = [];
     if (mine.length) more.push(P.mine + list(mine) + '.');
     if (team.length) more.push(P.team + list(team) + '.');
+    if (other.length) more.push(P.other + list(other) + '.');
     if (more.length) B.push(more.join(' '));
     B.push(P.method);
     /* arsenal skills not already named in the opening keywords */
