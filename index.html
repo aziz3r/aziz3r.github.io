@@ -317,12 +317,101 @@ html.theming, html.theming *:not(#theme), html.theming *:not(#theme)::before, ht
   :root[data-theme="light"] #theme { rotate: none; }
   .role { transform: none; filter: none; }
 }
+
+/* ===== v14: same look, now as posters: backdrops, depth, fluid transitions ===== */
+body { overflow-x: clip; }
+.hero { overflow-x: clip; }
+html { font-size: clamp(15px, 13.6px + 0.3vw, 19px); }
+.wrap, .nav-in { max-width: clamp(1080px, 70vw, 1500px); }
+/* the terminal wraps instead of scrolling or cutting its lines */
+.term { white-space: pre-wrap; overflow: visible; overflow-wrap: anywhere; font-size: clamp(0.78rem, 0.5rem + 0.7vw, 0.92rem); line-height: 1.8; padding-left: clamp(14px, 2vw, 22px); }
+/* the section links fold onto several lines on narrow screens, they never scroll sideways */
+@media (max-width: 640px) { .nav { position: relative; z-index: 20; } .links { flex-wrap: wrap; overflow: visible; white-space: normal; gap: 6px 18px; justify-content: flex-start; padding-bottom: 0; } }
+
+/* an ambient wash that drifts with the scroll, behind every section */
+.ambient { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.ambient i { position: absolute; width: 56vmax; height: 56vmax; border-radius: 50%; filter: blur(90px); opacity: 0.16; will-change: transform; }
+.ambient i:nth-child(1) { left: -14vmax; top: -10vmax; background: var(--accent2); }
+.ambient i:nth-child(2) { right: -16vmax; top: 30vh; background: var(--accent); opacity: 0.11; }
+:root[data-theme="light"] .ambient i { opacity: 0.1; }
+
+/* hero: three real interfaces behind the opening, one slow crossfade */
+.hero-bg { position: absolute; z-index: -1; top: -90px; height: min(125svh, 1150px); left: 50%; width: 100vw; margin-left: -50vw; overflow: hidden; pointer-events: none; -webkit-mask-image: linear-gradient(#000 52%, transparent); mask-image: linear-gradient(#000 52%, transparent); }
+.hero-bg span { position: absolute; inset: -7%; background-size: cover; background-position: center; filter: blur(14px) saturate(1.4) brightness(1.15); opacity: 0; transform: scale(1.06); transition: opacity 2.4s ease; }
+.hero-bg span.inv { filter: invert(1) hue-rotate(180deg) blur(14px) saturate(1.3) brightness(0.9); }
+.hero-bg span.on { opacity: 1; animation: drift 20s ease-in-out infinite alternate; }
+@keyframes drift { to { transform: scale(1.15) translate3d(-1.6%, 1.2%, 0); } }
+
+/* each project is a poster: its own picture as a deep backdrop, a big title, the crisp picture on top */
+.proj { position: relative; isolation: isolate; margin-bottom: 0; padding-block: clamp(36px, 4.6vw, 76px); }
+.poster-bg { position: absolute; z-index: -1; top: 0; bottom: 0; left: 50%; width: 100vw; margin-left: -50vw; overflow: hidden; pointer-events: none; -webkit-mask-image: linear-gradient(transparent, #000 24%, #000 76%, transparent); mask-image: linear-gradient(transparent, #000 24%, #000 76%, transparent); }
+.poster-bg i { position: absolute; inset: -14% 0; background: var(--poster) center / cover no-repeat; filter: blur(14px) saturate(1.45) brightness(var(--pb, 1.4)); transform: scale(1.08); will-change: transform; }
+.poster-bg.inv i { filter: invert(1) hue-rotate(180deg) blur(14px) saturate(1.3) brightness(var(--pb, 1.1)); }
+.poster-bg::after { content: ""; position: absolute; inset: 0; background: rgba(5, 9, 16, var(--po, 0.3)); }
+:root[data-theme="light"] .poster-bg i, :root[data-theme="light"] .poster-bg.inv i { filter: blur(14px) saturate(1.15) brightness(1.25); opacity: 0.34; }
+:root[data-theme="light"] .poster-bg::after { display: none; }
+:root[data-theme="light"] .hero-bg span, :root[data-theme="light"] .hero-bg span.inv { filter: blur(14px) saturate(1.1) brightness(1.2); }
+:root[data-theme="light"] .hero-bg { opacity: 0.35; }
+.proj > div:not(.poster-bg) { container-type: inline-size; }
+/* every title and line is sized from its own column, so it fits at any page width */
+.proj h3 { font-size: clamp(1.9rem, 11.6cqw, 4rem); letter-spacing: -0.035em; line-height: 1.02; text-wrap: balance; }
+.proj .one { font-size: clamp(1rem, 3.6cqw + 0.35rem, 1.3rem); text-wrap: pretty; }
+.proj .mini { font-size: clamp(0.78rem, 2.6cqw + 0.1rem, 0.92rem); }
+.proj .stack { font-size: clamp(0.74rem, 2.3cqw + 0.1rem, 0.86rem); }
+:root:not([data-theme="light"]) .proj .one { color: #b8c4d8; }
+:root:not([data-theme="light"]) .proj .stack, :root:not([data-theme="light"]) .proj .tag { color: #a2b0c6; }
+.pm img { transition: transform 1100ms cubic-bezier(0.23, 1, 0.32, 1); }
+.pm .play { transition: transform 300ms cubic-bezier(0.23, 1, 0.32, 1), box-shadow 300ms ease; }
+@media (hover: hover) and (pointer: fine) {
+  .pm:hover img { transform: scale(1.05); }
+  .pm:hover .play { transform: scale(1.12); box-shadow: 0 0 46px var(--accent); }
+}
+.subhead { margin-top: clamp(24px, 4vw, 56px); }
+.proj > div[data-reveal] { --d: 160ms !important; }
+
+/* opening a project: its picture grows into the window (view transition), then the window itself */
+::view-transition-group(pj) { animation-duration: 560ms; animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1); }
+::view-transition-old(pj), ::view-transition-new(pj) { height: 100%; object-fit: cover; }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: 340ms; }
+html.vt dialog.dlg, html.vt dialog.dlg::backdrop { transition: none !important; }
+html.vt dialog.dlg[open] { opacity: 1; transform: none; }
+html.vt dialog.dlg[open]::backdrop { opacity: 1; }
+
+/* depth, from the scroll position itself: the browser keeps these exactly in step, and they simply do not run where unsupported */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .proj { view-timeline: --poster block; }
+    .poster-bg i { animation: pbShift linear both; animation-timeline: --poster; animation-range: cover; }
+    .hero { animation: heroOut linear both; animation-timeline: view(); animation-range: exit 15% exit 95%; }
+    .ambient i:nth-child(1) { animation: amb1 linear both; animation-timeline: scroll(root); }
+    .ambient i:nth-child(2) { animation: amb2 linear both; animation-timeline: scroll(root); }
+  }
+}
+@keyframes pbShift { from { transform: translate3d(0, -9%, 0) scale(1.08); } to { transform: translate3d(0, 9%, 0) scale(1.08); } }
+@keyframes heroOut { from { opacity: 1; transform: none; } to { opacity: 0.45; transform: translate3d(0, -36px, 0); } }
+@keyframes amb1 { to { transform: translate3d(12vw, 70vh, 0); } }
+@keyframes amb2 { to { transform: translate3d(-14vw, -40vh, 0) scale(1.25); } }
+
+@media (max-width: 900px) {
+  .proj { padding-block: clamp(36px, 9vw, 64px); }
+  .poster-bg i { filter: blur(12px) saturate(1.4) brightness(var(--pb, 1.4)); }
+  .poster-bg.inv i { filter: invert(1) hue-rotate(180deg) blur(12px) saturate(1.3) brightness(var(--pb, 1.1)); }
+  .hero-bg { height: 90svh; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ambient i { transform: none !important; }
+  .hero-bg span.on { animation: none; }
+  .hero-bg span { transition: none; }
+  .pm img, .pm:hover img { transition: none; transform: none; }
+  ::view-transition-group(pj), ::view-transition-old(root), ::view-transition-new(root) { animation-duration: 1ms; }
+}
 </style>
 
 </head>
 <body>
 <!--BODY-->
 <canvas id="net" aria-hidden="true"></canvas>
+<div class="ambient" aria-hidden="true"><i></i><i></i></div>
 
 <header class="nav">
   <div class="nav-in">
@@ -344,6 +433,7 @@ html.theming, html.theming *:not(#theme), html.theming *:not(#theme)::before, ht
 </header>
 
 <main class="wrap" id="top">
+  <div class="hero-bg" aria-hidden="true"><span style="background-image:url(assets/aegis/02-vue-ensemble.jpg)"></span><span style="background-image:url(assets/securiglass/production.jpg)"></span><span class="inv" style="background-image:url(assets/insacloud/03-tableau-de-bord.png)"></span></div>
 
   <div class="hero">
     <div>
@@ -427,7 +517,8 @@ medievail-battle/  medievail-p2p/  cyberquest/</span></pre>
       <p class="sec-lead en">Click an image to see the demo, the screenshots and the measurements. The numbers come from the repositories.</p>
     </div>
 
-    <article class="proj" id="p-insacloud">
+    <article class="proj" id="p-insacloud" style="--poster:url(assets/insacloud/03-tableau-de-bord.png);--pb:1.00;--po:0.20">
+      <div class="poster-bg inv" aria-hidden="true"><i></i></div>
       <button type="button" class="pm" data-open="d-insacloud" aria-label="InsaCloud : démo et étude de cas">
         <img loading="lazy" src="assets/insacloud/03-tableau-de-bord.png" alt="" data-alt-fr="Tableau de bord d'InsaCloud" data-alt-en="InsaCloud dashboard"><span class="play" aria-hidden="true">▶</span>
       </button>
@@ -470,7 +561,8 @@ medievail-battle/  medievail-p2p/  cyberquest/</span></pre>
     </script>
     </article>
 
-    <article class="proj flip" id="p-aegis">
+    <article class="proj flip" id="p-aegis" style="--poster:url(assets/aegis/02-vue-ensemble.jpg);--pb:1.50;--po:0.30">
+      <div class="poster-bg" aria-hidden="true"><i></i></div>
       <button type="button" class="pm" data-open="d-aegis" aria-label="AEGIS Mini-SOC : démo et étude de cas">
         <img loading="lazy" src="assets/aegis/02-vue-ensemble.jpg" alt="" data-alt-fr="Vue d'ensemble de la console AEGIS" data-alt-en="AEGIS console overview"><span class="play" aria-hidden="true">▶</span>
       </button>
@@ -514,7 +606,8 @@ medievail-battle/  medievail-p2p/  cyberquest/</span></pre>
     </script>
     </article>
 
-    <article class="proj" id="p-planner">
+    <article class="proj" id="p-planner" style="--poster:url(assets/planner/0007-planning-previsualisation.png);--pb:1.00;--po:0.20">
+      <div class="poster-bg inv" aria-hidden="true"><i></i></div>
       <button type="button" class="pm" data-open="d-planner" aria-label="Planificateur de révisions : démo et étude de cas">
         <img loading="lazy" src="assets/planner/0007-planning-previsualisation.png" alt="" data-alt-fr="Planning de révision généré" data-alt-en="Generated revision schedule"><span class="play" aria-hidden="true">▶</span>
       </button>
@@ -555,7 +648,8 @@ medievail-battle/  medievail-p2p/  cyberquest/</span></pre>
     </script>
     </article>
 
-    <article class="proj flip" id="p-cap-stage">
+    <article class="proj flip" id="p-cap-stage" style="--poster:url(assets/cap-stage/kanban-sombre.jpg);--pb:1.50;--po:0.30">
+      <div class="poster-bg" aria-hidden="true"><i></i></div>
       <button type="button" class="pm" data-open="d-cap-stage" aria-label="Cap Stage : démo et étude de cas">
         <img loading="lazy" src="assets/cap-stage/kanban-sombre.jpg" alt="" data-alt-fr="Tableau des candidatures de Cap Stage, thème sombre" data-alt-en="Cap Stage applications board, dark theme"><span class="play" aria-hidden="true">▶</span>
       </button>
@@ -599,7 +693,8 @@ medievail-battle/  medievail-p2p/  cyberquest/</span></pre>
     </script>
     </article>
 
-    <article class="proj" id="p-securiglass">
+    <article class="proj" id="p-securiglass" style="--poster:url(assets/securiglass/production.jpg);--pb:1.50;--po:0.30">
+      <div class="poster-bg" aria-hidden="true"><i></i></div>
       <button type="button" class="pm" data-open="d-securiglass" aria-label="SecuriGlass Factory OS : démo et étude de cas">
         <img loading="lazy" src="assets/securiglass/production.jpg" alt="" data-alt-fr="Console de supervision du four de trempe de SecuriGlass, thème sombre" data-alt-en="SecuriGlass tempering-furnace supervision console, dark theme"><span class="play" aria-hidden="true">▶</span>
       </button>
@@ -642,7 +737,8 @@ medievail-battle/  medievail-p2p/  cyberquest/</span></pre>
       }
     </script>
     </article>
-    <article class="proj flip" id="p-ai4brain">
+    <article class="proj flip" id="p-ai4brain" style="--poster:url(assets/ai4brain/profil-fourchettes.jpg);--pb:1.00;--po:0.20">
+      <div class="poster-bg inv" aria-hidden="true"><i></i></div>
       <button type="button" class="pm" data-open="d-ai4brain" aria-label="AI4BRAIN : démo et étude de cas">
         <img loading="lazy" src="assets/ai4brain/profil-fourchettes.jpg" alt="" data-alt-fr="Profil d'AI4BRAIN : une fourchette par compétence" data-alt-en="AI4BRAIN profile: one range per skill"><span class="play" aria-hidden="true">▶</span>
       </button>
@@ -685,7 +781,8 @@ medievail-battle/  medievail-p2p/  cyberquest/</span></pre>
 
     <p class="subhead">~/<b><span class="fr">projets-d-équipe</span><span class="en">team-projects</span></b></p>
 
-    <article class="proj" id="p-medievail">
+    <article class="proj" id="p-medievail" style="--poster:url(assets/medievail-jeu/vue-ensemble.jpg);--pb:1.37;--po:0.30">
+      <div class="poster-bg" aria-hidden="true"><i></i></div>
       <button type="button" class="pm" data-open="d-medievail-jeu" aria-label="MedievAIl Battle : démo et étude de cas">
         <img loading="lazy" src="assets/medievail-jeu/vue-ensemble.jpg" alt="" data-alt-fr="Deux armées qui se déploient face à face dans MedievAIl Battle" data-alt-en="Two armies deploying face to face in MedievAIl Battle"><span class="play" aria-hidden="true">▶</span>
       </button>
@@ -726,7 +823,8 @@ medievail-battle/  medievail-p2p/  cyberquest/</span></pre>
     </script>
     </article>
 
-    <article class="proj flip" id="p-p2p">
+    <article class="proj flip" id="p-p2p" style="--poster:url(assets/medievail-p2p/thumb.jpg);--pb:1.43;--po:0.30">
+      <div class="poster-bg" aria-hidden="true"><i></i></div>
       <button type="button" class="pm" data-open="d-medievail-p2p" aria-label="MedievAIl Battle réseau pair-à-pair : démo et étude de cas">
         <img loading="lazy" src="assets/medievail-p2p/thumb.jpg" alt="" data-alt-fr="Mêlée vue depuis l'écran du joueur 1" data-alt-en="Melee as seen on player 1's screen"><span class="play" aria-hidden="true">▶</span>
       </button>
@@ -768,7 +866,8 @@ medievail-battle/  medievail-p2p/  cyberquest/</span></pre>
     </script>
     </article>
 
-    <article class="proj" id="p-cyberquest">
+    <article class="proj" id="p-cyberquest" style="--poster:url(assets/cyberquest/carte-reseau.jpg);--pb:1.50;--po:0.30">
+      <div class="poster-bg" aria-hidden="true"><i></i></div>
       <button type="button" class="pm" data-open="d-cyberquest" aria-label="CyberQuest : démo et étude de cas">
         <img loading="lazy" src="assets/cyberquest/carte-reseau.jpg" alt="" data-alt-fr="Carte réseau de CyberQuest : Kali, Linux, Active Directory, application web et cœur IA" data-alt-en="CyberQuest network map: Kali, Linux, Active Directory, web application and AI core"><span class="play" aria-hidden="true">▶</span>
       </button>
@@ -1396,6 +1495,7 @@ medievail-battle/  medievail-p2p/  cyberquest/</span></pre>
   var root = document.documentElement;
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var lang = 'fr';
+  function vt(fn) { if (document.startViewTransition && !reduce) document.startViewTransition(fn); else fn(); }
 
   /* ---------- language ---------- */
   var saved = null;
@@ -1420,7 +1520,7 @@ medievail-battle/  medievail-p2p/  cyberquest/</span></pre>
     try { localStorage.setItem('portfolio-lang', l); } catch (e) {}
   }
   document.querySelectorAll('[data-set-lang]').forEach(function (b) {
-    b.addEventListener('click', function () { setLang(b.getAttribute('data-set-lang')); });
+    b.addEventListener('click', function () { vt(function () { setLang(b.getAttribute('data-set-lang')); }); });
   });
 
   /* ---------- theme: dark by default ---------- */
@@ -1464,17 +1564,33 @@ medievail-battle/  medievail-p2p/  cyberquest/</span></pre>
   }
 
   /* ---------- dialogs ---------- */
+  var vtFrom = null;
+  function mediaOf(d) { return d.querySelector('.media video, .media img'); }
+  function openDlg(d, trigger) {
+    var proj = trigger && trigger.closest('.proj'), pic = proj && proj.querySelector('.pm img'), m = mediaOf(d);
+    if (!document.startViewTransition || reduce || !pic || !m || d.open) { d.showModal(); return; }
+    vtFrom = pic; root.classList.add('vt'); pic.style.viewTransitionName = 'pj';
+    var t = document.startViewTransition(function () { pic.style.viewTransitionName = ''; m.style.viewTransitionName = 'pj'; d.showModal(); });
+    t.finished.then(function () { root.classList.remove('vt'); m.style.viewTransitionName = ''; }, function () { root.classList.remove('vt'); m.style.viewTransitionName = ''; });
+  }
+  function closeDlg(d) {
+    var m = mediaOf(d), pic = vtFrom && document.contains(vtFrom) ? vtFrom : null;
+    if (!document.startViewTransition || reduce || !pic || !m || !d.open) { d.close(); return; }
+    root.classList.add('vt'); m.style.viewTransitionName = 'pj';
+    var t = document.startViewTransition(function () { m.style.viewTransitionName = ''; pic.style.viewTransitionName = 'pj'; d.close(); });
+    t.finished.then(function () { root.classList.remove('vt'); pic.style.viewTransitionName = ''; }, function () { root.classList.remove('vt'); pic.style.viewTransitionName = ''; });
+  }
   document.querySelectorAll('[data-open]').forEach(function (b) {
     b.addEventListener('click', function () {
       var d = document.getElementById(b.getAttribute('data-open'));
-      if (d && d.showModal) d.showModal();
+      if (d && d.showModal) openDlg(d, b);
     });
   });
   document.querySelectorAll('dialog.dlg').forEach(function (d) {
-    d.addEventListener('click', function (e) { if (e.target === d) d.close(); });
+    d.addEventListener('click', function (e) { if (e.target === d) closeDlg(d); });
     d.addEventListener('close', function () { d.querySelectorAll('video').forEach(function (v) { v.pause(); }); });
     var x = d.querySelector('[data-close]');
-    if (x) x.addEventListener('click', function () { d.close(); });
+    if (x) x.addEventListener('click', function () { closeDlg(d); });
   });
 
   /* ---------- report preview ---------- */
@@ -1968,7 +2084,7 @@ medievail-battle/  medievail-p2p/  cyberquest/</span></pre>
       });
     }, { rootMargin: '0px 0px -6% 0px', threshold: 0.06 });
     var fold = window.innerHeight;
-    [['.sec-head', 0, 1], ['.subhead', 0, 1], ['.proj', 0, 1], ['.log li', 0, 1], ['.langs', 0, 1], ['.contact .cv', 0, 1],
+    [['.sec-head', 0, 1], ['.subhead', 0, 1], ['.proj .pm', 0, 1], ['.proj > div:not(.poster-bg)', 0, 1], ['.log li', 0, 1], ['.langs', 0, 1], ['.contact .cv', 0, 1],
      ['.about > *', 70, 2], ['.focus > div', 70, 3], ['.two > div', 70, 2], ['.arsenal > li', 70, 3], ['.contact .big', 60, 4]
     ].forEach(function (g) {
       document.querySelectorAll(g[0]).forEach(function (el, i) {
@@ -2023,6 +2139,26 @@ medievail-battle/  medievail-p2p/  cyberquest/</span></pre>
   colors(); size(); draw(false);
   window.addEventListener('resize', function () { size(); draw(false); });
   if (!reduce) requestAnimationFrame(loop);
+})();
+</script>
+<script>
+(function () {
+  'use strict';
+  var root = document.documentElement;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* hero backdrop: real interfaces, one slow crossfade, paused when out of sight */
+  var hb = [].slice.call(document.querySelectorAll('.hero-bg span')), hi = 0;
+  if (hb.length) {
+    hb[0].classList.add('on');
+    if (!reduce && hb.length > 1) {
+      setInterval(function () {
+        if (document.hidden || window.scrollY > window.innerHeight * 1.1) return;
+        hb[hi].classList.remove('on'); hi = (hi + 1) % hb.length; hb[hi].classList.add('on');
+      }, 7000);
+    }
+  }
+
 })();
 </script>
 </body>
